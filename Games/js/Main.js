@@ -1,6 +1,5 @@
 ﻿
-init(50,"gamePanel",900,600,main);
-
+init(20,"gamePanel",900,600,main);
 
 
 //-------游戏场景------
@@ -21,8 +20,6 @@ var imgData=[
 var showFlag=[];//游戏国旗面板
 var sound;//音乐控制
 var BoundTop;//游戏边界
-
-
 //计分牌
 var scoreNumberLeft;
 var scoreNumberRight;
@@ -44,7 +41,7 @@ addChild(backGroundLayer);
 
 loadingLayer=new LoadingSample1();
 backGroundLayer.addChild(loadingLayer);
-    Bound();
+   
 LLoadManage.load(
 	imgData,
 	function (progress){
@@ -191,9 +188,9 @@ function gamePage(){
         scoreNumberLeft = new LTextField();
         scoreNumberLeft.text="0";
         scoreNumberLeft.color="#FFF";
-        scoreNumberLeft.size="15";
+        scoreNumberLeft.size="18";
         scoreNumberLeft.x=317;
-        scoreNumberLeft.y=10;
+        scoreNumberLeft.y=7;
 
 
      	resultArgentina.text = '阿根廷';
@@ -208,9 +205,9 @@ function gamePage(){
         scoreNumberRight = new LTextField();
         scoreNumberRight.text="0";
         scoreNumberRight.x=380;
-        scoreNumberRight.y=10;
+        scoreNumberRight.y=7;
         scoreNumberRight.color="#FFF"
-        scoreNumberRight.size="15";
+        scoreNumberRight.size="18";
 
      	resultBrazil.text = '巴西';
      	resultBrazil.weight = 'bolder';

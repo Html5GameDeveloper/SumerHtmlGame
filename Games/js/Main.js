@@ -1,6 +1,5 @@
 ﻿
-init(50,"gamePanel",900,600,main);
-
+init(20,"gamePanel",900,600,main);
 
 
 //-------游戏场景------
@@ -21,8 +20,6 @@ var imgData=[
 var showFlag=[];//游戏国旗面板
 var sound;//音乐控制
 var BoundTop;//游戏边界
-
-
 //计分牌
 var scoreNumberLeft;
 var scoreNumberRight;
@@ -44,7 +41,7 @@ addChild(backGroundLayer);
 
 loadingLayer=new LoadingSample1();
 backGroundLayer.addChild(loadingLayer);
-    Bound();
+   
 LLoadManage.load(
 	imgData,
 	function (progress){
@@ -52,7 +49,7 @@ LLoadManage.load(
 	},
 	gameInit
 );
-
+console.warn("123");
 }
 
 //-----欢迎页面开始-----
@@ -66,13 +63,13 @@ function gameInit(result){
 	title.y=100;
 	title.size=55;
 	title.color="white";
-	title.text="超级足球大战";
+	title.text="欢迎进入游戏世界";
 	backGroundLayer.addChild(title);
 	
 	backGroundLayer.graphics.drawRect(1,"#fff",[200,270,500,150]);
 	var clickText=new LTextField();
 	clickText.color="#fff";
-	clickText.text="点击进入";
+	clickText.text="点击进入游戏";
 	clickText.size=30;
 	clickText.x=325;
 	clickText.y=320;
@@ -135,7 +132,7 @@ function gamePage(){
 	var bitmap= new LBitmapData(imglist["meixi"]);
 	firstPlayerLayer.graphics.beginBitmapFill(bitmap);
 	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	firstPlayerLayer.addBodyCircle(40,40,40,0,5,0.5,0.9);
+	firstPlayerLayer.addBodyCircle(40,40,40,1,5,0.2,1);
 	
 	//-----玩家2出现（内马尔）-----
 	var secondPlayerLayer=new LSprite();
@@ -145,7 +142,7 @@ function gamePage(){
 	var bitmap= new LBitmapData(imglist["neimaer"]);
 	secondPlayerLayer.graphics.beginBitmapFill(bitmap);
 	secondPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	secondPlayerLayer.addBodyCircle(40,40,40,1,5,0.5,0.9);
+	secondPlayerLayer.addBodyCircle(40,40,40,1,5,0.2,0.9);
 	secondPlayerLayer.setBodyMouseJoint(true);
 	
 	//-----足球-----
@@ -156,7 +153,7 @@ function gamePage(){
 	var bitmap = new LBitmapData(imglist["football"]);
 	ballLayer.graphics.beginBitmapFill(bitmap);
 	ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-	ballLayer.addBodyCircle(20,20,20,1,5,0.2,0.9);
+	ballLayer.addBodyCircle(20,20,20,1,5,0.1,0.9);
 	
 	showFlag.push(new LBitmapData(imglist["Argentina"]));
 	showFlag.push(new LBitmapData(imglist["Brazil"]));
@@ -191,9 +188,9 @@ function gamePage(){
         scoreNumberLeft = new LTextField();
         scoreNumberLeft.text="0";
         scoreNumberLeft.color="#FFF";
-        scoreNumberLeft.size="15";
+        scoreNumberLeft.size="18";
         scoreNumberLeft.x=317;
-        scoreNumberLeft.y=10;
+        scoreNumberLeft.y=7;
 
 
      	resultArgentina.text = '阿根廷';
@@ -208,9 +205,9 @@ function gamePage(){
         scoreNumberRight = new LTextField();
         scoreNumberRight.text="0";
         scoreNumberRight.x=380;
-        scoreNumberRight.y=10;
+        scoreNumberRight.y=7;
         scoreNumberRight.color="#FFF"
-        scoreNumberRight.size="15";
+        scoreNumberRight.size="18";
 
      	resultBrazil.text = '巴西';
      	resultBrazil.weight = 'bolder';

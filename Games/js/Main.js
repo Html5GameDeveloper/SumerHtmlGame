@@ -16,11 +16,16 @@ var imgData=[
     {name:'football',path:'img/football.png'},
 	{name:"whiteBtn2",path:"img/whiteBtn2.png"}
 ];
-var showFlag=[];
-var sound;
-var BoundTop;
-var Argentina;
-var Brazil;
+var showFlag=[];//游戏国旗面板
+var sound;//音乐控制
+var BoundTop;//游戏边界
+
+
+//计分牌
+var scoreNumberLeft;
+var scoreNumberRight;
+
+
 var resultScore;
 
 
@@ -85,8 +90,14 @@ function changePage(){
 	backGroundLayer.removeAllChild();
 	var backGroundPic=new LBitmap(new LBitmapData(imglist["backGround"]));
 	backGroundLayer.addChild(backGroundPic);
- 
-    //导入按钮图片
+
+
+
+    //设置游戏边界函数
+    Bound();
+
+
+    //导入音乐播放按钮图片
     musicBtn = new LSprite();
     musicBtn.x = 850;
     musicBtn.y = 10;
@@ -95,8 +106,10 @@ function changePage(){
     musicBtn.graphics.beginBitmapFill(bitmap);
     musicBtn.graphics.drawRect(1,"#000",[0,0,41,29],false);
     addChild(musicBtn);
+
     musicBtn.addEventListener(LMouseEvent.MOUSE_UP,onup);
-	Bound();
+
+
 
 	//-----------玩家1出现（梅西）------------
 	var firstPlayerLayer=new LSprite();
@@ -133,13 +146,13 @@ function changePage(){
 	showFlag.push(new LBitmapData(imglist["Brazil"]));
 	
 	//显示国旗Argentina
-        Argentina = new LBitmap(showFlag[0]);
+        var Argentina = new LBitmap(showFlag[0]);
      	Argentina.x =50;
      	Argentina.y = 5;
      	backGroundLayer.addChild(Argentina);
 	
 	//显示国旗Brazil
-     	Brazil = new LBitmap(showFlag[1]);
+        var Brazil = new LBitmap(showFlag[1]);
      	Brazil.x = 770;
      	Brazil.y = 5;
      	backGroundLayer.addChild(Brazil);
@@ -155,30 +168,51 @@ function changePage(){
      	resultScore.x = 100;
      	resultScore.y =5;
      	backGroundLayer.addChild(resultScore);
-     	
+       // var scoreNumberLeft;
+       // var scoreNumberRight;
+     	//记分牌
      	resultArgentina = new LTextField();
+        scoreNumberLeft = new LTextField();
+        scoreNumberLeft.text="0";
+        scoreNumberLeft.color="#FFF";
+        scoreNumberLeft.size="15";
+        scoreNumberLeft.x=317;
+        scoreNumberLeft.y=10;
+
+
      	resultArgentina.text = '阿根廷';
      	resultArgentina.weight = 'bolder';
      	resultArgentina.color = '#fff';
      	resultArgentina.x = 20;
      	resultArgentina.y = 10;
      	resultScore.addChild(resultArgentina);
+        resultScore.addChild(scoreNumberLeft);
      	
      	resultBrazil = new LTextField();
+        scoreNumberRight = new LTextField();
+        scoreNumberRight.text="0";
+        scoreNumberRight.x=380;
+        scoreNumberRight.y=10;
+        scoreNumberRight.color="#FFF"
+        scoreNumberRight.size="15";
+
      	resultBrazil.text = '巴西';
      	resultBrazil.weight = 'bolder';
      	resultBrazil.color = '#fff';
      	resultBrazil.x = 610;
      	resultBrazil.y = 10;
      	resultScore.addChild(resultBrazil);
+        resultScore.addChild(scoreNumberRight);
 	}
 	
 //播放音乐
 function onup(e){
+
    if(sound.length == 0){
         var url = './sound/2014Soccer.mp3';
         sound.load(url);
         sound.addEventListener(LEvent.COMPLETE,loadOver);
+
     }else if(sound.playing){
         sound.stop();
     }else{
@@ -192,7 +226,7 @@ function loadOver(e){
 }
 
 //物体碰撞边界
-var BoundTop;
+
 
 function Bound(){
     LGlobal.box2d =  new LBox2d();

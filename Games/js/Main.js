@@ -9,6 +9,8 @@ var loadingLayer;//载入图层
 var imglist={};//图像列表对象
 var imgData=[
 	{name:"backGround",path:"img/backGround.jpg"},
+    {name:"ground2",path:"img/backGround.jpg"},
+    {name:"ground1",path:"img/backGround1.jpg"},
 	{name:"neimaer",path:"img/neimaer.png"},
 	{name:"meixi",path:"img/meixi.png"},
 	{name:'Argentina',path:'img/Argentina.png'},
@@ -75,16 +77,30 @@ function gameInit(result){
 	clickText.x=325;
 	clickText.y=320;
 	backGroundLayer.addChild(clickText);
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,changePage);
+	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 	
 	
 	
 }
 //-----欢迎页面结束-----
 
+//进入选择页面
+function choisePage(){
+    backGroundLayer.die();
+    backGroundLayer.removeAllChild();
+    /*  back.graphics.drawRect(1,'#f00',[0,0,900,600],false);*/
+    var backGroundPic=new LBitmap(new LBitmapData(imglist["ground1"]));
+    backGroundLayer.addChild(backGroundPic);
+    /*  backGroundLayer.addChild(back);*/
+    onup();
+    backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,gamePage);
+}
+
+
+
 
 //-----游戏场景-----
-function changePage(){
+function gamePage(){
 	LGlobal.box2d=new LBox2d();
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();

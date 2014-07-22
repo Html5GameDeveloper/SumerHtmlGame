@@ -1,7 +1,5 @@
 ﻿
 init(20,"gamePanel",900,600,main);
-
-
 //-------游戏场景------
 var backGroundLayer;//游戏背景
 var loadingLayer;//载入图层
@@ -28,8 +26,6 @@ var scoreNumberRight;
 var resultScore;
 
 
-
-
 //---------主函数入口---------
 function main(){
  LGlobal.webAudio = false;
@@ -49,7 +45,8 @@ LLoadManage.load(
 	},
 	gameInit
 );
-console.warn("123");
+    LGlobal.box2d =  new LBox2d();
+//console.warn("123");
 }
 
 //-----欢迎页面开始-----
@@ -98,17 +95,27 @@ function choisePage(){
 
 //-----游戏场景-----
 function gamePage(){
-	LGlobal.box2d=new LBox2d();
+	//LGlobal.box2d=new LBox2d();
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	var backGroundPic=new LBitmap(new LBitmapData(imglist["backGround"]));
 	backGroundLayer.addChild(backGroundPic);
 
-
-
     //设置游戏边界函数
     Bound();
 
+    //浮力效果初始化
+    var buoyancyController = new LGlobal.box2d.b2BuoyancyController();
+    buoyancyController.offset = -300/LGlobal.box2d.drawScale;
+    buoyancyController.density = 4;
+    buoyancyController.linearDrag = 10;
+    buoyancyController.angularDrag = 6;
+    LGlobal.box2d.world.AddController(buoyancyController);
+
+    var buoyancyControllerLayer = new LSprite();
+    buoyancyControllerLayer.graphics.drawRect(0,"#ffffff",[0, 560, 900, 40],false);
+    buoyancyControllerLayer.alpha = 0.2;
+    backGroundLayer.addChild(buoyancyControllerLayer);
 
     //导入音乐播放按钮图片
     musicBtn = new LSprite();
@@ -122,28 +129,29 @@ function gamePage(){
 
     musicBtn.addEventListener(LMouseEvent.MOUSE_UP,onup);
 
-
-
-	//-----------玩家1出现（梅西）------------
+	//-----------玩家1出现（梅西）------------	
 	var firstPlayerLayer=new LSprite();
-	firstPlayerLayer.x=100;
+	firstPlayerLayer.x=200;
 	firstPlayerLayer.y=300;
 	backGroundLayer.addChild(firstPlayerLayer);
-	var bitmap= new LBitmapData(imglist["meixi"]);
-	firstPlayerLayer.graphics.beginBitmapFill(bitmap);
+	var bitmapMeixi= new LBitmapData(imglist["meixi"]);
+	firstPlayerLayer.graphics.beginBitmapFill(bitmapMeixi);
 	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	firstPlayerLayer.addBodyCircle(40,40,40,1,5,0.2,1);
+	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
+	firstPlayerLayer.setBodyMouseJoint(true);
+    buoyancyController.AddBody(firstPlayerLayer.box2dBody);
 	
 	//-----玩家2出现（内马尔）-----
 	var secondPlayerLayer=new LSprite();
 	secondPlayerLayer.x=500;
 	secondPlayerLayer.y=300;
 	backGroundLayer.addChild(secondPlayerLayer);
-	var bitmap= new LBitmapData(imglist["neimaer"]);
-	secondPlayerLayer.graphics.beginBitmapFill(bitmap);
+	var bitmapNeimaer= new LBitmapData(imglist["neimaer"]);
+	secondPlayerLayer.graphics.beginBitmapFill(bitmapNeimaer);
 	secondPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	secondPlayerLayer.addBodyCircle(40,40,40,1,5,0.2,0.9);
+	secondPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
 	secondPlayerLayer.setBodyMouseJoint(true);
+    buoyancyController.AddBody(secondPlayerLayer.box2dBody);
 	
 	//-----足球-----
 	var ballLayer = new LSprite();
@@ -153,7 +161,8 @@ function gamePage(){
 	var bitmap = new LBitmapData(imglist["football"]);
 	ballLayer.graphics.beginBitmapFill(bitmap);
 	ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-	ballLayer.addBodyCircle(20,20,20,1,5,0.1,0.9);
+	ballLayer.addBodyCircle(20,20,20,1,3,0.1,0.9);
+    buoyancyController.AddBody(ballLayer.box2dBody);
 	
 	showFlag.push(new LBitmapData(imglist["Argentina"]));
 	showFlag.push(new LBitmapData(imglist["Brazil"]));
@@ -171,7 +180,6 @@ function gamePage(){
      	backGroundLayer.addChild(Brazil);
 		
 		scoreText();
-
 }
 
 	//---国家比分-----
@@ -235,14 +243,11 @@ function onup(e){
 
 function loadOver(e){
 	sound.play();
-	
 }
 
 //物体碰撞边界
-
-
 function Bound(){
-    LGlobal.box2d =  new LBox2d();
+  //  LGlobal.box2d =  new LBox2d();    递归错误
     BoundTop = new LSprite();
     backGroundLayer.addChild(BoundTop);
     var shapeArray = [

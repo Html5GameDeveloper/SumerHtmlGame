@@ -3,7 +3,7 @@ init(20,"gamePanel",900,600,main);
 //-------游戏场景------
 var backGroundLayer;//游戏背景
 var loadingLayer;//载入图层
-var imglist={};//图像列表对象
+var imglist={};//图像列表对象423
 var imgData=[
 	{name:"backGround",path:"img/backGround.jpg"},
     {name:"ground2",path:"img/backGround.jpg"},
@@ -21,10 +21,12 @@ var BoundTop;//游戏边界
 //计分牌
 var scoreNumberLeft;
 var scoreNumberRight;
-
-
+//足球
+var ballLayer;
+//得分
 var resultScore;
-
+//内马尔
+var secondPlayerLayer;
 
 //---------主函数入口---------
 function main(){
@@ -72,9 +74,6 @@ function gameInit(result){
 	clickText.y=320;
 	backGroundLayer.addChild(clickText);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
-	
-	
-	
 }
 //-----欢迎页面结束-----
 
@@ -90,11 +89,9 @@ function choisePage(){
     backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,gamePage);
 }
 
-
-
-
 //-----游戏场景-----
 function gamePage(){
+ // LMultitouch.inputMode = LMultitouchInputMode.TOUCH_POINT;
 	//LGlobal.box2d=new LBox2d();
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
@@ -139,22 +136,26 @@ function gamePage(){
 	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
 	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
 	firstPlayerLayer.setBodyMouseJoint(true);
-    buoyancyController.AddBody(firstPlayerLayer.box2dBody);
+   buoyancyController.AddBody(firstPlayerLayer.box2dBody);
 	
 	//-----玩家2出现（内马尔）-----
-	var secondPlayerLayer=new LSprite();
+	 secondPlayerLayer=new LSprite();
 	secondPlayerLayer.x=500;
 	secondPlayerLayer.y=300;
 	backGroundLayer.addChild(secondPlayerLayer);
 	var bitmapNeimaer= new LBitmapData(imglist["neimaer"]);
 	secondPlayerLayer.graphics.beginBitmapFill(bitmapNeimaer);
 	secondPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
+//	 secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_DOWN,move);
+//    secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_UP,move1);
 	secondPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
 	secondPlayerLayer.setBodyMouseJoint(true);
     buoyancyController.AddBody(secondPlayerLayer.box2dBody);
 	
+
+	
 	//-----足球-----
-	var ballLayer = new LSprite();
+	ballLayer = new LSprite();
 	ballLayer.x=450;
 	ballLayer.y=300;
 	backGroundLayer.addChild(ballLayer);
@@ -181,7 +182,15 @@ function gamePage(){
 		
 		scoreText();
 }
-
+/*
+	  function move(){
+          secondPlayerLayer.addBodyCircle(40,40,40,1,3,0.5,0.9);
+          secondPlayerLayer.setBodyMouseJoint(true);
+      //    buoyancyController.AddBody(secondPlayerLayer.box2dBody)
+    }
+function move1(){
+    secondPlayerLayer.setBodyMouseJoint(false);
+}*/
 	//---国家比分-----
 	function scoreText(){
 		resultScore = new LSprite();
@@ -214,7 +223,7 @@ function gamePage(){
         scoreNumberRight.text="0";
         scoreNumberRight.x=380;
         scoreNumberRight.y=7;
-        scoreNumberRight.color="#FFF"
+        scoreNumberRight.color="#FFF";
         scoreNumberRight.size="18";
 
      	resultBrazil.text = '巴西';
@@ -224,8 +233,23 @@ function gamePage(){
      	resultBrazil.y = 10;
      	resultScore.addChild(resultBrazil);
         resultScore.addChild(scoreNumberRight);
+
+/*
+
+        //得分条件
+        if(ballLayer.x >ballDoor.x || ballLayer.y > ballDoor.y && ballLayer.y <ballDoor.y + 105){
+            win+=1;
+        }
+        if(ballLayer.x <ballDoor.x || ballLayer.y > ballDoor.y && ballLayer.y <ballDoor.y + 105){
+            loss+=1;
+        }
+
+        var win= 0,loss=0;
+        scoreNumberRight.text=win;
+        scoreNumberLeft.text = loss;
+        */
 	}
-	
+
 //播放音乐
 function onup(e){
 
@@ -263,7 +287,6 @@ function Bound(){
     backGroundLayer.addChild(ballDoor);
     ballDoor.graphics.drawRect(0,'#f00',[808,250,35,105],false);
     ballDoor.graphics.drawRect(0,'#f00',[67,248,35,105],false);
-
 }
 
 

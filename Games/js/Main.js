@@ -13,7 +13,12 @@ var imgData=[
 	{name:'Argentina',path:'img/Argentina.png'},
     {name:'Brazil',path:'img/Brazil.png'},
     {name:'football',path:'img/football.png'},
-	{name:"whiteBtn2",path:"img/whiteBtn2.png"}
+	{name:"whiteBtn2",path:"img/whiteBtn2.png"},
+    {name:"backLayer1",path:"img/backLayer1.jpg"},
+    {name:"backLayer2",path:"img/backLayer2.jpg"},
+    {name:"backGroundTwo",path:"img/backGroundTwo.jpg"},
+    {name:"luomeiluo",path:"img/luomeiluo.png"},
+    {name:"Brailman",path:"img/Brailman.png"}
 ];
 var showFlag=[];//游戏国旗面板
 var sound;//音乐控制
@@ -27,14 +32,16 @@ var ballLayer;
 var resultScore;
 //内马尔
 
-
 var firstPlayerLayer;
 var secondPlayerLayer;
 
 var RightDoor;
 var LeftDoor;
 
-
+//选择模式
+var backLayer;
+var backLayer1;
+var backLayer2;
 
 
 //---------主函数入口---------
@@ -57,7 +64,6 @@ LLoadManage.load(
 	gameInit
 );
     LGlobal.box2d =  new LBox2d();
-//console.warn("123");
 }
 
 //-----欢迎页面开始-----
@@ -77,148 +83,70 @@ function gameInit(result){
 	backGroundLayer.graphics.drawRect(1,"#fff",[200,270,500,150]);
 	var clickText=new LTextField();
 	clickText.color="#fff";
-	clickText.text="点击进入游戏";
-	clickText.size=30;
-	clickText.x=325;
-	clickText.y=320;
+	clickText.text="超级足球大战";
+	clickText.size=45;
+	clickText.x=270;
+	clickText.y=315;
 	backGroundLayer.addChild(clickText);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
-	
 
 }
 //-----欢迎页面结束-----
+
 
 //进入选择页面
 function choisePage(){
     backGroundLayer.die();
     backGroundLayer.removeAllChild();
-    /*  back.graphics.drawRect(1,'#f00',[0,0,900,600],false);*/
-    var backGroundPic=new LBitmap(new LBitmapData(imglist["ground1"]));
-    backGroundLayer.addChild(backGroundPic);
-    /*  backGroundLayer.addChild(back);*/
+    backLayer = new LSprite();
+    backLayer.graphics.drawRect(1,"#fff",[0,0,900,600],true,"#000");
+    backGroundLayer.addChild(backLayer);
+
+    var chioceTitle=new LTextField();
+
+    chioceTitle.x=240;
+    chioceTitle.y=450;
+    chioceTitle.size=55;
+    chioceTitle.color="#0f0";
+    chioceTitle.text="选择游戏模式";
+    backLayer.addChild(chioceTitle);
+
+    backLayer1 = new LSprite();
+    backLayer1.x = 30;
+    backLayer1.y = 100;
+    backLayer.addChild(backLayer1);
+    var  bitmap = new LBitmapData(imglist['backLayer1']);
+    backLayer1.graphics.beginBitmapFill(bitmap);
+    backLayer1.graphics.drawRect(1,"#000",[0,0,385,256],false);
+    backLayer1.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+
+    var chioceSingle =new LTextField();
+    chioceSingle.x=160;
+    chioceSingle.y=370;
+    chioceSingle.size=25;
+    chioceSingle.color="white";
+    chioceSingle.text="单机模式";
+    backLayer.addChild(chioceSingle);
+
+    backLayer2 = new LSprite();
+    backLayer2.x = 475;
+    backLayer2.y = 100;
+    backLayer.addChild(backLayer2);
+    var  bitmap = new LBitmapData(imglist['backLayer2']);
+    backLayer2.graphics.beginBitmapFill(bitmap);
+    backLayer2.graphics.drawRect(1,"#000",[0,0,385,256],false);
+    backLayer2.addEventListener(LMouseEvent.MOUSE_UP,gamePageTwo);
+
+    var chioceMore =new LTextField();
+    chioceMore.x=600;
+    chioceMore.y=370;
+    chioceMore.size=25;
+    chioceMore.color="white";
+    chioceMore.text="多人对战";
+    backLayer.addChild(chioceMore);
     onup();
-    backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,gamePage);
+
 }
-
-//-----游戏场景-----
-function gamePage(){
- 
-	backGroundLayer.die();
-	backGroundLayer.removeAllChild();
-	var backGroundPic=new LBitmap(new LBitmapData(imglist["backGround"]));
-	backGroundLayer.addChild(backGroundPic);
-
-    //设置游戏边界函数
-    Bound();
-
-    //浮力效果初始化
-    var buoyancyController = new LGlobal.box2d.b2BuoyancyController();
-    buoyancyController.offset = -1/LGlobal.box2d.drawScale;
-    buoyancyController.density = 3;
-    buoyancyController.linearDrag = 10;
-    buoyancyController.angularDrag = 6;
-    LGlobal.box2d.world.AddController(buoyancyController);
-
-    var buoyancyControllerLayer = new LSprite();
-    buoyancyControllerLayer.graphics.drawRect(0,"#ffffff",[0, 0, 900, 600],false);
-    buoyancyControllerLayer.alpha = 0.2;
-    backGroundLayer.addChild(buoyancyControllerLayer);
-
-    //导入音乐播放按钮图片
-    musicBtn = new LSprite();
-    musicBtn.x = 850;
-    musicBtn.y = 10;
-    backGroundLayer.addChild(musicBtn);
-    var bitmap = new LBitmapData(imglist['whiteBtn2']);
-    musicBtn.graphics.beginBitmapFill(bitmap);
-    musicBtn.graphics.drawRect(1,"#000",[0,0,41,29],false);
-    addChild(musicBtn);
-
-    musicBtn.addEventListener(LMouseEvent.MOUSE_UP,onup);
-
-	//-----------玩家1出现（梅西）------------	
-	 firstPlayerLayer=new LSprite();
-	firstPlayerLayer.x=200;
-	firstPlayerLayer.y=300;
-	backGroundLayer.addChild(firstPlayerLayer);
-	var bitmapMeixi= new LBitmapData(imglist["meixi"]);
-	firstPlayerLayer.graphics.beginBitmapFill(bitmapMeixi);
-	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0,1);
-	//firstPlayerLayer.setBodyMouseJoint(true);
-   buoyancyController.AddBody(firstPlayerLayer.box2dBody);
-	
-	//-----玩家2出现（内马尔）-----
-	 secondPlayerLayer=new LSprite();
-	secondPlayerLayer.x=500;
-	secondPlayerLayer.y=300;
-	backGroundLayer.addChild(secondPlayerLayer);
-	var bitmapNeimaer= new LBitmapData(imglist["neimaer"]);
-	secondPlayerLayer.graphics.beginBitmapFill(bitmapNeimaer);
-	secondPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-//	 secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_DOWN,move);
-//    secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_UP,move1);
-	secondPlayerLayer.addBodyCircle(40,40,40,1,3,0,1);
-	secondPlayerLayer.setBodyMouseJoint(true);
-    buoyancyController.AddBody(secondPlayerLayer.box2dBody);
-	
-
-	
-	//-----足球-----
-	ballLayer = new LSprite();
-	ballLayer.x=450;
-	ballLayer.y=300;
-	backGroundLayer.addChild(ballLayer);
-	var bitmap = new LBitmapData(imglist["football"]);
-	ballLayer.graphics.beginBitmapFill(bitmap);
-	ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-	ballLayer.addBodyCircle(20,20,20,1,3,0.01,2.5);
-    buoyancyController.AddBody(ballLayer.box2dBody);
-	
-	showFlag.push(new LBitmapData(imglist["Argentina"]));
-	showFlag.push(new LBitmapData(imglist["Brazil"]));
-	
-	//显示国旗Argentina
-        var Argentina = new LBitmap(showFlag[0]);
-     	Argentina.x =50;
-     	Argentina.y = 5;
-     	backGroundLayer.addChild(Argentina);
-	
-	//显示国旗Brazil
-        var Brazil = new LBitmap(showFlag[1]);
-     	Brazil.x = 770;
-     	Brazil.y = 5;
-     	backGroundLayer.addChild(Brazil);
-		
-		scoreText();
-		
-		//-----设置右边球门-----
-    RightDoor=new LSprite();
-	RightDoor.x=825;
-	RightDoor.y=300;
-	backGroundLayer.addChild(RightDoor);
-	RightDoor.addBodyPolygon(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
-    //buoyancyController.AddBody(RightDoor.box2dBody);
-
-
-//-----设置左边球门-----
-    LeftDoor=new LSprite();
-	LeftDoor.x=80;
-	LeftDoor.y=300;
-	backGroundLayer.addChild(LeftDoor);
-	LeftDoor.addBodyPolygon(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
-    //buoyancyController.AddBody(LeftDoor.box2dBody);
-		
-}
-/*
-	  function move(){
-          secondPlayerLayer.addBodyCircle(40,40,40,1,3,0.5,0.9);
-          secondPlayerLayer.setBodyMouseJoint(true);
-      //    buoyancyController.AddBody(secondPlayerLayer.box2dBody)
-    }
-function move1(){
-    secondPlayerLayer.setBodyMouseJoint(false);
-}*/
 	//---国家比分-----
 	function scoreText(){
 		resultScore = new LSprite();
@@ -226,8 +154,6 @@ function move1(){
      	resultScore.x = 100;
      	resultScore.y =5;
      	backGroundLayer.addChild(resultScore);
-       // var scoreNumberLeft;
-       // var scoreNumberRight;
      	//记分牌
      	resultArgentina = new LTextField();
         scoreNumberLeft = new LTextField();
@@ -236,7 +162,6 @@ function move1(){
         scoreNumberLeft.size="18";
         scoreNumberLeft.x=317;
         scoreNumberLeft.y=7;
-
 
      	resultArgentina.text = '阿根廷';
      	resultArgentina.weight = 'bolder';
@@ -261,24 +186,9 @@ function move1(){
      	resultBrazil.y = 10;
      	resultScore.addChild(resultBrazil);
         resultScore.addChild(scoreNumberRight);
-
-/*
-
-        //得分条件
-        if(ballLayer.x >ballDoor.x || ballLayer.y > ballDoor.y && ballLayer.y <ballDoor.y + 105){
-            win+=1;
-        }
-        if(ballLayer.x <ballDoor.x || ballLayer.y > ballDoor.y && ballLayer.y <ballDoor.y + 105){
-            loss+=1;
-        }
-
-        var win= 0,loss=0;
-        scoreNumberRight.text=win;
-        scoreNumberLeft.text = loss;
-        */
 		
 			//-----碰撞侦听事件------
- LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
+		LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
 		
 	}
 
@@ -320,25 +230,6 @@ function Bound(){
     ballDoor.graphics.drawRect(0,'#f00',[808,250,35,105],false);
     ballDoor.graphics.drawRect(0,'#f00',[67,248,35,105],false);
 }
-/*
-//-----设置右边球门-----
-    RightDoor=new LSprite();
-	RightDoor.x=808;
-	RightDoor.y=250;
-	backGroundLayer.addChild(RightDoor);
-	RightDoor.addBodyRect(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
-    buoyancyController.AddBody(RightDoor.box2dBody);
-
-
-//-----设置左边球门-----
-    LeftDoor=new LSprite();
-	LeftDoor.x=67;
-	LeftDoor.y=248;
-	backGroundLayer.addChild(LeftDoor);
-	LeftDoor.addBodyRect(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
-    buoyancyController.AddBody(LeftDoor.box2dBody);
-*/
-
 
 //-----侦听两个物体的碰撞------
 function postSolve(contact,impulse){

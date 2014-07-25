@@ -31,6 +31,12 @@ var resultScore;
 var firstPlayerLayer;
 var secondPlayerLayer;
 
+var RightDoor;
+var LeftDoor;
+
+
+
+
 //---------主函数入口---------
 function main(){
  LGlobal.webAudio = false;
@@ -139,7 +145,7 @@ function gamePage(){
 	firstPlayerLayer.graphics.beginBitmapFill(bitmapMeixi);
 	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
 	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0,1);
-	firstPlayerLayer.setBodyMouseJoint(true);
+	//firstPlayerLayer.setBodyMouseJoint(true);
    buoyancyController.AddBody(firstPlayerLayer.box2dBody);
 	
 	//-----玩家2出现（内马尔）-----
@@ -185,6 +191,24 @@ function gamePage(){
      	backGroundLayer.addChild(Brazil);
 		
 		scoreText();
+		
+		//-----设置右边球门-----
+    RightDoor=new LSprite();
+	RightDoor.x=825;
+	RightDoor.y=300;
+	backGroundLayer.addChild(RightDoor);
+	RightDoor.addBodyPolygon(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
+    //buoyancyController.AddBody(RightDoor.box2dBody);
+
+
+//-----设置左边球门-----
+    LeftDoor=new LSprite();
+	LeftDoor.x=80;
+	LeftDoor.y=300;
+	backGroundLayer.addChild(LeftDoor);
+	LeftDoor.addBodyPolygon(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
+    //buoyancyController.AddBody(LeftDoor.box2dBody);
+		
 }
 /*
 	  function move(){
@@ -207,7 +231,7 @@ function move1(){
      	//记分牌
      	resultArgentina = new LTextField();
         scoreNumberLeft = new LTextField();
-        scoreNumberLeft.text="0";
+        scoreNumberLeft.text=0;
         scoreNumberLeft.color="#FFF";
         scoreNumberLeft.size="18";
         scoreNumberLeft.x=317;
@@ -224,7 +248,7 @@ function move1(){
      	
      	resultBrazil = new LTextField();
         scoreNumberRight = new LTextField();
-        scoreNumberRight.text="0";
+        scoreNumberRight.text=0;
         scoreNumberRight.x=380;
         scoreNumberRight.y=7;
         scoreNumberRight.color="#FFF";
@@ -279,7 +303,7 @@ function loadOver(e){
 
 //物体碰撞边界
 function Bound(){
-  //  LGlobal.box2d =  new LBox2d();    递归错误
+ 
     BoundTop = new LSprite();
     backGroundLayer.addChild(BoundTop);
     var shapeArray = [
@@ -296,18 +320,43 @@ function Bound(){
     ballDoor.graphics.drawRect(0,'#f00',[808,250,35,105],false);
     ballDoor.graphics.drawRect(0,'#f00',[67,248,35,105],false);
 }
+/*
+//-----设置右边球门-----
+    RightDoor=new LSprite();
+	RightDoor.x=808;
+	RightDoor.y=250;
+	backGroundLayer.addChild(RightDoor);
+	RightDoor.addBodyRect(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
+    buoyancyController.AddBody(RightDoor.box2dBody);
 
-//-----碰撞侦听事件------
- //LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
+
+//-----设置左边球门-----
+    LeftDoor=new LSprite();
+	LeftDoor.x=67;
+	LeftDoor.y=248;
+	backGroundLayer.addChild(LeftDoor);
+	LeftDoor.addBodyRect(35,105,0,1,3,0,1);//RightDoor.setBodyMouseJoint(true);
+    buoyancyController.AddBody(LeftDoor.box2dBody);
+*/
 
 
+//-----侦听两个物体的碰撞------
 function postSolve(contact,impulse){
 	var objA = contact.GetFixtureA().GetBody().GetUserData();
 	var objB = contact.GetFixtureB().GetBody().GetUserData();
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
-		if((objA == firstPlayerLayer && objB == secondPlayerLayer) || 
-			(objA == secondPlayerLayer && objB == firstPlayerLayer)){
-			alert("ponh");
+		if((objA == ballLayer && objB == RightDoor) || 
+			(objA == RightDoor && objB == ballLayer)){
+			scoreNumberLeft.text = scoreNumberLeft.text + 1;
+			alert("梅西得分");
+		}
+	}
+	
+	if(objA.type == "LSprite" && objB.type == "LSprite"){
+		if((objA == ballLayer && objB == LeftDoor) || 
+			(objA == LeftDoor && objB == ballLayer)){
+			alert("内马尔得分");
+			scoreNumberRight.text = scoreNumberRight.text + 1;
 		}
 	}
 

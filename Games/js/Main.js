@@ -3,7 +3,7 @@ init(20,"gamePanel",900,600,main);
 //-------游戏场景------
 var backGroundLayer;//游戏背景
 var loadingLayer;//载入图层
-var imglist={};//图像列表对象423
+var imglist={};//图像列表对象
 var imgData=[
 	{name:"backGround",path:"img/backGround.jpg"},
     {name:"ground2",path:"img/backGround.jpg"},
@@ -26,6 +26,9 @@ var ballLayer;
 //得分
 var resultScore;
 //内马尔
+
+
+var firstPlayerLayer;
 var secondPlayerLayer;
 
 //---------主函数入口---------
@@ -74,6 +77,8 @@ function gameInit(result){
 	clickText.y=320;
 	backGroundLayer.addChild(clickText);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	
+
 }
 //-----欢迎页面结束-----
 
@@ -91,8 +96,7 @@ function choisePage(){
 
 //-----游戏场景-----
 function gamePage(){
- // LMultitouch.inputMode = LMultitouchInputMode.TOUCH_POINT;
-	//LGlobal.box2d=new LBox2d();
+ 
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	var backGroundPic=new LBitmap(new LBitmapData(imglist["backGround"]));
@@ -103,14 +107,14 @@ function gamePage(){
 
     //浮力效果初始化
     var buoyancyController = new LGlobal.box2d.b2BuoyancyController();
-    buoyancyController.offset = -300/LGlobal.box2d.drawScale;
-    buoyancyController.density = 4;
+    buoyancyController.offset = -1/LGlobal.box2d.drawScale;
+    buoyancyController.density = 3;
     buoyancyController.linearDrag = 10;
     buoyancyController.angularDrag = 6;
     LGlobal.box2d.world.AddController(buoyancyController);
 
     var buoyancyControllerLayer = new LSprite();
-    buoyancyControllerLayer.graphics.drawRect(0,"#ffffff",[0, 560, 900, 40],false);
+    buoyancyControllerLayer.graphics.drawRect(0,"#ffffff",[0, 0, 900, 600],false);
     buoyancyControllerLayer.alpha = 0.2;
     backGroundLayer.addChild(buoyancyControllerLayer);
 
@@ -127,14 +131,14 @@ function gamePage(){
     musicBtn.addEventListener(LMouseEvent.MOUSE_UP,onup);
 
 	//-----------玩家1出现（梅西）------------	
-	var firstPlayerLayer=new LSprite();
+	 firstPlayerLayer=new LSprite();
 	firstPlayerLayer.x=200;
 	firstPlayerLayer.y=300;
 	backGroundLayer.addChild(firstPlayerLayer);
 	var bitmapMeixi= new LBitmapData(imglist["meixi"]);
 	firstPlayerLayer.graphics.beginBitmapFill(bitmapMeixi);
 	firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
-	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
+	firstPlayerLayer.addBodyCircle(40,40,40,1,3,0,1);
 	firstPlayerLayer.setBodyMouseJoint(true);
    buoyancyController.AddBody(firstPlayerLayer.box2dBody);
 	
@@ -148,7 +152,7 @@ function gamePage(){
 	secondPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
 //	 secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_DOWN,move);
 //    secondPlayerLayer.addEventListener(LMouseEvent.MOUSE_UP,move1);
-	secondPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
+	secondPlayerLayer.addBodyCircle(40,40,40,1,3,0,1);
 	secondPlayerLayer.setBodyMouseJoint(true);
     buoyancyController.AddBody(secondPlayerLayer.box2dBody);
 	
@@ -162,7 +166,7 @@ function gamePage(){
 	var bitmap = new LBitmapData(imglist["football"]);
 	ballLayer.graphics.beginBitmapFill(bitmap);
 	ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-	ballLayer.addBodyCircle(20,20,20,1,3,0.1,0.9);
+	ballLayer.addBodyCircle(20,20,20,1,3,0.01,2.5);
     buoyancyController.AddBody(ballLayer.box2dBody);
 	
 	showFlag.push(new LBitmapData(imglist["Argentina"]));
@@ -248,6 +252,10 @@ function move1(){
         scoreNumberRight.text=win;
         scoreNumberLeft.text = loss;
         */
+		
+			//-----碰撞侦听事件------
+ LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
+		
 	}
 
 //播放音乐
@@ -289,8 +297,20 @@ function Bound(){
     ballDoor.graphics.drawRect(0,'#f00',[67,248,35,105],false);
 }
 
+//-----碰撞侦听事件------
+ //LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
 
 
+function postSolve(contact,impulse){
+	var objA = contact.GetFixtureA().GetBody().GetUserData();
+	var objB = contact.GetFixtureB().GetBody().GetUserData();
+	if(objA.type == "LSprite" && objB.type == "LSprite"){
+		if((objA == firstPlayerLayer && objB == secondPlayerLayer) || 
+			(objA == secondPlayerLayer && objB == firstPlayerLayer)){
+			alert("ponh");
+		}
+	}
 
+}
 
 

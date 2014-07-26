@@ -95,7 +95,7 @@ function gamePageTwo(){
     var bitmap = new LBitmapData(imglist["football"]);
     ballLayer.graphics.beginBitmapFill(bitmap);
     ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-    ballLayer.addBodyCircle(20,20,20,1,3,0.1,0.9);
+    ballLayer.addBodyCircle(20,20,20,1,3,0.01,2.5);
     buoyancyController.AddBody(ballLayer.box2dBody);
 
     showFlag.push(new LBitmapData(imglist["Argentina"]));

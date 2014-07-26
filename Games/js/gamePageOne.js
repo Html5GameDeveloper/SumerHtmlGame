@@ -44,7 +44,7 @@ function gamePageOne(){
     firstPlayerLayer.graphics.beginBitmapFill(bitmapMeixi);
     firstPlayerLayer.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
     firstPlayerLayer.addBodyCircle(40,40,40,1,3,0.2,0.9);
-    firstPlayerLayer.setBodyMouseJoint(true);
+    //firstPlayerLayer.setBodyMouseJoint(true);
     buoyancyController.AddBody(firstPlayerLayer.box2dBody);
 
     //-----玩家2出现（内马尔）-----
@@ -67,7 +67,7 @@ function gamePageOne(){
     var bitmap = new LBitmapData(imglist["football"]);
     ballLayer.graphics.beginBitmapFill(bitmap);
     ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-    ballLayer.addBodyCircle(20,20,20,1,3,0.1,0.9);
+    ballLayer.addBodyCircle(20,20,20,1,3,0.01,2.5);
     buoyancyController.AddBody(ballLayer.box2dBody);
 
     showFlag.push(new LBitmapData(imglist["Argentina"]));

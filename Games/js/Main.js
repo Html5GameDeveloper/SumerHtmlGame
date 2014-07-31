@@ -20,6 +20,19 @@ var imgData=[
     {name:"luomeiluo",path:"img/luomeiluo.png"},
     {name:"Brailman",path:"img/Brailman.png"}
 ];
+
+
+//-------初始化的位置---------
+/* var firstPlayerLayerx;
+var firstPlayerLayery;
+		
+var secondPlayerLayerx;
+var secondPlayerLayery;
+		
+var ballLayerx;
+var ballLayery; */
+//-------------------------------
+
 var showFlag=[];//游戏国旗面板
 var sound;//音乐控制
 var BoundTop;//游戏边界
@@ -30,11 +43,20 @@ var scoreNumberRight;
 var ballLayer;
 //得分
 var resultScore;
-//内马尔
 
-var firstPlayerLayer;
-var secondPlayerLayer;
 
+
+var scoreFirst;
+var scoreSecond;
+
+//角色
+	 var firstPlayerLayer;
+    // firstPlayerLayer.x=200;
+    // firstPlayerLayer.y=300;
+
+	 var secondPlayerLayer;
+    // secondPlayerLayer.x=500;
+    // secondPlayerLayer.y=300;
 var RightDoor;
 var LeftDoor;
 
@@ -190,7 +212,16 @@ function choisePage(){
 			//-----碰撞侦听事件------
 		LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
 		
+		 this.getScoreLeft=function(){
+			return (scoreNumberLeft.text);
+		}
+		 this.getScoreRight=function(){
+			return (scoreNumberRight.text);
+		}
 	}
+	
+	
+
 
 //播放音乐
 function onup(e){
@@ -239,18 +270,31 @@ function postSolve(contact,impulse){
 		if((objA == ballLayer && objB == RightDoor) || 
 			(objA == RightDoor && objB == ballLayer)){
 			scoreNumberLeft.text = scoreNumberLeft.text + 1;
-			alert("梅西得分");
+			//scoreFirst = scoreText.getScoreLeft();
+			//scoreSecond = scoreText.getScoreRight();
+			reSet();
 		}
 	}
 	
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == LeftDoor) || 
 			(objA == LeftDoor && objB == ballLayer)){
-			alert("内马尔得分");
+			
 			scoreNumberRight.text = scoreNumberRight.text + 1;
+			//scoreFirst = scoreText.getScoreLeft();
+			//scoreSecond = scoreText.getScoreRight();
+			reSet();
 		}
 	}
 
 }
 
+function reSet(){
 
+
+	
+	scoreReset();
+
+
+	
+}

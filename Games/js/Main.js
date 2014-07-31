@@ -1,38 +1,44 @@
 ﻿
-init(20,"gamePanel",900,600,main);
+init(20,"gamePanel",900,640,main);
+//self
+var temp=0;
+
+var mouseJoint=null;
+//enemy
+var tempEn=1;
 //-------游戏场景------
 var backGroundLayer;//游戏背景
 var loadingLayer;//载入图层
 var imglist={};//图像列表对象
 var imgData=[
-	{name:"backGround",path:"img/backGround.jpg"},
-    {name:"ground2",path:"img/backGround.jpg"},
+	{name:"backGround",path:"img/backGround.png"},
+    {name:"ground2",path:"img/backGround.png"},
     {name:"ground1",path:"img/backGround1.jpg"},
 	{name:"neimaer",path:"img/neimaer.png"},
 	{name:"meixi",path:"img/meixi.png"},
-	{name:'Argentina',path:'img/Argentina.png'},
-    {name:'Brazil',path:'img/Brazil.png'},
+    {name:'ArgentinaFrag',path:'img/ArgentinaFrag.png'},
+    {name:'BrazilFrag',path:'img/BrazilFrag.png'},
+    {name:'GramanyFrag',path:'img/GramanyFrag.png'},
+    {name:'HelanFrag',path:'img/HelanFrag.png'},
     {name:'football',path:'img/football.png'},
 	{name:"whiteBtn2",path:"img/whiteBtn2.png"},
     {name:"backLayer1",path:"img/backLayer1.jpg"},
     {name:"backLayer2",path:"img/backLayer2.jpg"},
-    {name:"backGroundTwo",path:"img/backGroundTwo.jpg"},
-    {name:"luomeiluo",path:"img/luomeiluo.png"},
-    {name:"Brailman",path:"img/Brailman.png"}
+    {name:"backGroundTwo",path:"img/backGroundTwo.png"},
+    {name:"luoyisi",path:"img/GramanySport.png"},
+    {name:"fanpeixi",path:"img/helanSport.png"}
 ];
 
+ var showList = new Array();
+ var showSport = new Array();
 
-//-------初始化的位置---------
-/* var firstPlayerLayerx;
-var firstPlayerLayery;
-		
-var secondPlayerLayerx;
-var secondPlayerLayery;
-		
-var ballLayerx;
-var ballLayery; */
-//-------------------------------
-
+    var flagName=[
+        {name:"阿根廷"},
+        {name:"巴西"},
+        {name:"德国"},
+        {name:"荷兰"}
+    ];
+	
 var showFlag=[];//游戏国旗面板
 var sound;//音乐控制
 var BoundTop;//游戏边界
@@ -43,20 +49,13 @@ var scoreNumberRight;
 var ballLayer;
 //得分
 var resultScore;
+//人与电脑
+var selfBitmap,enemyBitmap;
+var selfName,enemyName;
 
+var firstPlayerLayer;
+var secondPlayerLayer;
 
-
-var scoreFirst;
-var scoreSecond;
-
-//角色
-	 var firstPlayerLayer;
-    // firstPlayerLayer.x=200;
-    // firstPlayerLayer.y=300;
-
-	 var secondPlayerLayer;
-    // secondPlayerLayer.x=500;
-    // secondPlayerLayer.y=300;
 var RightDoor;
 var LeftDoor;
 
@@ -65,6 +64,10 @@ var backLayer;
 var backLayer1;
 var backLayer2;
 
+//时间
+var cxtOne;
+var SysSecondOne = parseInt(5400);
+cxtOne = new LTextField();
 
 //---------主函数入口---------
 function main(){
@@ -72,7 +75,7 @@ function main(){
 sound = new LSound();
 LGlobal.setDebug(true);
 backGroundLayer=new LSprite()	;
-backGroundLayer.graphics.drawRect(1,"#000",[0,0,900,600],true,"#000");
+backGroundLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
 addChild(backGroundLayer);
 
 loadingLayer=new LoadingSample1();
@@ -114,16 +117,15 @@ function gameInit(result){
 
 }
 //-----欢迎页面结束-----
-
-
 //进入选择页面
 function choisePage(){
     backGroundLayer.die();
     backGroundLayer.removeAllChild();
     backLayer = new LSprite();
-    backLayer.graphics.drawRect(1,"#fff",[0,0,900,600],true,"#000");
+    backLayer.graphics.drawRect(1,"#fff",[0,0,900,640],true,"#000");
     backGroundLayer.addChild(backLayer);
 
+    backGroundLayer.removeChild(cxtOne);
     var chioceTitle=new LTextField();
 
     chioceTitle.x=240;
@@ -140,14 +142,14 @@ function choisePage(){
     var  bitmap = new LBitmapData(imglist['backLayer1']);
     backLayer1.graphics.beginBitmapFill(bitmap);
     backLayer1.graphics.drawRect(1,"#000",[0,0,385,256],false);
-    backLayer1.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+    backLayer1.addEventListener(LMouseEvent.MOUSE_UP,ChoosePerson);
 
     var chioceSingle =new LTextField();
     chioceSingle.x=160;
     chioceSingle.y=370;
     chioceSingle.size=25;
     chioceSingle.color="white";
-    chioceSingle.text="单机模式";
+    chioceSingle.text="选择人物";
     backLayer.addChild(chioceSingle);
 
     backLayer2 = new LSprite();
@@ -157,24 +159,23 @@ function choisePage(){
     var  bitmap = new LBitmapData(imglist['backLayer2']);
     backLayer2.graphics.beginBitmapFill(bitmap);
     backLayer2.graphics.drawRect(1,"#000",[0,0,385,256],false);
-    backLayer2.addEventListener(LMouseEvent.MOUSE_UP,gamePageTwo);
+   backLayer2.addEventListener(LMouseEvent.MOUSE_UP,Billboard);
 
     var chioceMore =new LTextField();
     chioceMore.x=600;
     chioceMore.y=370;
     chioceMore.size=25;
     chioceMore.color="white";
-    chioceMore.text="多人对战";
+    chioceMore.text="排行榜";
     backLayer.addChild(chioceMore);
     onup();
-
 }
 	//---国家比分-----
 	function scoreText(){
 		resultScore = new LSprite();
      	resultScore.graphics.drawRect(0,'#f80',[0,0,670,30],false,'#000');
      	resultScore.x = 100;
-     	resultScore.y =5;
+     	resultScore.y =45;
      	backGroundLayer.addChild(resultScore);
      	//记分牌
      	resultArgentina = new LTextField();
@@ -185,12 +186,23 @@ function choisePage(){
         scoreNumberLeft.x=317;
         scoreNumberLeft.y=7;
 
-     	resultArgentina.text = '阿根廷';
-     	resultArgentina.weight = 'bolder';
-     	resultArgentina.color = '#fff';
-     	resultArgentina.x = 20;
-     	resultArgentina.y = 10;
-     	resultScore.addChild(resultArgentina);
+		if(temp==0){
+		resultArgentina.text = '阿根廷';
+		}
+        if(temp==1){
+		resultArgentina.text = '巴西';
+		}
+		 if(temp==2){
+		resultArgentina.text = '德国';
+		}
+		 if(temp==3){
+		resultArgentina.text = '荷兰';
+		}
+        resultArgentina.weight = 'bolder';
+        resultArgentina.color = '#fff';
+        resultArgentina.x = 20;
+        resultArgentina.y = 10;
+        resultScore.addChild(resultArgentina);
         resultScore.addChild(scoreNumberLeft);
      	
      	resultBrazil = new LTextField();
@@ -201,57 +213,55 @@ function choisePage(){
         scoreNumberRight.color="#FFF";
         scoreNumberRight.size="18";
 
-     	resultBrazil.text = '巴西';
+		
+		if(tempEn==0){
+				resultBrazil.text = '阿根廷';
+		}
+		if(tempEn==1){
+				resultBrazil.text = '巴西';
+		}
+		if(tempEn==2){
+				resultBrazil.text = '德国';
+		}
+		if(tempEn==3){
+				resultBrazil.text = '荷兰';
+		}
      	resultBrazil.weight = 'bolder';
      	resultBrazil.color = '#fff';
-     	resultBrazil.x = 610;
+     	resultBrazil.x = 600;
      	resultBrazil.y = 10;
      	resultScore.addChild(resultBrazil);
         resultScore.addChild(scoreNumberRight);
 		
 			//-----碰撞侦听事件------
-		LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);
-		
-		 this.getScoreLeft=function(){
-			return (scoreNumberLeft.text);
-		}
-		 this.getScoreRight=function(){
-			return (scoreNumberRight.text);
-		}
+		LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);		
 	}
-	
-	
-
 
 //播放音乐
 function onup(e){
-
    if(sound.length == 0){
         var url = './sound/2014Soccer.mp3';
         sound.load(url);
-        sound.addEventListener(LEvent.COMPLETE,loadOver);
-
+       sound.addEventListener(LEvent.COMPLETE,loadOver);
     }else if(sound.playing){
         sound.stop();
     }else{
         sound.play();
     }
 }
-
 function loadOver(e){
 	sound.play();
 }
 
 //物体碰撞边界
 function Bound(){
- 
     BoundTop = new LSprite();
     backGroundLayer.addChild(BoundTop);
     var shapeArray = [
-        [[65,40],[70,40],[70,560],[65,560]],
-        [[65,40],[845,40],[845,45],[65,45]],
-        [[845,40],[845,560],[840,560],[840,40]],
-        [[65,560],[70,550],[845,550],[845,560]]
+        [[65,80],[70,80],[70,600],[65,600]],
+        [[65,80],[845,80],[845,85],[65,85]],
+        [[845,80],[845,600],[840,600],[840,80]],
+        [[65,600],[70,590],[845,590],[845,600]]
     ];
     BoundTop.addBodyVertices(shapeArray,0,0,0,.5,.4,.5);
 
@@ -270,31 +280,260 @@ function postSolve(contact,impulse){
 		if((objA == ballLayer && objB == RightDoor) || 
 			(objA == RightDoor && objB == ballLayer)){
 			scoreNumberLeft.text = scoreNumberLeft.text + 1;
-			//scoreFirst = scoreText.getScoreLeft();
-			//scoreSecond = scoreText.getScoreRight();
-			reSet();
+		//	alert("梅西得分");
 		}
 	}
 	
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == LeftDoor) || 
 			(objA == LeftDoor && objB == ballLayer)){
-			
+		//	alert("内马尔得分");
 			scoreNumberRight.text = scoreNumberRight.text + 1;
-			//scoreFirst = scoreText.getScoreLeft();
-			//scoreSecond = scoreText.getScoreRight();
-			reSet();
 		}
 	}
-
 }
 
-function reSet(){
+//选择球队页面函数
+function ChoosePerson(){
+    var ChoosePic = new LSprite();
+    ChoosePic.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
+    backGroundLayer.addChild(ChoosePic);
 
+    var ChooseFrag = new LTextField();
+    ChooseFrag.text = '请选择你喜欢的球队:';
+    ChooseFrag.color = '#fff';
+    ChooseFrag.size = '28';
+    ChooseFrag.x = 30;
+    ChooseFrag.y = 50;
+    ChoosePic.addChild(ChooseFrag);
 
+    showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
+    showList.push(new LBitmapData(imglist["BrazilFrag"]));
+    showList.push(new LBitmapData(imglist["GramanyFrag"]));
+    showList.push(new LBitmapData(imglist["HelanFrag"]));
+
+	showSport.push(new LBitmapData(imglist["meixi"]));
+	 showSport.push(new LBitmapData(imglist["neimaer"]));
+	 showSport.push(new LBitmapData(imglist["luoyisi"]));
+	 showSport.push(new LBitmapData(imglist["fanpeixi"]));
+
+     var frag1 = new LSprite();
+    frag1.graphics.drawRect(1,'#000',[110,110,128,140],true,'#000');
+    ChoosePic.addChild(frag1);
+    //显示国旗Argentina
+    var ArgentinaFrag = getButton('ArgentinaFrag');
+    ArgentinaFrag.x =110;
+    ArgentinaFrag.y = 110;
+    frag1.addChild(ArgentinaFrag);
+
+    var Argentina = new LTextField();
+    Argentina.text = flagName[0].name;
+    Argentina.color = '#fff';
+    Argentina.size = '18';
+    Argentina.x = 135;
+    Argentina.y = 215;
+    frag1.addChild(Argentina);
+    ArgentinaFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
+
+    var frag2 = new LSprite();
+    frag2.graphics.drawRect(1,'#000',[288,110,128,140],true,'#000');
+    ChoosePic.addChild(frag2);
+    //显示国旗Brazil
+    var BrazilFrag =  getButton('BrazilFrag');
+    BrazilFrag.x = 288;
+    BrazilFrag.y = 110;
+    frag2.addChild(BrazilFrag);
+
+    var Brazil = new LTextField();
+    Brazil.text = flagName[1].name;
+    Brazil.color = '#fff';
+    Brazil.size = '18';
+    Brazil.x = 325;
+    Brazil.y = 215;
+    frag2.addChild(Brazil);
+	 BrazilFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
+
+    var frag3 = new LSprite();
+    frag3.graphics.drawRect(1,'#000',[466,110,128,140],true,'#000');
+    ChoosePic.addChild(frag3);
 	
-	scoreReset();
+    //显示国旗Gramany
+    var GramanyFrag =  getButton('GramanyFrag');
+    GramanyFrag.x =466;
+    GramanyFrag.y = 110;
+    frag3.addChild(GramanyFrag);
 
+    var Gramany = new LTextField();
+    Gramany.text = flagName[2].name;
+    Gramany.color = '#fff';
+    Gramany.size = '18';
+    Gramany.x = 500;
+    Gramany.y = 215;
+    frag3.addChild(Gramany);
+	 GramanyFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 
+    var frag4 = new LSprite();
+    frag4.graphics.drawRect(1,'#000',[644,110,128,140],true,'#000');
+    ChoosePic.addChild(frag4);
+   
+   //显示国旗Helan
+    var HelanFrag = getButton('HelanFrag');
+    HelanFrag.x =644;
+    HelanFrag.y = 110;
+    frag4.addChild(HelanFrag);
+
+    var Helan = new LTextField();
+    Helan.text = flagName[3].name;
+    Helan.color = '#fff';
+    Helan.size = '18';
+    Helan.x = 680;
+    Helan.y = 215;
+    frag4.addChild(Helan);
+	 HelanFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 	
+			//显示结果层
+			 var resultEnd = new LSprite();
+			resultEnd.graphics.drawRect(1,'#000',[0,260,900,380],true,'#000');
+			ChoosePic.addChild(resultEnd);
+			
+			//显示国旗(self)
+			selfBitmap =  new LBitmap(showList[0]);
+			selfBitmap.x =230;
+			selfBitmap.y = 325;
+			resultEnd.addChild(selfBitmap);
+		   //显示运动员
+			selfName =  new LBitmap(showSport[0]);
+			selfName.x =240;
+			selfName.y = 455;
+			resultEnd.addChild(selfName);
+
+			//显示国旗(enemy)
+			enemyBitmap =  new LBitmap(showList[1]);
+			enemyBitmap.x = 518;
+			enemyBitmap.y = 325;
+			resultEnd.addChild(enemyBitmap);
+
+			//显示运动员
+			enemyName =  new LBitmap(showSport[1]);
+			enemyName.x =528;
+			enemyName.y = 455;
+			resultEnd.addChild(enemyName);
+
+			var vs = new LTextField();
+			vs.text = 'VS';
+			vs.color = '#fff';
+			vs.size = '48';
+			vs.x = 398;
+			vs.y = 335;
+			resultEnd.addChild(vs);
+	
+	var buttonEnter= new LButtonSample1("开始游戏");
+    buttonEnter.x =780;
+    buttonEnter.y = 5;
+	resultEnd.addChild(buttonEnter);
+    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
+
+}//ChoosePerson End
+
+//初始化球队按钮
+function getButton(value){
+ var btnUp = new LBitmap(new LBitmapData(imglist[value]));
+	 btnUp.scaleX = 1;
+	 btnUp.scaleY = 1;
+    var btnOver = new LBitmap(new LBitmapData(imglist[value]));
+	 btnOver.scaleX = 1;
+	 btnOver.scaleY =1 ;
+
+	 var btn = new LButton(btnUp,btnOver);
+	 btn.name = value;
+	 return btn;
 }
+
+//点击并选择球队
+function onclick(event,display){
+       var selfValue,enemyValue;   
+	   if(display.name == 'ArgentinaFrag'){
+	           selfValue =0;
+			   temp = 0;			
+			  enemyValue = Math.floor(Math.random()*4);  
+			  if(selfValue == enemyValue){
+			  enemyValue += 1;
+			  tempEn=enemyValue;
+			  }
+			  else{
+				tempEn=enemyValue;
+			  }
+	
+	   } if(display.name == 'BrazilFrag'){
+	          selfValue =1;
+			  temp = 1;
+			   enemyValue = Math.floor(Math.random()*4);
+			   if(selfValue == enemyValue){
+			  enemyValue += 1;
+			  tempEn=enemyValue;
+			  }
+			    else{
+			  tempEn=enemyValue;
+			  }
+	   } if(display.name == 'GramanyFrag'){
+	           selfValue =2;
+			    temp = 2;
+			    enemyValue = Math.floor(Math.random()*4);
+				if(selfValue == enemyValue){
+			  enemyValue += 1;
+			  tempEn=enemyValue;
+			  }
+			    else{
+			  tempEn=enemyValue;
+			  }
+	   } if(display.name == 'HelanFrag'){
+	          selfValue = 3;
+			   temp = 3;
+			   enemyValue = Math.floor(Math.random()*4);
+			   if(selfValue == enemyValue){
+			  enemyValue = enemyValue - 3;
+			  tempEn=enemyValue;
+			  }
+			    else{
+			  tempEn=enemyValue;
+			  }
+	   }	
+	   selfBitmap.bitmapData = showList[selfValue];
+	   selfName.bitmapData = showSport[selfValue];
+        enemyBitmap.bitmapData = showList[enemyValue];
+       enemyName.bitmapData = showSport[enemyValue];
+}
+//选择球队页面函数End
+
+//排行榜界面开始
+function Billboard(){
+     var scoreChart = new LSprite();
+	  scoreChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
+     backGroundLayer.addChild(scoreChart);
+	 
+	 var titleChart = new LTextField();
+	 titleChart.text = '排行榜';
+	 titleChart.color = '#f00';
+	 titleChart.weight = 'bold';
+	 titleChart.size = '30';
+	 titleChart.x = 380;
+	 titleChart.y = 40;
+	 scoreChart.addChild(titleChart);
+	 
+	var buttonEnter= new LButtonSample1("返回首页");
+    buttonEnter.x =780;
+    buttonEnter.y = 5;
+	scoreChart.addChild(buttonEnter);
+    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+}
+
+
+
+
+
+
+
+
+
+
+

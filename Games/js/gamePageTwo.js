@@ -97,6 +97,7 @@ function gamePageTwo(){
     ballLayer = new LSprite();
     ballLayer.x=450;
     ballLayer.y=300;
+
     backGroundLayer.addChild(ballLayer);
     var bitmap = new LBitmapData(imglist["football"]);
     ballLayer.graphics.beginBitmapFill(bitmap);

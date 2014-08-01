@@ -3,6 +3,10 @@ init(20,"gamePanel",900,640,main);
 //self
 var temp=0;
 
+//var Xposition;
+//var Yposition;
+
+var buoyancyController;
 var mouseJoint=null;
 //enemy
 var tempEn=1;
@@ -53,8 +57,7 @@ var resultScore;
 var selfBitmap,enemyBitmap;
 var selfName,enemyName;
 
-var firstPlayerLayer;
-var secondPlayerLayer;
+
 
 var RightDoor;
 var LeftDoor;
@@ -117,6 +120,9 @@ function gameInit(result){
 
 }
 //-----欢迎页面结束-----
+
+
+
 //进入选择页面
 function choisePage(){
     backGroundLayer.die();
@@ -278,10 +284,18 @@ function postSolve(contact,impulse){
 	var objB = contact.GetFixtureB().GetBody().GetUserData();
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == RightDoor) || 
-			(objA == RightDoor && objB == ballLayer)){
-			scoreNumberLeft.text = scoreNumberLeft.text + 1;
-		//	alert("梅西得分");
-		}
+			(objA == RightDoor && objB == ballLayer)) {
+            scoreNumberLeft.text = scoreNumberLeft.text + 1;
+            //var backLayer = event.currentTarget,
+
+            console.warn("足球目前的横坐标：" + ballLayer.x + " 足球目前的纵坐标：" + ballLayer.y);
+            choisePage();
+
+
+
+        }
+
+
 	}
 	
 	if(objA.type == "LSprite" && objB.type == "LSprite"){

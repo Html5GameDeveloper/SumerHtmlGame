@@ -17,7 +17,7 @@ function gamePageOne(){
     onup();
 
     //浮力效果初始化
-    var buoyancyController = new LGlobal.box2d.b2BuoyancyController();
+     buoyancyController = new LGlobal.box2d.b2BuoyancyController();
     buoyancyController.offset = -1/LGlobal.box2d.drawScale;
     buoyancyController.density = 3;
     buoyancyController.linearDrag = 10;
@@ -37,7 +37,6 @@ function gamePageOne(){
     var bitmap = new LBitmapData(imglist['whiteBtn2']);
     musicBtn.graphics.beginBitmapFill(bitmap);
     musicBtn.graphics.drawRect(1,"#000",[0,0,41,29],false);
-
     musicBtn.addEventListener(LMouseEvent.MOUSE_UP,onup);
 
    //-----------玩家1出现------------
@@ -69,7 +68,7 @@ function gamePageOne(){
     selfName.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
     selfName.addBodyCircle(40,40,40,1,3,0.2,0.9);
     selfName.setBodyMouseJoint(true);
-   buoyancyController.AddBody(selfName.box2dBody);
+    buoyancyController.AddBody(selfName.box2dBody);
     backGroundLayer.addChild(selfName);
 
     createMouseJoint(selfName.x, selfName.y);
@@ -103,8 +102,9 @@ function gamePageOne(){
     enemyName.addBodyCircle(40,40,40,1,3,0.2,0.9);
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
-
+    //setBallLocation();
     //-----足球-----
+
     ballLayer = new LSprite();
     ballLayer.x=450;
     ballLayer.y=300;
@@ -209,3 +209,17 @@ function timeOne() {
         //这里可以添加倒计时时间为0后需要执行的事件
     }
 }
+//初始化足球
+/*
+function setBallLocation(){
+    ballLayer = new LSprite();
+    ballLayer.x=450;
+    ballLayer.y=300;
+    backGroundLayer.addChild(ballLayer);
+    var bitmap = new LBitmapData(imglist["football"]);
+    ballLayer.graphics.beginBitmapFill(bitmap);
+    ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
+    ballLayer.addBodyCircle(20,20,20,1,3,0.1,2.0);
+    buoyancyController.AddBody(ballLayer.box2dBody);
+
+}*/

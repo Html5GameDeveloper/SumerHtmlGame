@@ -1,6 +1,14 @@
 ﻿
-
 function gamePageOne(){
+ //SysSecondOne = parseInt(20);
+     clock = 1;
+	   if(clock == 1){
+     timeOne();
+	 //console.warn("clock"+clock);
+     t = setInterval(timeOne, 1000);
+	// clock = 0;
+  }
+
    // LGlobal.box2d = new LBox2d();
     backGroundLayer.die();
     backGroundLayer.removeAllChild();
@@ -8,8 +16,6 @@ function gamePageOne(){
     backGroundPic = new LBitmap(new LBitmapData(imglist["backGround"]));
     backGroundLayer.addChild(backGroundPic);
 
-    timeOne();
-   setInterval(timeOne, 1000);
     backGroundLayer.addChild(cxtOne);
 
     //设置游戏边界函数
@@ -115,9 +121,7 @@ function gamePageOne(){
     ballLayer.addBodyCircle(20,20,20,1,3,0.1,2.0);
     buoyancyController.AddBody(ballLayer.box2dBody);
 
-
     //显示国旗self
-
     selfBitmap.x = 65;
     selfBitmap.y = 40;
     selfBitmap.scaleX = 0.4;
@@ -130,8 +134,7 @@ function gamePageOne(){
     enemyBitmap.scaleX = 0.4;
     enemyBitmap.scaleY = 0.4;
     backGroundLayer.addChild(enemyBitmap);
-	
-	
+	//----------设置右边球门------------
     RightDoor=new LSprite();
     RightDoor.x=825;
     RightDoor.y=340;
@@ -154,7 +157,13 @@ function gamePageOne(){
     buttonExit.y = 5;
 	backGroundLayer.addChild(buttonExit);
     buttonExit.addEventListener(LMouseEvent.MOUSE_DOWN,Exit);
+
 }
+
+	function Exit(){
+		 SysSecondOne = parseInt(startTime);
+	     choisePage();
+	}
 
 //------------关节的设定----------------------
 function createMouseJoint(x, y) {
@@ -175,20 +184,9 @@ function onMouseMove(event){
         mY = event.offsetY / LGlobal.box2d.drawScale;
     mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
 
-}/*
-function onMouseMove (event) {
-    var backLayer = event.currentTarget,
-        b = selfName.box2dBody,
-        lb = LGlobal.box2d,
-        scale = lb.drawScale,
-        vec = new lb.b2Vec2(event.offsetX / scale, event.offsetY / scale);
-        b.SetPosition(vec);
 }
-*/
 
-	function Exit(){
-	     choisePage();
-	}
+
 
 function timeOne() {
     if (SysSecondOne > 0) {
@@ -203,25 +201,10 @@ function timeOne() {
         cxtOne.x = 0;
         cxtOne.y = 0;
         cxtOne.text = hour + ":" + minite + ":" + second + "";
-
-    } else {//剩余时间小于或等于0的时候，就停止间隔函数
+    }
+	else {//剩余时间小于或等于0的时候，就停止间隔函数
         window.clearInterval(cxtOne.timer);
         //这里可以添加倒计时时间为0后需要执行的事件
     }
 }
-//初始化足球
-/*
-function setBallLocation(){
-    ballLayer = new LSprite();
-    ballLayer.x=450;
-    ballLayer.y=300;
-    backGroundLayer.addChild(ballLayer);
-    var bitmap = new LBitmapData(imglist["football"]);
-    ballLayer.graphics.beginBitmapFill(bitmap);
-    ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
-    ballLayer.addBodyCircle(20,20,20,1,3,0.1,2.0);
-    buoyancyController.AddBody(ballLayer.box2dBody);
-
-}*/
-
 

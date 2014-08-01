@@ -1,11 +1,16 @@
 ﻿
 init(20,"gamePanel",900,640,main);
+//显示时间变量
+var t;
+
 //self
 var temp=0;
-
+var clock = 0;
 //var Xposition;
 //var Yposition;
-
+//得分变量
+var selfScore=0,enemyScore=0;
+//var clock=1000;
 var buoyancyController;
 var mouseJoint=null;
 //enemy
@@ -31,10 +36,14 @@ var imgData=[
     {name:"backGroundTwo",path:"img/backGroundTwo.png"},
     {name:"luoyisi",path:"img/GramanySport.png"},
     {name:"fanpeixi",path:"img/helanSport.png"}
+
+	
 ];
 
  var showList = new Array();
  var showSport = new Array();
+ var Win = new Array();
+ var Lose = new Array();
 
     var flagName=[
         {name:"阿根廷"},
@@ -69,7 +78,10 @@ var backLayer2;
 
 //时间
 var cxtOne;
-var SysSecondOne = parseInt(5400);
+//定义初始时间
+var startTime = 30;
+//var SysSecondOne;
+var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
 
 //---------主函数入口---------
@@ -125,6 +137,9 @@ function gameInit(result){
 
 //进入选择页面
 function choisePage(){
+   window.clearInterval(t);
+   
+  //  backGroundLayer.removeChild(t);
     backGroundLayer.die();
     backGroundLayer.removeAllChild();
     backLayer = new LSprite();
@@ -186,7 +201,7 @@ function choisePage(){
      	//记分牌
      	resultArgentina = new LTextField();
         scoreNumberLeft = new LTextField();
-        scoreNumberLeft.text=0;
+        scoreNumberLeft.text=selfScore;
         scoreNumberLeft.color="#FFF";
         scoreNumberLeft.size="18";
         scoreNumberLeft.x=317;
@@ -213,7 +228,7 @@ function choisePage(){
      	
      	resultBrazil = new LTextField();
         scoreNumberRight = new LTextField();
-        scoreNumberRight.text=0;
+        scoreNumberRight.text=enemyScore;
         scoreNumberRight.x=380;
         scoreNumberRight.y=7;
         scoreNumberRight.color="#FFF";
@@ -285,24 +300,27 @@ function postSolve(contact,impulse){
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == RightDoor) || 
 			(objA == RightDoor && objB == ballLayer)) {
-            scoreNumberLeft.text = scoreNumberLeft.text + 1;
+            //scoreNumberLeft.text = scoreNumberLeft.text + 1;
+			selfScore += 1;
+			scoreNumberLeft.text=selfScore;
+			scoreNumberRight.text=enemyScore;
             //var backLayer = event.currentTarget,
 
-            console.warn("足球目前的横坐标：" + ballLayer.x + " 足球目前的纵坐标：" + ballLayer.y);
-            choisePage();
-
-
-
+         //   console.warn("足球目前的横坐标：" + ballLayer.x + " 足球目前的纵坐标：" + ballLayer.y);
+           showSelfScore();
         }
-
-
 	}
 	
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == LeftDoor) || 
 			(objA == LeftDoor && objB == ballLayer)){
 		//	alert("内马尔得分");
-			scoreNumberRight.text = scoreNumberRight.text + 1;
+		//	scoreNumberRight.text = scoreNumberRight.text + 1;
+			enemyScore += 1;
+			scoreNumberRight.text=enemyScore;
+			scoreNumberLeft.text=selfScore;
+			showEnemyScore();
+			
 		}
 	}
 }
@@ -330,6 +348,7 @@ function ChoosePerson(){
 	 showSport.push(new LBitmapData(imglist["neimaer"]));
 	 showSport.push(new LBitmapData(imglist["luoyisi"]));
 	 showSport.push(new LBitmapData(imglist["fanpeixi"]));
+//	 showSport.push(new LBitmapData(imglist["meixiWin"]));
 
      var frag1 = new LSprite();
     frag1.graphics.drawRect(1,'#000',[110,110,128,140],true,'#000');
@@ -440,10 +459,10 @@ function ChoosePerson(){
 			vs.x = 398;
 			vs.y = 335;
 			resultEnd.addChild(vs);
-	
+			
 	var buttonEnter= new LButtonSample1("开始游戏");
-    buttonEnter.x =780;
-    buttonEnter.y = 5;
+    buttonEnter.x =380;
+    buttonEnter.y = 560;
 	resultEnd.addChild(buttonEnter);
     buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 
@@ -541,10 +560,146 @@ function Billboard(){
     buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 }
 
+//显示得分函数(self)
+function showSelfScore(){
+backGroundLayer.removeChild(ballLayer);
+      var resultChart = new LSprite();
+	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
+     backGroundLayer.addChild(resultChart);
+	 
+	showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
+    showList.push(new LBitmapData(imglist["BrazilFrag"]));
+    showList.push(new LBitmapData(imglist["GramanyFrag"]));
+    showList.push(new LBitmapData(imglist["HelanFrag"]));
 
+/*
+	 //self得分
+	 var selfWin = new LSprite();
+	 selfWin.x = 30;
+	 selfWin.y = 200;
+	 resultChart.addChild(selfWin);
+	  var bitmap = new LBitmapData(imglist['meixiWin']);
+	  selfWin.graphics.beginBitmapFill(bitmap);
+	  selfWin.graphics.drawRect(1,'#000',[0,0,400,345],false);
 
+	  //enemy失败
+	 var selfWin = new LSprite();
+	 selfWin.x = 620;
+	 selfWin.y = 200;
+	 resultChart.addChild(selfWin);
+	  var bitmap = new LBitmapData(imglist['neimaerLose']);
+	  selfWin.graphics.beginBitmapFill(bitmap);
+	  selfWin.graphics.drawRect(1,'#000',[0,0,253,345],false);
+	*/ 
+     var showResult = new LTextField();
+	 showResult.text = 'Congratulations!';
+	 showResult.color = '#fff';
+	 showResult.weight = 'bold';
+	 showResult.size = '50';
+	 showResult.x = 180;
+	 showResult.y = 100;
+	 resultChart.addChild(showResult);
 
+        scoreNumberLeft = new LTextField();
+        scoreNumberLeft.text=selfScore;
+        scoreNumberLeft.color="#FFF";
+        scoreNumberLeft.size="40";
+        scoreNumberLeft.x=300;
+        scoreNumberLeft.y=350;
+		resultChart.addChild(scoreNumberLeft);
+//	  resultChart.addChild(selfScore);
 
+       scoreNumberMiddle = new LTextField();
+        scoreNumberMiddle.text=':';
+        scoreNumberMiddle.color="#FFF";
+        scoreNumberMiddle.size="40";
+        scoreNumberMiddle.x=420;
+        scoreNumberMiddle.y=350;
+		resultChart.addChild(scoreNumberMiddle);
+
+        scoreNumberRight = new LTextField();
+        scoreNumberRight.text=enemyScore;
+        scoreNumberRight.x=520;
+        scoreNumberRight.y=350;
+        scoreNumberRight.color="#FFF";
+        scoreNumberRight.size="40";
+		resultChart.addChild(scoreNumberRight);
+    //   resultChart.addChild(enemyScore);
+		clock = 0;
+	   if(clock == 0){
+     window.clearInterval(t);
+   }  
+	    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+	
+}
+
+//显示得分函数(enemy)
+function showEnemyScore(){
+      backGroundLayer.removeChild(ballLayer);
+      var resultChart = new LSprite();
+	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
+     backGroundLayer.addChild(resultChart);
+/*	 
+	 //self失败
+	 var selfLose = new LSprite();
+	 selfLose.x = 30;
+	 selfLose.y = 200;
+	 resultChart.addChild(selfLose);
+	 var bitmap = new LBitmapData(imglist['selfLoseMeixi']);
+	 selfLose.graphics.beginBitmapFill(bitmap);
+	 selfLose.graphics.drawRect(1,'#000',[0,0,400,345],false);
+	  
+	  //enemy得分
+	 var enemyWin = new LSprite();
+	 enemyWin.x = 30;
+	 enemyWin.y = 200;
+	 resultChart.addChild(enemyWin);
+	  var bitmap = new LBitmapData(imglist['selfLoseMeixi']);
+	  enemyWin.graphics.beginBitmapFill(bitmap);
+	  enemyWin.graphics.drawRect(1,'#000',[0,0,400,345],false);
+*/
+   var showResult = new LTextField();
+	 showResult.text = 'Cheer Up!';
+	 showResult.color = '#fff';
+	 showResult.weight = 'bold';
+	 showResult.size = '50';
+	 showResult.x = 180;
+	 showResult.y = 100;
+	 resultChart.addChild(showResult);
+
+        scoreNumberLeft = new LTextField();
+        scoreNumberLeft.text=selfScore;
+        scoreNumberLeft.color="#FFF";
+        scoreNumberLeft.size="40";
+        scoreNumberLeft.x=300;
+        scoreNumberLeft.y=350;
+		resultChart.addChild(scoreNumberLeft);
+//	  resultChart.addChild(selfScore);
+
+       scoreNumberMiddle = new LTextField();
+        scoreNumberMiddle.text=':';
+        scoreNumberMiddle.color="#FFF";
+        scoreNumberMiddle.size="40";
+        scoreNumberMiddle.x=450;
+        scoreNumberMiddle.y=350;
+		resultChart.addChild(scoreNumberMiddle);
+
+        scoreNumberRight = new LTextField();
+        scoreNumberRight.text=enemyScore;
+        scoreNumberRight.x=600;
+        scoreNumberRight.y=350;
+        scoreNumberRight.color="#FFF";
+        scoreNumberRight.size="40";
+		resultChart.addChild(scoreNumberRight);
+    //   resultChart.addChild(enemyScore);
+	clock = 0;
+	   if(clock == 0){
+     window.clearInterval(t);
+   }  
+		    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+			
+	
+}
 
 
 

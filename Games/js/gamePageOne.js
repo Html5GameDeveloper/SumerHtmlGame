@@ -163,6 +163,8 @@ function gamePageOne(){
 	function Exit(){
 		 SysSecondOne = parseInt(startTime);
 	     choisePage();
+        selfScore = 0;
+        enemyScore = 0;
 	}
 
 //------------关节的设定----------------------

@@ -35,7 +35,28 @@ var imgData=[
     {name:"backLayer2",path:"img/backLayer2.jpg"},
     {name:"backGroundTwo",path:"img/backGroundTwo.png"},
     {name:"luoyisi",path:"img/GramanySport.png"},
-    {name:"fanpeixi",path:"img/helanSport.png"}
+    {name:"fanpeixi",path:"img/helanSport.png"},
+
+
+    {name:"enemyLoseMeixi",path:"img/enemyLoseMeixi.png"},
+    {name:"enemyLoseNeimaer",path:"img/enemyLoseNeimaer.png"},
+    {name:"enemyLoseRues",path:"img/enemyLoseRues.png"},
+    {name:"enemyLoseVan",path:"img/enemyLoseVan.png"},
+    {name:"enemyWinMeixi",path:"img/enemyWinMeixi.png"},
+    {name:"enemyWinNeimaer",path:"img/enemyWinNeimaer.png"},
+    {name:"enemyWinVan",path:"img/enemyWinVan.png"},
+    {name:"enemyWinRues",path:"img/enemyWinRues.png"},
+
+
+    {name:"selfLoseMeixi",path:"img/selfLoseMeixi.png"},
+    {name:"selfLoseNeimaer",path:"img/selfLoseNeimaer.png"},
+    {name:"selfLoseRues",path:"img/selfLoseRues.png"},
+    {name:"selfLoseVan",path:"img/selfLoseVan.png"},
+    {name:"selfWinMeixi",path:"img/selfWinMeixi.png"},
+    {name:"selfWinNeimaer",path:"img/selfWinNeimaer.png"},
+    {name:"selfWinReus",path:"img/selfWinReus.png"},
+    {name:"selfWinVan",path:"img/selfWinVan.png"}
+
 
 	
 ];
@@ -198,7 +219,7 @@ function choisePage(){
      	resultScore.x = 100;
      	resultScore.y =45;
      	backGroundLayer.addChild(resultScore);
-     	//记分牌
+     	//------------记分牌------------
      	resultArgentina = new LTextField();
         scoreNumberLeft = new LTextField();
         scoreNumberLeft.text=selfScore;
@@ -253,12 +274,12 @@ function choisePage(){
      	resultBrazil.y = 10;
      	resultScore.addChild(resultBrazil);
         resultScore.addChild(scoreNumberRight);
-		
+		//----------记分牌结束-------------
 			//-----碰撞侦听事件------
 		LGlobal.box2d.setEvent(LEvent.POST_SOLVE,postSolve);		
 	}
 
-//播放音乐
+//------------播放音乐-----------------
 function onup(e){
    if(sound.length == 0){
         var url = './sound/2014Soccer.mp3';
@@ -274,7 +295,7 @@ function loadOver(e){
 	sound.play();
 }
 
-//物体碰撞边界
+//----------物体碰撞边界----------
 function Bound(){
     BoundTop = new LSprite();
     backGroundLayer.addChild(BoundTop);
@@ -286,7 +307,7 @@ function Bound(){
     ];
     BoundTop.addBodyVertices(shapeArray,0,0,0,.5,.4,.5);
 
-    //设置球门
+    //-----------设置球门-------------
     ballDoor = new LSprite();
     backGroundLayer.addChild(ballDoor);
     ballDoor.graphics.drawRect(0,'#f00',[808,250,35,105],false);
@@ -325,7 +346,7 @@ function postSolve(contact,impulse){
 	}
 }
 
-//选择球队页面函数
+//------------选择球队页面函数-----------------
 function ChoosePerson(){
     var ChoosePic = new LSprite();
     ChoosePic.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
@@ -344,16 +365,34 @@ function ChoosePerson(){
     showList.push(new LBitmapData(imglist["GramanyFrag"]));
     showList.push(new LBitmapData(imglist["HelanFrag"]));
 
-	showSport.push(new LBitmapData(imglist["meixi"]));
-	 showSport.push(new LBitmapData(imglist["neimaer"]));
-	 showSport.push(new LBitmapData(imglist["luoyisi"]));
-	 showSport.push(new LBitmapData(imglist["fanpeixi"]));
+	 showSport.push(new LBitmapData(imglist["meixi"]));//0
+	 showSport.push(new LBitmapData(imglist["neimaer"]));//1
+	 showSport.push(new LBitmapData(imglist["luoyisi"]));//2
+	 showSport.push(new LBitmapData(imglist["fanpeixi"]));//3
 //	 showSport.push(new LBitmapData(imglist["meixiWin"]));
+
+     showSport.push(new LBitmapData(imglist["enemyLoseMeixi"]));//4
+    showSport.push(new LBitmapData(imglist["enemyLoseNeimaer"]));//5
+    showSport.push(new LBitmapData(imglist["enemyLoseRues"]));//6
+    showSport.push(new LBitmapData(imglist["enemyLoseVan"]));//7
+    showSport.push(new LBitmapData(imglist["enemyWinMeixi"]));//8
+    showSport.push(new LBitmapData(imglist["enemyWinNeimaer"]));//9
+    showSport.push(new LBitmapData(imglist["enemyWinVan"]));//10
+    showSport.push(new LBitmapData(imglist["enemyWinRues"]));//11
+
+    showSport.push(new LBitmapData(imglist["selfLoseMeixi"]));//12
+    showSport.push(new LBitmapData(imglist["selfLoseNeimaer"]));//13
+    showSport.push(new LBitmapData(imglist["selfLoseRues"]));//14
+    showSport.push(new LBitmapData(imglist["selfLoseVan"]));//15
+    showSport.push(new LBitmapData(imglist["selfWinMeixi"]));//16
+    showSport.push(new LBitmapData(imglist["selfWinNeimaier"]));//17
+    showSport.push(new LBitmapData(imglist["selfWinReus"]));//18
+    showSport.push(new LBitmapData(imglist["selfWinVan"]));//19
 
      var frag1 = new LSprite();
     frag1.graphics.drawRect(1,'#000',[110,110,128,140],true,'#000');
     ChoosePic.addChild(frag1);
-    //显示国旗Argentina
+    //----------显示国旗Argentina---------------
     var ArgentinaFrag = getButton('ArgentinaFrag');
     ArgentinaFrag.x =110;
     ArgentinaFrag.y = 110;
@@ -371,7 +410,7 @@ function ChoosePerson(){
     var frag2 = new LSprite();
     frag2.graphics.drawRect(1,'#000',[288,110,128,140],true,'#000');
     ChoosePic.addChild(frag2);
-    //显示国旗Brazil
+    //--------------显示国旗Brazil---------------
     var BrazilFrag =  getButton('BrazilFrag');
     BrazilFrag.x = 288;
     BrazilFrag.y = 110;
@@ -390,7 +429,7 @@ function ChoosePerson(){
     frag3.graphics.drawRect(1,'#000',[466,110,128,140],true,'#000');
     ChoosePic.addChild(frag3);
 	
-    //显示国旗Gramany
+    //-------------显示国旗Gramany--------------
     var GramanyFrag =  getButton('GramanyFrag');
     GramanyFrag.x =466;
     GramanyFrag.y = 110;
@@ -409,7 +448,7 @@ function ChoosePerson(){
     frag4.graphics.drawRect(1,'#000',[644,110,128,140],true,'#000');
     ChoosePic.addChild(frag4);
    
-   //显示国旗Helan
+   //-------------显示国旗Helan----------------
     var HelanFrag = getButton('HelanFrag');
     HelanFrag.x =644;
     HelanFrag.y = 110;
@@ -424,29 +463,29 @@ function ChoosePerson(){
     frag4.addChild(Helan);
 	 HelanFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 	
-			//显示结果层
+			//---------------显示结果层---------------
 			 var resultEnd = new LSprite();
 			resultEnd.graphics.drawRect(1,'#000',[0,260,900,380],true,'#000');
 			ChoosePic.addChild(resultEnd);
 			
-			//显示国旗(self)
+			//-----------显示国旗(self)---------------
 			selfBitmap =  new LBitmap(showList[0]);
 			selfBitmap.x =230;
 			selfBitmap.y = 325;
 			resultEnd.addChild(selfBitmap);
-		   //显示运动员
+		   //-------------显示运动员----------------
 			selfName =  new LBitmap(showSport[0]);
 			selfName.x =240;
 			selfName.y = 455;
 			resultEnd.addChild(selfName);
 
-			//显示国旗(enemy)
+			//--------------显示国旗(enemy)-------------
 			enemyBitmap =  new LBitmap(showList[1]);
 			enemyBitmap.x = 518;
 			enemyBitmap.y = 325;
 			resultEnd.addChild(enemyBitmap);
 
-			//显示运动员
+			//------------显示运动员-----------------
 			enemyName =  new LBitmap(showSport[1]);
 			enemyName.x =528;
 			enemyName.y = 455;
@@ -462,13 +501,14 @@ function ChoosePerson(){
 			
 	var buttonEnter= new LButtonSample1("开始游戏");
     buttonEnter.x =380;
-    buttonEnter.y = 560;
+    buttonEnter.y = 480;
 	resultEnd.addChild(buttonEnter);
     buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 
-}//ChoosePerson End
+}
+//-----------------ChoosePerson End-----------------
 
-//初始化球队按钮
+//-------------初始化球队按钮--------------------
 function getButton(value){
  var btnUp = new LBitmap(new LBitmapData(imglist[value]));
 	 btnUp.scaleX = 1;
@@ -482,7 +522,7 @@ function getButton(value){
 	 return btn;
 }
 
-//点击并选择球队
+//----------------点击并选择球队-------------------
 function onclick(event,display){
        var selfValue,enemyValue;   
 	   if(display.name == 'ArgentinaFrag'){
@@ -536,9 +576,9 @@ function onclick(event,display){
         enemyBitmap.bitmapData = showList[enemyValue];
        enemyName.bitmapData = showSport[enemyValue];
 }
-//选择球队页面函数End
+//----------------------选择球队页面函数End--------------------
 
-//排行榜界面开始
+//-----------------------排行榜界面开始--------------------
 function Billboard(){
      var scoreChart = new LSprite();
 	  scoreChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
@@ -560,7 +600,7 @@ function Billboard(){
     buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 }
 
-//显示得分函数(self)
+//---------------------显示得分函数(self)------------------
 function showSelfScore(){
 backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
@@ -572,25 +612,59 @@ backGroundLayer.removeChild(ballLayer);
     showList.push(new LBitmapData(imglist["GramanyFrag"]));
     showList.push(new LBitmapData(imglist["HelanFrag"]));
 
-/*
-	 //self得分
+
+	 //------------------self得分----------------------
 	 var selfWin = new LSprite();
 	 selfWin.x = 30;
 	 selfWin.y = 200;
 	 resultChart.addChild(selfWin);
-	  var bitmap = new LBitmapData(imglist['meixiWin']);
+    if (temp == 0){
+        var bitmap = new LBitmapData(imglist['selfWinMeixi']);
+    }
+
+    if (temp == 1){
+        var bitmap = new LBitmapData(imglist['selfWinNeimaer']);
+    }
+
+    if (temp == 2){
+        var bitmap = new LBitmapData(imglist['selfWinReus']);
+    }
+
+    if (temp == 3){
+        var bitmap = new LBitmapData(imglist['selfWinVan']);
+    }
+
 	  selfWin.graphics.beginBitmapFill(bitmap);
 	  selfWin.graphics.drawRect(1,'#000',[0,0,400,345],false);
 
 	  //enemy失败
-	 var selfWin = new LSprite();
-	 selfWin.x = 620;
-	 selfWin.y = 200;
-	 resultChart.addChild(selfWin);
-	  var bitmap = new LBitmapData(imglist['neimaerLose']);
-	  selfWin.graphics.beginBitmapFill(bitmap);
-	  selfWin.graphics.drawRect(1,'#000',[0,0,253,345],false);
-	*/ 
+	 var enemyLose = new LSprite();
+    enemyLose.x = 620;
+    enemyLose.y = 200;
+	 resultChart.addChild(enemyLose);
+
+
+    if (tempEn == 0){
+        var bitmap = new LBitmapData(imglist['enemyLoseMeixi']);
+
+    }
+    if (tempEn == 1){
+        var bitmap = new LBitmapData(imglist['enemyLoseNeimaer']);
+
+    }
+    if (tempEn == 2){
+        var bitmap = new LBitmapData(imglist['enemyLoseRues']);
+
+    }
+    if (tempEn == 3){
+        var bitmap = new LBitmapData(imglist['enemyLoseVan']);
+
+    }
+
+
+    enemyLose.graphics.beginBitmapFill(bitmap);
+    enemyLose.graphics.drawRect(1,'#000',[0,0,253,345],false);
+
      var showResult = new LTextField();
 	 showResult.text = 'Congratulations!';
 	 showResult.color = '#fff';
@@ -639,25 +713,54 @@ function showEnemyScore(){
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
      backGroundLayer.addChild(resultChart);
-/*	 
+
 	 //self失败
 	 var selfLose = new LSprite();
 	 selfLose.x = 30;
 	 selfLose.y = 200;
 	 resultChart.addChild(selfLose);
-	 var bitmap = new LBitmapData(imglist['selfLoseMeixi']);
+    if (temp == 0){
+        var bitmap = new LBitmapData(imglist['selfLoseMeixi']);
+    }
+
+    if (temp == 1){
+        var bitmap = new LBitmapData(imglist['selfLoseNeimaer']);
+    }
+
+    if (temp == 2){
+        var bitmap = new LBitmapData(imglist['selfLoseRues']);
+    }
+
+    if (temp == 3){
+        var bitmap = new LBitmapData(imglist['selfLoseVan']);
+    }
 	 selfLose.graphics.beginBitmapFill(bitmap);
 	 selfLose.graphics.drawRect(1,'#000',[0,0,400,345],false);
 	  
 	  //enemy得分
 	 var enemyWin = new LSprite();
-	 enemyWin.x = 30;
+	 enemyWin.x = 620;
 	 enemyWin.y = 200;
 	 resultChart.addChild(enemyWin);
-	  var bitmap = new LBitmapData(imglist['selfLoseMeixi']);
+    if (tempEn == 0){
+        var bitmap = new LBitmapData(imglist['enemyWinMeixi']);
+
+    }
+    if (tempEn == 1){
+        var bitmap = new LBitmapData(imglist['enemyWinNeimaer']);
+
+    }
+    if (tempEn == 2){
+        var bitmap = new LBitmapData(imglist['enemyWinRues']);
+
+    }
+    if (tempEn == 3){
+        var bitmap = new LBitmapData(imglist['enemyWinVan']);
+
+    }
 	  enemyWin.graphics.beginBitmapFill(bitmap);
 	  enemyWin.graphics.drawRect(1,'#000',[0,0,400,345],false);
-*/
+
    var showResult = new LTextField();
 	 showResult.text = 'Cheer Up!';
 	 showResult.color = '#fff';

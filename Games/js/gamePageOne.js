@@ -202,11 +202,31 @@ function timeOne() {
         cxtOne.color = '#fff';
         cxtOne.x = 0;
         cxtOne.y = 0;
-        cxtOne.text = hour + ":" + minite + ":" + second + "";
+        //cxtOne.text = hour + ":" + minite + ":" + second + "";
+        cxtOne.text = "距离游戏结束还有："+second + "秒";
     }
 	else {//剩余时间小于或等于0的时候，就停止间隔函数
         window.clearInterval(cxtOne.timer);
+        console.warn("Game OVer");
+        backGroundLayer.die();
+        backGroundLayer.removeAllChild();
+        gamePageOver();
         //这里可以添加倒计时时间为0后需要执行的事件
     }
 }
 
+function gamePageOver(){
+    //console.warn("gameOvePage");
+    var gameOverLayer = new LSprite();
+    var gameOverText = new LTextField();
+    gameOverLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
+    gameOverText.text = "GAME OVER";
+    gameOverText.x = 300;
+    gameOverText.y = 300;
+    gameOverText.size = 40;
+    gameOverText.color = "#fff";
+    backGroundLayer.addChild(gameOverLayer);
+    gameOverLayer.addChild(gameOverText);
+
+
+}

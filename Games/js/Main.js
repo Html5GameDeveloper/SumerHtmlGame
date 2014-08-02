@@ -100,7 +100,7 @@ var backLayer2;
 //时间
 var cxtOne;
 //定义初始时间
-var startTime = 30;
+var startTime = 3;
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
@@ -143,13 +143,16 @@ function gameInit(result){
 	
 	backGroundLayer.graphics.drawRect(1,"#fff",[200,270,500,150]);
 	var clickText=new LTextField();
+    var clickInto= new LSprite();
+    clickInto.graphics.drawRect(1,"#000",[200,270,500,150],false);
+    backGroundLayer.addChild(clickInto);
 	clickText.color="#fff";
 	clickText.text="超级足球大战";
 	clickText.size=45;
 	clickText.x=270;
 	clickText.y=315;
-	backGroundLayer.addChild(clickText);
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	clickInto.addChild(clickText);
+    clickInto.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 
 }
 //-----欢迎页面结束-----

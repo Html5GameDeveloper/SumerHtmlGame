@@ -106,8 +106,10 @@ function gamePageOne(){
    
     enemyName.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
     enemyName.addBodyCircle(40,40,40,1,3,0.2,0.9);
+    enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
+
     //setBallLocation();
     //-----足球-----
 
@@ -216,7 +218,7 @@ function timeOne() {
 		 backGroundLayer.die();
         backGroundLayer.removeAllChild();
 		gamePageOver();
-		ocnsole.warn("run");
+		//ocnsole.warn("run");
         
         //这里可以添加倒计时时间为0后需要执行的事件
     }
@@ -266,4 +268,21 @@ function upLoadResult(){
 	upLoadResultLayer.addChild(upLoadResultTitle);
 	
 
+}
+
+
+function randomMain(){
+    var head ;
+    var randomTemp = Math.floor(Math.random()*2);
+
+    if(randomTemp == 0){
+        head = 1;
+    }
+    if (randomTemp == 1){
+        head = -1;
+    }
+
+
+    enemyName.box2dBody.GetPosition().x += head*Math.floor(Math.random()*5);
+    enemyName.box2dBody.GetPosition().y += head*Math.floor(Math.random()*5);
 }

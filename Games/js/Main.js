@@ -8,7 +8,9 @@ var temp=0;
 var clock = 0;
 //var Xposition;
 //var Yposition;
-//得分变量
+
+
+//全局得分变量，所有结果均调用此变量
 var selfScore=0,enemyScore=0;
 //var clock=1000;
 var buoyancyController;

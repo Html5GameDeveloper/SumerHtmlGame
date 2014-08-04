@@ -181,6 +181,7 @@ function createMouseJoint(x, y) {
 
 
 }
+
 function onMouseMove(event){
     var mX = event.offsetX / LGlobal.box2d.drawScale,
         mY = event.offsetY / LGlobal.box2d.drawScale;
@@ -205,12 +206,18 @@ function timeOne() {
         //cxtOne.text = hour + ":" + minite + ":" + second + "";
         cxtOne.text = "距离游戏结束还有："+second + "秒";
     }
-	else {//剩余时间小于或等于0的时候，就停止间隔函数
+	
+	
+	if(SysSecondOne == 0)
+		{//剩余时间小于或等于0的时候，就停止间隔函数
         window.clearInterval(cxtOne.timer);
-        console.warn("Game OVer");
-        backGroundLayer.die();
+        //console.warn("Game OVer");
+        SysSecondOne = -1;
+		 backGroundLayer.die();
         backGroundLayer.removeAllChild();
-        gamePageOver();
+		gamePageOver();
+		ocnsole.warn("run");
+        
         //这里可以添加倒计时时间为0后需要执行的事件
     }
 }
@@ -225,8 +232,38 @@ function gamePageOver(){
     gameOverText.y = 300;
     gameOverText.size = 40;
     gameOverText.color = "#fff";
+	gameOverLayer.addEventListener(LMouseEvent.MOUSE_DOWN,upLoadResult);
     backGroundLayer.addChild(gameOverLayer);
     gameOverLayer.addChild(gameOverText);
+	
+	
 
+
+}
+
+function upLoadResult(){
+
+	var upLoadResultLayer = new LSprite();
+	var upLoadResultSelf = new LTextField();
+	var upLoadResultTitle = new LTextField();
+	
+	upLoadResultLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
+	upLoadResultTitle = new LTextField();
+	upLoadResultTitle.text = "您的最后得分为"; 
+	upLoadResultTitle.x = 280;
+	upLoadResultTitle.y = 50;
+	upLoadResultTitle.size = 55;
+	upLoadResultTitle.color = "#FFF";
+	
+	
+	upLoadResultSelf.text = selfScore;
+	upLoadResultSelf.x = 100;
+	upLoadResultSelf.y = 200;
+	upLoadResultSelf.size = 40;
+	upLoadResultSelf.color = "#fff";
+	backGroundLayer.addChild(upLoadResultLayer);
+	upLoadResultLayer.addChild(upLoadResultSelf);
+	upLoadResultLayer.addChild(upLoadResultTitle);
+	
 
 }

@@ -1,5 +1,7 @@
 ﻿
 function gamePageOne(){
+ backGroundLayer.die();
+    backGroundLayer.removeAllChild();
  //SysSecondOne = parseInt(20);
      clock = 1;
 	   if(clock == 1){
@@ -154,11 +156,27 @@ function gamePageOne(){
     onup();
     Bound();
 //退出游戏
-	var buttonExit = new LButtonSample1("退出游戏");
-    buttonExit.x =780;
-    buttonExit.y = 5;
-	backGroundLayer.addChild(buttonExit);
-    buttonExit.addEventListener(LMouseEvent.MOUSE_DOWN,Exit);
+
+
+			
+	var buttonNew=new LSprite();
+	buttonNew.graphics.drawRect(0,"#000",[780,5,110,35],false);
+	backGroundLayer.addChild(buttonNew);
+	
+	var buttonExit=new LTextField();
+   // buttonEnter.graphics.drawRect(0,"#000",[200,270,500,150],false);
+    backGroundLayer.addChild(buttonExit);
+	buttonExit.color="#fff";
+	buttonExit.text="退出游戏";
+	buttonExit.size=18;
+	buttonExit.x=780;
+	buttonExit.y=5;
+	buttonExit.stroke = true;
+    buttonExit.lineWidth = 2;
+	buttonExit.lineColor = "#57a520";
+	buttonNew.addChild(buttonExit);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,Exit);
+
 
 }
 
@@ -225,21 +243,26 @@ function timeOne() {
 }
 
 function gamePageOver(){
+
+   var gameOverLayer = new LSprite();
+	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
+	backGroundLayer.addChild(gameOverLayer);
+
+
+
     //console.warn("gameOvePage");
-    var gameOverLayer = new LSprite();
+  //  var gameOverLayer = new LSprite();
     var gameOverText = new LTextField();
-    gameOverLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
+ //   gameOverLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
     gameOverText.text = "GAME OVER";
     gameOverText.x = 300;
     gameOverText.y = 300;
     gameOverText.size = 40;
     gameOverText.color = "#fff";
 	gameOverLayer.addEventListener(LMouseEvent.MOUSE_DOWN,upLoadResult);
-    backGroundLayer.addChild(gameOverLayer);
-    gameOverLayer.addChild(gameOverText);
+  //  backGroundLayer.addChild(gameOverLayer);
+    backGroundLayer.addChild(gameOverText);
 	
-	
-
 
 }
 

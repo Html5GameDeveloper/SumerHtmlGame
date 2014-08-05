@@ -23,8 +23,10 @@ var loadingLayer;//载入图层
 var imglist={};//图像列表对象
 var imgData=[
 	{name:"backGround",path:"img/backGround.png"},
+	{name:"welcome",path:"img/welcome.png"},
+	{name:"loginIn",path:"img/loginIn.png"},
     {name:"ground2",path:"img/backGround.png"},
-    {name:"ground1",path:"img/backGround1.jpg"},
+    {name:"backGround2",path:"img/backGround2.jpg"},
 	{name:"neimaer",path:"img/neimaer.png"},
 	{name:"meixi",path:"img/meixi.png"},
     {name:'ArgentinaFrag',path:'img/ArgentinaFrag.png'},
@@ -32,6 +34,7 @@ var imgData=[
     {name:'GramanyFrag',path:'img/GramanyFrag.png'},
     {name:'HelanFrag',path:'img/HelanFrag.png'},
     {name:'football',path:'img/football.png'},
+	{name:'soccer',path:'img/soccer.png'},
 	{name:"whiteBtn2",path:"img/whiteBtn2.png"},
     {name:"backLayer1",path:"img/backLayer1.jpg"},
     {name:"backLayer2",path:"img/backLayer2.jpg"},
@@ -59,8 +62,6 @@ var imgData=[
     {name:"selfWinReus",path:"img/selfWinReus.png"},
     {name:"selfWinVan",path:"img/selfWinVan.png"}
 
-
-	
 ];
 
  var showList = new Array();
@@ -89,8 +90,7 @@ var resultScore;
 var selfBitmap,enemyBitmap;
 var selfName,enemyName;
 
-
-
+//球门设置
 var RightDoor;
 var LeftDoor;
 
@@ -134,19 +134,91 @@ function gameInit(result){
 	imglist=result;
 	backGroundLayer.removeChild(loadingLayer);
 	loadingLayer=null;
-	var title=new LTextField();
+	
+	
+	LGlobal.setDebug(true);	
+    var loginInPage = new LSprite();
+	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
+	backGroundLayer.addChild(loginInPage);
+	
+	var clickText=new LTextField();
+    //clickInto.graphics.drawRect(1,"#000",[200,270,500,150],false);
+    backGroundLayer.addChild(clickText);
+	clickText.color="#fff";
+	clickText.text="超级足球大战";
+	clickText.size=50;
+	clickText.x=250;
+	clickText.y=120;
+	clickText.stroke = true;
+    clickText.lineWidth = 2;
+	clickText.lineColor = "#57a520";
+	backGroundLayer.addChild(clickText);
+	
+	
+	var loginID = new LTextField();
+	loginID.text = '请输入您的账号：';
+	loginID.size = '23';
+	loginID.x = 200;
+	loginID.y = 345;
+    backGroundLayer.addChild(loginID);
+	loginID.color = '#fff';
+	
+	var login = new LSprite();
+	login.graphics.drawRect(0,'#fff',[0,0,390,71]);
+	backGroundLayer.addChild(login);
+	
+
+    var theTextField = new LTextField();
+	theTextField.setType(LTextFieldType.INPUT,login);
+	theTextField.x = 246;
+	theTextField.y = 392;
+	theTextField.color = '#000';
+	backGroundLayer.addChild(theTextField);
+   theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
+   theTextField.addEventListener(LFocusEvent.FOCUS_OUT, outfocus); 
+   
+     var soccer = new LSprite();
+	 var bitmapSoccer = new LBitmapData(imglist['soccer']);
+    soccer.graphics.beginBitmapFill(bitmapSoccer);
+	soccer.graphics.drawRect(1,'#fff',[0,0,71,71],false);
+	soccer.x = 639;
+	soccer.y = 393;
+	backGroundLayer.addChild(soccer);
+	soccer.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
+	
+
+}
+//-----欢迎页面结束-----
+//欢迎进入游戏世界效果调用
+function windComplete(event){}
+//登录界面
+function loginIn(){
+  backGroundLayer.die();
+  backGroundLayer.removeAllChild();
+    var welcomePage = new LSprite();
+	welcomePage = new LBitmap(new LBitmapData(imglist["welcome"]));
+backGroundLayer.addChild(welcomePage);
+ 
+var title=new LTextField();
 	
 	title.x=170;
 	title.y=100;
+	backGroundLayer.addChild(title);
+	title.stroke = true;
+    title.lineWidth = 5;
+	title.lineColor = "#0c8904";
 	title.size=55;
 	title.color="white";
 	title.text="欢迎进入游戏世界";
-	backGroundLayer.addChild(title);
+	title.speed = 2;
+	title.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
+	title.wind();
+
 	
 	backGroundLayer.graphics.drawRect(1,"#fff",[200,270,500,150]);
 	var clickText=new LTextField();
     var clickInto= new LSprite();
-    clickInto.graphics.drawRect(1,"#000",[200,270,500,150],false);
+    clickInto.graphics.drawRect(1,"#fff",[200,270,500,150],false);
     backGroundLayer.addChild(clickInto);
 	clickText.color="#fff";
 	clickText.text="超级足球大战";
@@ -157,20 +229,30 @@ function gameInit(result){
     clickInto.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 
 }
-//-----欢迎页面结束-----
 
-
+function onfocus(e){
+                e.currentTarget.size = 25;	
+			}
+			function outfocus(e){
+			e.currentTarget.size = 25;
+			}
 
 //进入选择页面
 function choisePage(){
    window.clearInterval(t);
    
-  //  backGroundLayer.removeChild(t);
     backGroundLayer.die();
     backGroundLayer.removeAllChild();
+	
+	var backLayer = new LSprite();
+	backLayer = new LBitmap(new LBitmapData(imglist["welcome"]));
+    backGroundLayer.addChild(backLayer);
+	
+	
+	/*
     backLayer = new LSprite();
     backLayer.graphics.drawRect(1,"#fff",[0,0,900,640],true,"#000");
-    backGroundLayer.addChild(backLayer);
+    backGroundLayer.addChild(backLayer);*/
 
     backGroundLayer.removeChild(cxtOne);
     var chioceTitle=new LTextField();
@@ -178,14 +260,14 @@ function choisePage(){
     chioceTitle.x=240;
     chioceTitle.y=450;
     chioceTitle.size=55;
-    chioceTitle.color="#0f0";
+    chioceTitle.color="#fff";
     chioceTitle.text="选择游戏模式";
-    backLayer.addChild(chioceTitle);
+    backGroundLayer.addChild(chioceTitle);
 
     backLayer1 = new LSprite();
     backLayer1.x = 30;
     backLayer1.y = 100;
-    backLayer.addChild(backLayer1);
+    backGroundLayer.addChild(backLayer1);
     var  bitmap = new LBitmapData(imglist['backLayer1']);
     backLayer1.graphics.beginBitmapFill(bitmap);
     backLayer1.graphics.drawRect(1,"#000",[0,0,385,256],false);
@@ -197,12 +279,12 @@ function choisePage(){
     chioceSingle.size=25;
     chioceSingle.color="white";
     chioceSingle.text="选择人物";
-    backLayer.addChild(chioceSingle);
+    backGroundLayer.addChild(chioceSingle);
 
     backLayer2 = new LSprite();
     backLayer2.x = 475;
     backLayer2.y = 100;
-    backLayer.addChild(backLayer2);
+    backGroundLayer.addChild(backLayer2);
     var  bitmap = new LBitmapData(imglist['backLayer2']);
     backLayer2.graphics.beginBitmapFill(bitmap);
     backLayer2.graphics.drawRect(1,"#000",[0,0,385,256],false);
@@ -214,7 +296,7 @@ function choisePage(){
     chioceMore.size=25;
     chioceMore.color="white";
     chioceMore.text="排行榜";
-    backLayer.addChild(chioceMore);
+    backGroundLayer.addChild(chioceMore);
     onup();
 }
 	//---国家比分-----
@@ -326,13 +408,10 @@ function postSolve(contact,impulse){
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == RightDoor) || 
 			(objA == RightDoor && objB == ballLayer)) {
-            //scoreNumberLeft.text = scoreNumberLeft.text + 1;
 			selfScore += 1;
 			scoreNumberLeft.text=selfScore;
 			scoreNumberRight.text=enemyScore;
-            //var backLayer = event.currentTarget,
 
-         //   console.warn("足球目前的横坐标：" + ballLayer.x + " 足球目前的纵坐标：" + ballLayer.y);
            showSelfScore();
         }
 	}
@@ -340,8 +419,6 @@ function postSolve(contact,impulse){
 	if(objA.type == "LSprite" && objB.type == "LSprite"){
 		if((objA == ballLayer && objB == LeftDoor) || 
 			(objA == LeftDoor && objB == ballLayer)){
-		//	alert("内马尔得分");
-		//	scoreNumberRight.text = scoreNumberRight.text + 1;
 			enemyScore += 1;
 			scoreNumberRight.text=enemyScore;
 			scoreNumberLeft.text=selfScore;
@@ -353,9 +430,14 @@ function postSolve(contact,impulse){
 
 //------------选择球队页面函数-----------------
 function ChoosePerson(){
-    var ChoosePic = new LSprite();
-    ChoosePic.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
+
+backGroundLayer.die();
+    backGroundLayer.removeAllChild();
+
+     var ChoosePic = new LSprite();
+	ChoosePic = new LBitmap(new LBitmapData(imglist["welcome"]));
     backGroundLayer.addChild(ChoosePic);
+
 
     var ChooseFrag = new LTextField();
     ChooseFrag.text = '请选择你喜欢的球队:';
@@ -363,7 +445,7 @@ function ChoosePerson(){
     ChooseFrag.size = '28';
     ChooseFrag.x = 30;
     ChooseFrag.y = 50;
-    ChoosePic.addChild(ChooseFrag);
+    backGroundLayer.addChild(ChooseFrag);
 
     showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
     showList.push(new LBitmapData(imglist["BrazilFrag"]));
@@ -374,7 +456,6 @@ function ChoosePerson(){
 	 showSport.push(new LBitmapData(imglist["neimaer"]));//1
 	 showSport.push(new LBitmapData(imglist["luoyisi"]));//2
 	 showSport.push(new LBitmapData(imglist["fanpeixi"]));//3
-//	 showSport.push(new LBitmapData(imglist["meixiWin"]));
 
      showSport.push(new LBitmapData(imglist["enemyLoseMeixi"]));//4
     showSport.push(new LBitmapData(imglist["enemyLoseNeimaer"]));//5
@@ -395,8 +476,8 @@ function ChoosePerson(){
     showSport.push(new LBitmapData(imglist["selfWinVan"]));//19
 
      var frag1 = new LSprite();
-    frag1.graphics.drawRect(1,'#000',[110,110,128,140],true,'#000');
-    ChoosePic.addChild(frag1);
+    frag1.graphics.drawRect(0,'#000',[110,110,128,140],false);
+    backGroundLayer.addChild(frag1);
     //----------显示国旗Argentina---------------
     var ArgentinaFrag = getButton('ArgentinaFrag');
     ArgentinaFrag.x =110;
@@ -413,8 +494,8 @@ function ChoosePerson(){
     ArgentinaFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 
     var frag2 = new LSprite();
-    frag2.graphics.drawRect(1,'#000',[288,110,128,140],true,'#000');
-    ChoosePic.addChild(frag2);
+    frag2.graphics.drawRect(0,'#000',[288,110,128,140],false);
+    backGroundLayer.addChild(frag2);
     //--------------显示国旗Brazil---------------
     var BrazilFrag =  getButton('BrazilFrag');
     BrazilFrag.x = 288;
@@ -431,8 +512,8 @@ function ChoosePerson(){
 	 BrazilFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 
     var frag3 = new LSprite();
-    frag3.graphics.drawRect(1,'#000',[466,110,128,140],true,'#000');
-    ChoosePic.addChild(frag3);
+    frag3.graphics.drawRect(0,'#000',[466,110,128,140],false);
+    backGroundLayer.addChild(frag3);
 	
     //-------------显示国旗Gramany--------------
     var GramanyFrag =  getButton('GramanyFrag');
@@ -450,8 +531,8 @@ function ChoosePerson(){
 	 GramanyFrag.addEventListener(LMouseEvent.MOUSE_UP,onclick);
 
     var frag4 = new LSprite();
-    frag4.graphics.drawRect(1,'#000',[644,110,128,140],true,'#000');
-    ChoosePic.addChild(frag4);
+    frag4.graphics.drawRect(0,'#000',[644,110,128,140],false);
+    backGroundLayer.addChild(frag4);
    
    //-------------显示国旗Helan----------------
     var HelanFrag = getButton('HelanFrag');
@@ -470,8 +551,8 @@ function ChoosePerson(){
 	
 			//---------------显示结果层---------------
 			 var resultEnd = new LSprite();
-			resultEnd.graphics.drawRect(1,'#000',[0,260,900,380],true,'#000');
-			ChoosePic.addChild(resultEnd);
+		//	resultEnd.graphics.drawRect(1,'#000',[0,260,900,380],true,'#000');
+			backGroundLayer.addChild(resultEnd);
 			
 			//-----------显示国旗(self)---------------
 			selfBitmap =  new LBitmap(showList[0]);
@@ -504,11 +585,22 @@ function ChoosePerson(){
 			vs.y = 335;
 			resultEnd.addChild(vs);
 			
-	var buttonEnter= new LButtonSample1("开始游戏");
-    buttonEnter.x =380;
-    buttonEnter.y = 480;
-	resultEnd.addChild(buttonEnter);
-    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
+	var buttonNew=new LSprite();
+	buttonNew.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	backGroundLayer.addChild(buttonNew);
+	
+	var buttonEnter=new LTextField();
+    backGroundLayer.addChild(buttonEnter);
+	buttonEnter.color="#fff";
+	buttonEnter.text="开始游戏";
+	buttonEnter.size=20;
+	buttonEnter.x=380;
+	buttonEnter.y=480;
+	buttonEnter.stroke = true;
+    buttonEnter.lineWidth = 2;
+	buttonEnter.lineColor = "#57a520";
+	buttonNew.addChild(buttonEnter);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 
 }
 //-----------------ChoosePerson End-----------------
@@ -585,24 +677,39 @@ function onclick(event,display){
 
 //-----------------------排行榜界面开始--------------------
 function Billboard(){
-     var scoreChart = new LSprite();
-	  scoreChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
-     backGroundLayer.addChild(scoreChart);
+
+backGroundLayer.die();
+    backGroundLayer.removeAllChild();
+   var scoreChart = new LSprite();
+	scoreChart = new LBitmap(new LBitmapData(imglist["welcome"]));
+    backGroundLayer.addChild(scoreChart);
 	 
 	 var titleChart = new LTextField();
 	 titleChart.text = '排行榜';
-	 titleChart.color = '#f00';
-	 titleChart.weight = 'bold';
+	 titleChart.color = '#fff';
 	 titleChart.size = '30';
 	 titleChart.x = 380;
 	 titleChart.y = 40;
-	 scoreChart.addChild(titleChart);
+	 backGroundLayer.addChild(titleChart);
 	 
-	var buttonEnter= new LButtonSample1("返回首页");
-    buttonEnter.x =780;
-    buttonEnter.y = 5;
-	scoreChart.addChild(buttonEnter);
-    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	
+	var buttonNew=new LSprite();
+	buttonNew.graphics.drawRect(0,"#000",[780,5,110,35],false);
+	backGroundLayer.addChild(buttonNew);
+	
+	var buttonExit=new LTextField();
+    backGroundLayer.addChild(buttonExit);
+	buttonExit.color="#fff";
+	buttonExit.text="返回首页";
+	buttonExit.size=18;
+	buttonExit.x=780;
+	buttonExit.y=5;
+	buttonExit.stroke = true;
+    buttonExit.lineWidth = 2;
+	buttonExit.lineColor = "#57a520";
+	buttonNew.addChild(buttonExit);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	 
 }
 
 //---------------------显示得分函数(self)------------------
@@ -686,7 +793,6 @@ backGroundLayer.removeChild(ballLayer);
         scoreNumberLeft.x=300;
         scoreNumberLeft.y=350;
 		resultChart.addChild(scoreNumberLeft);
-//	  resultChart.addChild(selfScore);
 
        scoreNumberMiddle = new LTextField();
         scoreNumberMiddle.text=':';
@@ -703,7 +809,6 @@ backGroundLayer.removeChild(ballLayer);
         scoreNumberRight.color="#FFF";
         scoreNumberRight.size="40";
 		resultChart.addChild(scoreNumberRight);
-    //   resultChart.addChild(enemyScore);
 		clock = 0;
 	   if(clock == 0){
      window.clearInterval(t);
@@ -782,7 +887,6 @@ function showEnemyScore(){
         scoreNumberLeft.x=300;
         scoreNumberLeft.y=350;
 		resultChart.addChild(scoreNumberLeft);
-//	  resultChart.addChild(selfScore);
 
        scoreNumberMiddle = new LTextField();
         scoreNumberMiddle.text=':';
@@ -799,7 +903,6 @@ function showEnemyScore(){
         scoreNumberRight.color="#FFF";
         scoreNumberRight.size="40";
 		resultChart.addChild(scoreNumberRight);
-    //   resultChart.addChild(enemyScore);
 	clock = 0;
 	   if(clock == 0){
      window.clearInterval(t);

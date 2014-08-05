@@ -2,7 +2,6 @@
 init(20,"gamePanel",900,640,main);
 //显示时间变量
 var t;
-
 //self
 var temp=0;
 var clock = 0;
@@ -24,6 +23,7 @@ var imglist={};//图像列表对象
 var imgData=[
 	{name:"backGround",path:"img/backGround.png"},
 	{name:"welcome",path:"img/welcome.png"},
+	{name:"welcome1",path:"img/welcome1.png"},
 	{name:"loginIn",path:"img/loginIn.png"},
     {name:"ground2",path:"img/backGround.png"},
     {name:"backGround2",path:"img/backGround2.jpg"},
@@ -60,7 +60,9 @@ var imgData=[
     {name:"selfWinMeixi",path:"img/selfWinMeixi.png"},
     {name:"selfWinNeimaer",path:"img/selfWinNeimaer.png"},
     {name:"selfWinReus",path:"img/selfWinReus.png"},
-    {name:"selfWinVan",path:"img/selfWinVan.png"}
+    {name:"selfWinVan",path:"img/selfWinVan.png"},
+    {name:"getScore",path:"img/getScore.png"},
+	{name:"demobg",path:"img/demobg.png"}
 
 ];
 
@@ -98,6 +100,9 @@ var LeftDoor;
 var backLayer;
 var backLayer1;
 var backLayer2;
+
+var theTextField;
+var login;
 
 //时间
 var cxtOne;
@@ -142,7 +147,6 @@ function gameInit(result){
 	backGroundLayer.addChild(loginInPage);
 	
 	var clickText=new LTextField();
-    //clickInto.graphics.drawRect(1,"#000",[200,270,500,150],false);
     backGroundLayer.addChild(clickText);
 	clickText.color="#fff";
 	clickText.text="超级足球大战";
@@ -157,7 +161,7 @@ function gameInit(result){
 	
 	var loginID = new LTextField();
 	loginID.text = '请输入您的账号：';
-	loginID.size = '23';
+	loginID.size = 23;
 	loginID.x = 200;
 	loginID.y = 345;
     backGroundLayer.addChild(loginID);
@@ -166,14 +170,16 @@ function gameInit(result){
 	var login = new LSprite();
 	login.graphics.drawRect(0,'#fff',[0,0,390,71]);
 	backGroundLayer.addChild(login);
-	
 
-    var theTextField = new LTextField();
+
+    theTextField = new LTextField();
 	theTextField.setType(LTextFieldType.INPUT,login);
 	theTextField.x = 246;
 	theTextField.y = 392;
 	theTextField.color = '#000';
 	backGroundLayer.addChild(theTextField);
+	
+	
    theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
    theTextField.addEventListener(LFocusEvent.FOCUS_OUT, outfocus); 
    
@@ -184,19 +190,26 @@ function gameInit(result){
 	soccer.x = 639;
 	soccer.y = 393;
 	backGroundLayer.addChild(soccer);
+
 	soccer.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
-	
 
 }
+
+
+
+
+
 //-----欢迎页面结束-----
 //欢迎进入游戏世界效果调用
 function windComplete(event){}
 //登录界面
 function loginIn(){
+  window.clearInterval(t);
   backGroundLayer.die();
   backGroundLayer.removeAllChild();
-    var welcomePage = new LSprite();
-	welcomePage = new LBitmap(new LBitmapData(imglist["welcome"]));
+  
+   var welcomePage = new LSprite();
+	welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
 backGroundLayer.addChild(welcomePage);
  
 var title=new LTextField();
@@ -225,10 +238,48 @@ var title=new LTextField();
 	clickText.size=45;
 	clickText.x=270;
 	clickText.y=315;
+	clickText.stroke = true;
+    clickText.lineWidth = 2;
+	clickText.lineColor = "#57a520";
 	clickInto.addChild(clickText);
-    clickInto.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
-
+   // clickInto.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	
+	var buttonNew=new LSprite();
+	buttonNew.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	backGroundLayer.addChild(buttonNew);
+	
+	var buttonEnter=new LTextField();
+    backGroundLayer.addChild(buttonEnter);
+	buttonEnter.color="#fff";
+	buttonEnter.text="选择人物";
+	buttonEnter.size=20;
+	buttonEnter.x=300;
+	buttonEnter.y=500;
+	buttonEnter.stroke = true;
+    buttonEnter.lineWidth = 2;
+	buttonEnter.lineColor = "#000";
+	buttonNew.addChild(buttonEnter);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,ChoosePerson);
+	
+	var gradeScore=new LSprite();
+	gradeScore.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	backGroundLayer.addChild(gradeScore);
+	
+	var grade=new LTextField();
+    backGroundLayer.addChild(grade);
+	grade.color="#fff";
+	grade.text="排行榜";
+	grade.size=20;
+	grade.x=500;
+	grade.y=500;
+	grade.stroke = true;
+    grade.lineWidth = 2;
+	grade.lineColor = "#000";
+	gradeScore.addChild(grade);
+	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN,Billboard);
+	
 }
+
 
 function onfocus(e){
                 e.currentTarget.size = 25;	
@@ -237,68 +288,6 @@ function onfocus(e){
 			e.currentTarget.size = 25;
 			}
 
-//进入选择页面
-function choisePage(){
-   window.clearInterval(t);
-   
-    backGroundLayer.die();
-    backGroundLayer.removeAllChild();
-	
-	var backLayer = new LSprite();
-	backLayer = new LBitmap(new LBitmapData(imglist["welcome"]));
-    backGroundLayer.addChild(backLayer);
-	
-	
-	/*
-    backLayer = new LSprite();
-    backLayer.graphics.drawRect(1,"#fff",[0,0,900,640],true,"#000");
-    backGroundLayer.addChild(backLayer);*/
-
-    backGroundLayer.removeChild(cxtOne);
-    var chioceTitle=new LTextField();
-
-    chioceTitle.x=240;
-    chioceTitle.y=450;
-    chioceTitle.size=55;
-    chioceTitle.color="#fff";
-    chioceTitle.text="选择游戏模式";
-    backGroundLayer.addChild(chioceTitle);
-
-    backLayer1 = new LSprite();
-    backLayer1.x = 30;
-    backLayer1.y = 100;
-    backGroundLayer.addChild(backLayer1);
-    var  bitmap = new LBitmapData(imglist['backLayer1']);
-    backLayer1.graphics.beginBitmapFill(bitmap);
-    backLayer1.graphics.drawRect(1,"#000",[0,0,385,256],false);
-    backLayer1.addEventListener(LMouseEvent.MOUSE_UP,ChoosePerson);
-
-    var chioceSingle =new LTextField();
-    chioceSingle.x=160;
-    chioceSingle.y=370;
-    chioceSingle.size=25;
-    chioceSingle.color="white";
-    chioceSingle.text="选择人物";
-    backGroundLayer.addChild(chioceSingle);
-
-    backLayer2 = new LSprite();
-    backLayer2.x = 475;
-    backLayer2.y = 100;
-    backGroundLayer.addChild(backLayer2);
-    var  bitmap = new LBitmapData(imglist['backLayer2']);
-    backLayer2.graphics.beginBitmapFill(bitmap);
-    backLayer2.graphics.drawRect(1,"#000",[0,0,385,256],false);
-   backLayer2.addEventListener(LMouseEvent.MOUSE_UP,Billboard);
-
-    var chioceMore =new LTextField();
-    chioceMore.x=600;
-    chioceMore.y=370;
-    chioceMore.size=25;
-    chioceMore.color="white";
-    chioceMore.text="排行榜";
-    backGroundLayer.addChild(chioceMore);
-    onup();
-}
 	//---国家比分-----
 	function scoreText(){
 		resultScore = new LSprite();
@@ -435,7 +424,7 @@ backGroundLayer.die();
     backGroundLayer.removeAllChild();
 
      var ChoosePic = new LSprite();
-	ChoosePic = new LBitmap(new LBitmapData(imglist["welcome"]));
+	ChoosePic = new LBitmap(new LBitmapData(imglist["welcome1"]));
     backGroundLayer.addChild(ChoosePic);
 
 
@@ -681,16 +670,9 @@ function Billboard(){
 backGroundLayer.die();
     backGroundLayer.removeAllChild();
    var scoreChart = new LSprite();
-	scoreChart = new LBitmap(new LBitmapData(imglist["welcome"]));
+	scoreChart = new LBitmap(new LBitmapData(imglist["demobg"]));
     backGroundLayer.addChild(scoreChart);
 	 
-	 var titleChart = new LTextField();
-	 titleChart.text = '排行榜';
-	 titleChart.color = '#fff';
-	 titleChart.size = '30';
-	 titleChart.x = 380;
-	 titleChart.y = 40;
-	 backGroundLayer.addChild(titleChart);
 	 
 	
 	var buttonNew=new LSprite();
@@ -703,12 +685,12 @@ backGroundLayer.die();
 	buttonExit.text="返回首页";
 	buttonExit.size=18;
 	buttonExit.x=780;
-	buttonExit.y=5;
+	buttonExit.y=610;
 	buttonExit.stroke = true;
     buttonExit.lineWidth = 2;
-	buttonExit.lineColor = "#57a520";
+	buttonExit.lineColor = "#000";
 	buttonNew.addChild(buttonExit);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 	 
 }
 

@@ -182,7 +182,7 @@ function gamePageOne(){
 
 	function Exit(){
 		 SysSecondOne = parseInt(startTime);
-	     choisePage();
+	     loginIn();
         selfScore = 0;
         enemyScore = 0;
 	}
@@ -208,8 +208,6 @@ function onMouseMove(event){
     mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
 
 }
-
-
 
 function timeOne() {
     if (SysSecondOne > 0) {
@@ -248,48 +246,60 @@ function gamePageOver(){
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);
 
-
-
-    //console.warn("gameOvePage");
-  //  var gameOverLayer = new LSprite();
     var gameOverText = new LTextField();
- //   gameOverLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
     gameOverText.text = "GAME OVER";
     gameOverText.x = 300;
     gameOverText.y = 300;
     gameOverText.size = 40;
     gameOverText.color = "#fff";
-	gameOverLayer.addEventListener(LMouseEvent.MOUSE_DOWN,upLoadResult);
-  //  backGroundLayer.addChild(gameOverLayer);
+	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN,upLoadResult);
     backGroundLayer.addChild(gameOverText);
-	
-
 }
+
+//欢迎进入游戏世界效果调用
+function windComplete(event){}
 
 function upLoadResult(){
 
 	var upLoadResultLayer = new LSprite();
+	upLoadResultLayer = new LBitmap(new LBitmapData(imglist["getScore"]));
 	var upLoadResultSelf = new LTextField();
 	var upLoadResultTitle = new LTextField();
 	
-	upLoadResultLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
+	//upLoadResultLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
 	upLoadResultTitle = new LTextField();
-	upLoadResultTitle.text = "您的最后得分为"; 
-	upLoadResultTitle.x = 280;
-	upLoadResultTitle.y = 50;
-	upLoadResultTitle.size = 55;
+	upLoadResultTitle.text = "您的最后得分为:" + selfScore;
+	upLoadResultTitle.x = 180;
+	upLoadResultTitle.y = 200;
+	upLoadResultTitle.size = 45;
 	upLoadResultTitle.color = "#FFF";
-	
-	
-	upLoadResultSelf.text = selfScore;
-	upLoadResultSelf.x = 100;
-	upLoadResultSelf.y = 200;
-	upLoadResultSelf.size = 40;
-	upLoadResultSelf.color = "#fff";
+	upLoadResultTitle.stroke = true;
+    upLoadResultTitle.lineWidth = 5;
+	upLoadResultTitle.lineColor = "#0c8904";
+	upLoadResultTitle.speed = 2;
+	upLoadResultTitle.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
+	upLoadResultTitle.wind();
+
+
 	backGroundLayer.addChild(upLoadResultLayer);
-	upLoadResultLayer.addChild(upLoadResultSelf);
-	upLoadResultLayer.addChild(upLoadResultTitle);
+	backGroundLayer.addChild(upLoadResultTitle);
 	
+	var buttonNew=new LSprite();
+	buttonNew.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	backGroundLayer.addChild(buttonNew);
+	
+	var buttonEnter=new LTextField();
+    backGroundLayer.addChild(buttonEnter);
+	buttonEnter.color="#fff";
+	buttonEnter.text="返回游戏";
+	buttonEnter.size=20;
+	buttonEnter.x=400;
+	buttonEnter.y=550;
+	buttonEnter.stroke = true;
+    buttonEnter.lineWidth = 2;
+	buttonEnter.lineColor = "#000";
+	buttonNew.addChild(buttonEnter);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }
 

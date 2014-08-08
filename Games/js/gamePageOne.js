@@ -108,9 +108,11 @@ function gamePageOne(){
    
     enemyName.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
     enemyName.addBodyCircle(40,40,40,1,3,0.2,0.9);
-    enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
+   enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
+   
+ // enemyName.setBodyMouseJoint(true);
 
     //setBallLocation();
     //-----足球-----
@@ -124,6 +126,9 @@ function gamePageOne(){
     ballLayer.graphics.drawArc(1,"#000",[20,20,20,0,2*Math.PI],false);
     ballLayer.addBodyCircle(20,20,20,1,3,0.1,2.0);
     buoyancyController.AddBody(ballLayer.box2dBody);
+	//ballLayer.setBodyMouseJoint(true);
+	
+	//LGlobal.box2d.setDistanceJoint(enemyName.box2dBody,ballLayer.box2dBody);
 
     //显示国旗self
     selfBitmap.x = 65;
@@ -318,4 +323,55 @@ function randomMain(){
 
     enemyName.box2dBody.GetPosition().x += head*Math.floor(Math.random()*5);
     enemyName.box2dBody.GetPosition().y += head*Math.floor(Math.random()*5);
+	
+
+	
 }
+
+
+
+/*
+
+//------------关节的设定----------------------
+function createMouseJoint(x, y) {
+    var b = enemyName.box2dBody, scale = LGlobal.box2d.drawScale;
+    var jointDef = new LGlobal.box2d.b2MouseJointDef();
+    jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
+    jointDef.bodyB = b;
+    jointDef.collideConnected = true;
+    jointDef.maxForce = 300000.0 * b.GetMass();
+    jointDef.target.Set(x / scale+1.2, y / scale+1.2);
+    mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
+    b.SetAwake(true);
+
+
+}
+
+function onMouseMove(event){
+    var mX = event.offsetX / LGlobal.box2d.drawScale,
+        mY = event.offsetY / LGlobal.box2d.drawScale;
+    mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
+
+}
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

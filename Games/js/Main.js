@@ -178,6 +178,7 @@ function gameInit(result){
 	theTextField.y = 392;
 	theTextField.color = '#000';
 	backGroundLayer.addChild(theTextField);
+	theTextField.addEventListener(LTextEvent.TEXT_INPUT,textInput);
 	
 	
    theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
@@ -190,14 +191,35 @@ function gameInit(result){
 	soccer.x = 639;
 	soccer.y = 393;
 	backGroundLayer.addChild(soccer);
-
+ //   LGlobal.stage.addEventListener(LKeyboardEvent.KEY_PRESS,enterCode);
 	soccer.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }
 
+function enterCode(e){
+        loginIn();
+}
 
+var userNameArr=[];
+var userNameTemp=[];
+var userName;
+var j;
+function textInput (e) {
+    if(e.keyCode != 13){
+       for(var i =0;i<1;i++){
+            userNameArr[i] = e.keyCode;    
+        }
+        for( j = 0;j<userNameArr.length;j++){
+            userNameTemp[j] = String.fromCharCode(userNameArr[j]);
+            userName +=userNameTemp[j];
+            console.warn(userName.toLowerCase().substring(9));
+        }
+   //     trace(userName.toLowerCase().substring(9));
+    }else{
+        LGlobal.stage.addEventListener(LKeyboardEvent.KEY_DOWN,enterCode);
 
-
+    }
+}
 
 //-----欢迎页面结束-----
 //欢迎进入游戏世界效果调用
@@ -207,7 +229,7 @@ function loginIn(){
   window.clearInterval(t);
   backGroundLayer.die();
   backGroundLayer.removeAllChild();
-  
+
    var welcomePage = new LSprite();
 	welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
 backGroundLayer.addChild(welcomePage);
@@ -245,7 +267,7 @@ var title=new LTextField();
    // clickInto.addEventListener(LMouseEvent.MOUSE_DOWN,choisePage);
 	
 	var buttonNew=new LSprite();
-	buttonNew.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	buttonNew.graphics.drawRect(0,"#000",[290,495,120,40],false);
 	backGroundLayer.addChild(buttonNew);
 	
 	var buttonEnter=new LTextField();
@@ -262,7 +284,7 @@ var title=new LTextField();
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,ChoosePerson);
 	
 	var gradeScore=new LSprite();
-	gradeScore.graphics.drawRect(0,"#000",[380,480,120,40],false);
+	gradeScore.graphics.drawRect(0,"#000",[480,495,120,40],false);
 	backGroundLayer.addChild(gradeScore);
 	
 	var grade=new LTextField();
@@ -280,11 +302,10 @@ var title=new LTextField();
 	
 }
 
-
 function onfocus(e){
                 e.currentTarget.size = 25;	
 			}
-			function outfocus(e){
+function outfocus(e){
 			e.currentTarget.size = 25;
 			}
 

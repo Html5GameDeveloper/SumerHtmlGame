@@ -3,6 +3,7 @@ document.write('<script src="js/distance.js"></script>');
 init(20,"gamePanel",900,640,main);
 //显示时间变量
 var t;
+var ai;
 //self
 var temp=0;
 var clock = 0;
@@ -23,7 +24,6 @@ var loadingLayer;//载入图层
 var imglist={};//图像列表对象
 var imgData=[
 	{name:"backGround",path:"img/backGround.png"},
-	{name:"welcome",path:"img/welcome.png"},
 	{name:"welcome1",path:"img/welcome1.png"},
 	{name:"loginIn",path:"img/loginIn.png"},
     {name:"ground2",path:"img/backGround.png"},
@@ -108,7 +108,7 @@ var login;
 //时间
 var cxtOne;
 //定义初始时间
-var startTime = 6;
+var startTime = 10;
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
@@ -743,6 +743,8 @@ backGroundLayer.die();
 
 //---------------------显示得分函数(self)------------------
 function showSelfScore(){
+
+window.clearInterval(ai);
       backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
@@ -853,6 +855,8 @@ function showSelfScore(){
 
 //显示得分函数(enemy)
 function showEnemyScore(){
+
+window.clearInterval(ai);
       backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');

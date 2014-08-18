@@ -1,5 +1,5 @@
 ﻿var ballMoveX,ballMoveY;
-var refresh=50;
+var refresh=10;
 function gamePageOne(){
  backGroundLayer.die();
     backGroundLayer.removeAllChild();
@@ -113,7 +113,7 @@ function gamePageOne(){
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
 //敌人移动定时器
-    setInterval(function()
+   ai = setInterval(function()
     {
 		var step=1/30;
 		 ;
@@ -281,6 +281,7 @@ function timeOne() {
 
 function gamePageOver(){
 
+window.clearInterval(ai);
    var gameOverLayer = new LSprite();
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);

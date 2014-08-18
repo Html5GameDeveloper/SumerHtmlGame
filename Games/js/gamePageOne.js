@@ -115,34 +115,10 @@ function gamePageOne(){
     setInterval(function()
     {
 	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x,y));
-      /*    var x1 = enemyName.box2dBody.GetPosition().x;
-          var y1 = enemyName.box2dBody.GetPosition().y;
-        if(y != y1)
-        {
-            var a = parseInt((x - x1)/(y - y1));
-            var b = y1 - a * x1;
-                if(x > x1)
-                {
-                    enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1+1,a*(x1+1)+b));
-                }
-                else {
-                    enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 - 1, a * (x1 - 1) + b));
-                }
-            console.warn('enemyName.x =' + enemyName.x + 'enemyName.y =' + enemyName.y);
-        }
-        else
-        {
-            if(y > y1)
-                enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 + 1, y1+1);
-            else
-                enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 + 1, y1-1);
-            console.warn('enemyName.x =' + enemyName.x + 'enemyName.y =' + enemyName.y);
-        }
-*/
+     
     },600);
- // enemyName.setBodyMouseJoint(true);
 
-    //setBallLocation();
+
     //-----足球-----
 
     ballLayer = new LSprite();
@@ -162,7 +138,6 @@ function gamePageOne(){
          console.warn(ballLayer.box2dBody.GetPosition());
      },50);
 
-    //LGlobal.box2d.setDistanceJoint(enemyName.box2dBody,ballLayer.box2dBody);
 
     //显示国旗self
     selfBitmap.x = 65;
@@ -196,8 +171,7 @@ function gamePageOne(){
     Bound();
 //退出游戏
 
-
-			
+		
 	var buttonNew=new LSprite();
 	buttonNew.graphics.drawRect(0,"#000",[780,5,110,35],false);
 	backGroundLayer.addChild(buttonNew);
@@ -215,8 +189,6 @@ function gamePageOne(){
 	buttonExit.lineColor = "#57a520";
 	buttonNew.addChild(buttonExit);
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,Exit);
-
-
 }
 
 	function Exit(){
@@ -237,15 +209,12 @@ function createMouseJoint(x, y) {
     jointDef.target.Set(x / scale+1.2, y / scale+1.2);
     mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
     b.SetAwake(true);
-
-
 }
 
 function onMouseMove(event){
     var mX = event.offsetX / LGlobal.box2d.drawScale,
         mY = event.offsetY / LGlobal.box2d.drawScale;
     mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
-
 }
 
 function timeOne() {
@@ -268,12 +237,10 @@ function timeOne() {
 	if(SysSecondOne == 0)
 		{//剩余时间小于或等于0的时候，就停止间隔函数
         window.clearInterval(cxtOne.timer);
-        //console.warn("Game OVer");
         SysSecondOne = -1;
 		 backGroundLayer.die();
         backGroundLayer.removeAllChild();
 		gamePageOver();
-		//ocnsole.warn("run");
         
         //这里可以添加倒计时时间为0后需要执行的事件
     }
@@ -299,7 +266,7 @@ function gamePageOver(){
 function windComplete(event){}
 
 function upLoadResult(){
-
+ 
 	var upLoadResultLayer = new LSprite();
 	upLoadResultLayer = new LBitmap(new LBitmapData(imglist["getScore"]));
 	var upLoadResultSelf = new LTextField();
@@ -341,69 +308,6 @@ function upLoadResult(){
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }
-
-/*
-function randomMain(){
-    var head ;
-    var randomTemp = Math.floor(Math.random()*2);
-
-    if(randomTemp == 0){
-        head = 1;
-    }
-    if (randomTemp == 1){
-        head = -1;
-    }
-
-
-    enemyName.box2dBody.GetPosition().x += head*Math.floor(Math.random()*5);
-    enemyName.box2dBody.GetPosition().y += head*Math.floor(Math.random()*5);
-
-}
-*/
-
-
-/*
-
-//------------关节的设定----------------------
-function createMouseJoint(x, y) {
-    var b = enemyName.box2dBody, scale = LGlobal.box2d.drawScale;
-    var jointDef = new LGlobal.box2d.b2MouseJointDef();
-    jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
-    jointDef.bodyB = b;
-    jointDef.collideConnected = true;
-    jointDef.maxForce = 300000.0 * b.GetMass();
-    jointDef.target.Set(x / scale+1.2, y / scale+1.2);
-    mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
-    b.SetAwake(true);
-
-
-}
-
-function onMouseMove(event){
-    var mX = event.offsetX / LGlobal.box2d.drawScale,
-        mY = event.offsetY / LGlobal.box2d.drawScale;
-    mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
-
-}
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

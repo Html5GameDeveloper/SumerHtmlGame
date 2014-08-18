@@ -122,7 +122,7 @@ backGroundLayer=new LSprite()	;
 backGroundLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
 addChild(backGroundLayer);
 
-loadingLayer=new LoadingSample1();
+loadingLayer=new LoadingSample4();
 backGroundLayer.addChild(loadingLayer);
    
 LLoadManage.load(

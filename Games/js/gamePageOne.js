@@ -2,6 +2,8 @@
 var refresh = 25;
 var ai;
 var step = 1 / 30;
+var distance_ballandplayer;
+var tag_run;
 function gamePageOne() {
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
@@ -114,44 +116,72 @@ function gamePageOne() {
 	buoyancyController.AddBody(enemyName.box2dBody);
 
 	//敌人移动定时器
-	ai=setInterval(function()
-{
+	ai = setInterval(function () {
+	
+			if(tag_run){
+				if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
+				var enX = enemyName.box2dBody.GetPosition().x;
+				var enY = enemyName.box2dBody.GetPosition().y;
+				enX = enX - step;
+				enY = enY - step;
+				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+			}
+			//球在人物右上角
+			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
+				var enX = enemyName.box2dBody.GetPosition().x;
+				var enY = enemyName.box2dBody.GetPosition().y;
+				enX = enX + step;
+				enY = enY - step;
+				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+			}
+			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
+				var enX = enemyName.box2dBody.GetPosition().x;
+				var enY = enemyName.box2dBody.GetPosition().y;
+				enX = enX + step;
+				enY = enY + step;
+				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+			}
+			if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
+				var enX = enemyName.box2dBody.GetPosition().x;
+				var enY = enemyName.box2dBody.GetPosition().y;
+				enX = enX - step;
+				enY = enY + step;
+				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+			}
+			//}
+			}
+			
+			//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
+			//球在人物左上角
+			
+			//distance_ballandplayer = //distance(enemyName.box2dBody.GetPosition.x,enemyName.box2dBody.GetPosition.y,ballMoveX,ballMoveY);
+			
+			//while(distance_ballandplayer>=60){
+				//console.warn(distance_ballandplayer);
+				
+			
+			
 
+		}, refresh);
+		distanceCount=setInterval(function(){
+			var m;
+			
+			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
+			console.warn(m);
+			if(m>=2.0){
+				tag_run=true;
+				
+			}else{
+			tag_run=false
+			} 
+			
+		},refresh);
+		
+		
 
-	//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
-	//球在人物左上角
-	if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){
-	var enX=enemyName.box2dBody.GetPosition().x;
-	var enY=enemyName.box2dBody.GetPosition().y;
-	enX=enX-step;
-	enY=enY-step;
-	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
-	}
-	//球在人物右上角
-	if((enemyName.box2dBody.GetPosition().x<ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){
-	var enX=enemyName.box2dBody.GetPosition().x;
-	var enY=enemyName.box2dBody.GetPosition().y;
-	enX=enX+step;
-	enY=enY-step;
-	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
-	}
-	if((enemyName.box2dBody.GetPosition().x<ballMoveX)&&(enemyName.box2dBody.GetPosition().y<ballMoveY)){
-	var enX=enemyName.box2dBody.GetPosition().x;
-	var enY=enemyName.box2dBody.GetPosition().y;
-	enX=enX+step;
-	enY=enY+step;
-	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
-	}
-	if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y<ballMoveY)){
-	var enX=enemyName.box2dBody.GetPosition().x;
-	var enY=enemyName.box2dBody.GetPosition().y;
-	enX=enX-step;
-	enY=enY+step;
-	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
-	}
-
-	},refresh);
-
+		
+		
+		
 	//-----足球-----
 
 	ballLayer = new LSprite();
@@ -168,7 +198,7 @@ function gamePageOne() {
 		ballMoveX = ballLayer.box2dBody.GetPosition().x;
 		ballMoveY = ballLayer.box2dBody.GetPosition().y;
 
-		console.warn(ballLayer.box2dBody.GetPosition());
+		//console.warn(ballLayer.box2dBody.GetPosition());
 	}, 50);
 
 	//显示国旗self
@@ -280,7 +310,7 @@ function gamePageOver() {
 	window.clearInterval(ai);
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	
+
 	var gameOverLayer = new LSprite();
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);

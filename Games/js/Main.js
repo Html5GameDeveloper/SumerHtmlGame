@@ -108,7 +108,7 @@ var login;
 //时间
 var cxtOne;
 //定义初始时间
-var startTime = 60;
+var startTime = 6;
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
@@ -227,13 +227,19 @@ function textInput (e) {
 function windComplete(event){}
 //登录界面
 function loginIn(){
+
+$("#gamePanel_InputTextBox").css('display','none');
+
   window.clearInterval(t);
   backGroundLayer.die();
   backGroundLayer.removeAllChild();
-
+  
+   SysSecondOne = parseInt(startTime);
+        selfScore = 0;
+        enemyScore = 0;
    var welcomePage = new LSprite();
-	welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
-backGroundLayer.addChild(welcomePage);
+   welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
+   backGroundLayer.addChild(welcomePage);
  
 var title=new LTextField();
 	
@@ -452,6 +458,7 @@ backGroundLayer.die();
 
     var ChooseFrag = new LTextField();
     ChooseFrag.text = '请选择你喜欢的球队:';
+	ChooseFrag.stroke = '#000';
     ChooseFrag.color = '#fff';
     ChooseFrag.size = '28';
     ChooseFrag.x = 30;
@@ -575,6 +582,24 @@ backGroundLayer.die();
 			selfName.x =240;
 			selfName.y = 455;
 			resultEnd.addChild(selfName);
+			
+			selfField = new LTextField();
+			selfField.text = '您的选择';
+			selfField.color = '#fff';
+			selfField.stroke = '#000';
+			selfField.size = '20';
+			selfField.x =100;
+			selfField.y = 355;
+			resultEnd.addChild(selfField);
+			
+			enemyField = new LTextField();
+			enemyField.text = '电脑选择';
+			enemyField.color = '#fff';
+			enemyField.stroke = '#000';
+			enemyField.size = '20';
+			enemyField.x =670;
+			enemyField.y = 355;
+			resultEnd.addChild(enemyField);
 
 			//--------------显示国旗(enemy)-------------
 			enemyBitmap =  new LBitmap(showList[1]);
@@ -609,7 +634,7 @@ backGroundLayer.die();
 	buttonEnter.y=480;
 	buttonEnter.stroke = true;
     buttonEnter.lineWidth = 2;
-	buttonEnter.lineColor = "#57a520";
+	buttonEnter.lineColor = "#000";
 	buttonNew.addChild(buttonEnter);
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 
@@ -718,7 +743,7 @@ backGroundLayer.die();
 
 //---------------------显示得分函数(self)------------------
 function showSelfScore(){
-backGroundLayer.removeChild(ballLayer);
+      backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
      backGroundLayer.addChild(resultChart);
@@ -817,7 +842,12 @@ backGroundLayer.removeChild(ballLayer);
 	   if(clock == 0){
      window.clearInterval(t);
    }  
-	    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+   if(SysSecondOne>0){
+    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+   }else if(SysSecondOne == 0){
+    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOver);
+   }
+	   
 	
 }
 
@@ -910,10 +940,12 @@ function showEnemyScore(){
 	clock = 0;
 	   if(clock == 0){
      window.clearInterval(t);
-   }  
-		    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
-			
-	
+   }  	
+	   if(startTime>0){
+    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOne);
+   }else if(startTime == 0){
+    resultChart.addEventListener(LMouseEvent.MOUSE_UP,gamePageOver);
+   }
 }
 
 

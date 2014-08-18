@@ -1,5 +1,6 @@
 ﻿var ballMoveX,ballMoveY;
-var refresh=50;
+var refresh=25;
+var step=1/30;
 function gamePageOne(){
  backGroundLayer.die();
     backGroundLayer.removeAllChild();
@@ -115,8 +116,8 @@ function gamePageOne(){
 //敌人移动定时器
     setInterval(function()
     {
-		var step=1/30;
-		 ;
+	
+		 
 	//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
 	//球在人物左上角
 		if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){

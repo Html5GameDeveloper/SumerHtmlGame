@@ -1,6 +1,10 @@
 ﻿document.write('<script src="js/gamePageOne.js"></script>');
 document.write('<script src="js/distance.js"></script>');
+//document.write('<script src="js/ai.js"></script>');
 init(20,"gamePanel",900,640,main);
+
+//定义初始时间
+var startTime = 30;
 //显示时间变量
 var t;
 var ai;
@@ -107,8 +111,7 @@ var login;
 
 //时间
 var cxtOne;
-//定义初始时间
-var startTime = 10;
+
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
@@ -744,7 +747,9 @@ backGroundLayer.die();
 //---------------------显示得分函数(self)------------------
 function showSelfScore(){
 
-window.clearInterval(ai);
+		window.clearInterval(ai);
+	/*backGroundLayer.die();
+	backGroundLayer.removeAllChild();*/
       backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');
@@ -855,8 +860,11 @@ window.clearInterval(ai);
 
 //显示得分函数(enemy)
 function showEnemyScore(){
-
-window.clearInterval(ai);
+	window.clearInterval(ai);
+	/*
+	backGroundLayer.die();
+	backGroundLayer.removeAllChild();
+	*/
       backGroundLayer.removeChild(ballLayer);
       var resultChart = new LSprite();
 	  resultChart.graphics.drawRect(1,'#000',[0,0,900,640],true,'#000');

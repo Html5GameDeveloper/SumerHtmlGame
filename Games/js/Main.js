@@ -1,4 +1,5 @@
-﻿
+﻿document.write('<script src="js/gamePageOne.js"></script>');
+document.write('<script src="js/distance.js"></script>');
 init(20,"gamePanel",900,640,main);
 //显示时间变量
 var t;

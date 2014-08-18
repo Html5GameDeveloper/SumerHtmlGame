@@ -1,4 +1,5 @@
-﻿var x,y;
+﻿var ballMoveX,ballMoveY;
+var refresh=50;
 function gamePageOne(){
  backGroundLayer.die();
     backGroundLayer.removeAllChild();
@@ -111,10 +112,42 @@ function gamePageOne(){
   // enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
-
+//敌人移动定时器
     setInterval(function()
     {
-	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x,y));
+		var step=1/30;
+		 ;
+	//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
+	//球在人物左上角
+		if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){
+			var enX=enemyName.box2dBody.GetPosition().x;
+			var enY=enemyName.box2dBody.GetPosition().y;
+			enX=enX-step;
+			enY=enY-step;
+			enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
+		}
+	//球在人物右上角	
+		if((enemyName.box2dBody.GetPosition().x<ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){
+			var enX=enemyName.box2dBody.GetPosition().x;
+			var enY=enemyName.box2dBody.GetPosition().y;
+			enX=enX+step;
+			enY=enY-step;
+			enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
+		}
+		if((enemyName.box2dBody.GetPosition().x<ballMoveX)&&(enemyName.box2dBody.GetPosition().y<ballMoveY)){
+			var enX=enemyName.box2dBody.GetPosition().x;
+			var enY=enemyName.box2dBody.GetPosition().y;
+			enX=enX+step;
+			enY=enY+step;
+			enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
+		}
+		if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y<ballMoveY)){
+			var enX=enemyName.box2dBody.GetPosition().x;
+			var enY=enemyName.box2dBody.GetPosition().y;
+			enX=enX-step;
+			enY=enY+step;
+			enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
+		}
       /*    var x1 = enemyName.box2dBody.GetPosition().x;
           var y1 = enemyName.box2dBody.GetPosition().y;
         if(y != y1)
@@ -139,7 +172,7 @@ function gamePageOne(){
             console.warn('enemyName.x =' + enemyName.x + 'enemyName.y =' + enemyName.y);
         }
 */
-    },600);
+    },refresh);
  // enemyName.setBodyMouseJoint(true);
 
     //setBallLocation();
@@ -156,8 +189,8 @@ function gamePageOne(){
     buoyancyController.AddBody(ballLayer.box2dBody);
 	//ballLayer.setBodyMouseJoint(true);
      setInterval(function(){
-         x=ballLayer.box2dBody.GetPosition().x;
-         y=ballLayer.box2dBody.GetPosition().y;
+         ballMoveX=ballLayer.box2dBody.GetPosition().x;
+         ballMoveY=ballLayer.box2dBody.GetPosition().y;
 
          console.warn(ballLayer.box2dBody.GetPosition());
      },50);
@@ -237,8 +270,6 @@ function createMouseJoint(x, y) {
     jointDef.target.Set(x / scale+1.2, y / scale+1.2);
     mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
     b.SetAwake(true);
-
-
 }
 
 function onMouseMove(event){

@@ -1,4 +1,4 @@
-﻿
+﻿var x,y;
 function gamePageOne(){
  backGroundLayer.die();
     backGroundLayer.removeAllChild();
@@ -108,10 +108,38 @@ function gamePageOne(){
    
     enemyName.graphics.drawArc(1,"#000",[40,40,40,0,2*Math.PI],false);
     enemyName.addBodyCircle(40,40,40,1,3,0.2,0.9);
-   enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
+  // enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
     //enemyName.setBodyMouseJoint(true);
    buoyancyController.AddBody(enemyName.box2dBody);
-   
+
+    setInterval(function()
+    {
+	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x,y));
+      /*    var x1 = enemyName.box2dBody.GetPosition().x;
+          var y1 = enemyName.box2dBody.GetPosition().y;
+        if(y != y1)
+        {
+            var a = parseInt((x - x1)/(y - y1));
+            var b = y1 - a * x1;
+                if(x > x1)
+                {
+                    enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1+1,a*(x1+1)+b));
+                }
+                else {
+                    enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 - 1, a * (x1 - 1) + b));
+                }
+            console.warn('enemyName.x =' + enemyName.x + 'enemyName.y =' + enemyName.y);
+        }
+        else
+        {
+            if(y > y1)
+                enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 + 1, y1+1);
+            else
+                enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(x1 + 1, y1-1);
+            console.warn('enemyName.x =' + enemyName.x + 'enemyName.y =' + enemyName.y);
+        }
+*/
+    },600);
  // enemyName.setBodyMouseJoint(true);
 
     //setBallLocation();
@@ -127,8 +155,14 @@ function gamePageOne(){
     ballLayer.addBodyCircle(20,20,20,1,3,0.1,2.0);
     buoyancyController.AddBody(ballLayer.box2dBody);
 	//ballLayer.setBodyMouseJoint(true);
-	
-	//LGlobal.box2d.setDistanceJoint(enemyName.box2dBody,ballLayer.box2dBody);
+     setInterval(function(){
+         x=ballLayer.box2dBody.GetPosition().x;
+         y=ballLayer.box2dBody.GetPosition().y;
+
+         console.warn(ballLayer.box2dBody.GetPosition());
+     },50);
+
+    //LGlobal.box2d.setDistanceJoint(enemyName.box2dBody,ballLayer.box2dBody);
 
     //显示国旗self
     selfBitmap.x = 65;
@@ -308,7 +342,7 @@ function upLoadResult(){
 
 }
 
-
+/*
 function randomMain(){
     var head ;
     var randomTemp = Math.floor(Math.random()*2);
@@ -323,11 +357,9 @@ function randomMain(){
 
     enemyName.box2dBody.GetPosition().x += head*Math.floor(Math.random()*5);
     enemyName.box2dBody.GetPosition().y += head*Math.floor(Math.random()*5);
-	
 
-	
 }
-
+*/
 
 
 /*

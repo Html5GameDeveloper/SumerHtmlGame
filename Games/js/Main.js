@@ -107,7 +107,7 @@ var login;
 //时间
 var cxtOne;
 //定义初始时间
-var startTime = 3;
+var startTime = 60;
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();

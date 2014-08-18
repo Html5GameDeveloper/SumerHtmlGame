@@ -41,9 +41,6 @@ var imgData=[
     {name:'football',path:'img/football.png'},
 	{name:'soccer',path:'img/soccer.png'},
 	{name:"whiteBtn2",path:"img/whiteBtn2.png"},
-    {name:"backLayer1",path:"img/backLayer1.jpg"},
-    {name:"backLayer2",path:"img/backLayer2.jpg"},
-    {name:"backGroundTwo",path:"img/backGroundTwo.png"},
     {name:"luoyisi",path:"img/GramanySport.png"},
     {name:"fanpeixi",path:"img/helanSport.png"},
 

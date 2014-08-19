@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="game.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Games/game.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4174397" vertical-offset="1325" max-vertical-offset="2225">
+            <state vertical-scroll-proportion="-6.617647" vertical-offset="1325" max-vertical-offset="2225">
               <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
               <folding />
             </state>
@@ -36,18 +36,28 @@
       <file leaf-file-name="Main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Games/js/Main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="9375" max-vertical-offset="24350">
-              <caret line="132" column="31" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="10725" max-vertical-offset="25600">
+              <caret line="463" column="5" selection-start-line="463" selection-start-column="5" selection-end-line="463" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamePageOne.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="gamePageOne.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Games/js/gamePageOne.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2927" max-vertical-offset="8625">
-              <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.6514599" vertical-offset="5993" max-vertical-offset="9075">
+              <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fuli - 副本.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://E:/html5练习/canvas/lufylegend/Box2d/fuli - 副本.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.1764706" vertical-offset="2485" max-vertical-offset="3125">
+              <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -65,6 +75,7 @@
       <list>
         <option value="$PROJECT_DIR$/Games/js/gamePageTwo.js" />
         <option value="$PROJECT_DIR$/Games/js/Main.js" />
+        <option value="E:/html5练习/canvas/lufylegend/Box2d/fuli - 副本.html" />
         <option value="$PROJECT_DIR$/Games/js/gamePageOne.js" />
       </list>
     </option>
@@ -103,7 +114,7 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="E:/Games" />
+    <property name="last_opened_file_path" value="E:/html5练习/canvas/lufylegend/Box2d/fuli - 副本.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
@@ -191,7 +202,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -369,26 +380,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Games/js/Main.js">
+    <entry file="file://E:/html5练习/canvas/lufylegend/bodyFollowMouse (2)/bodyFollowMouse/index3 - 副本.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9375" max-vertical-offset="24350">
-          <caret line="132" column="31" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.1912046" vertical-offset="225" max-vertical-offset="1950">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Games/js/gamePageOne.js">
+    <entry file="file://E:/html5练习/canvas/lufylegend/Box2d/fuli - 副本.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2927" max-vertical-offset="8625">
-          <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+        <state vertical-scroll-proportion="-1.1764706" vertical-offset="2485" max-vertical-offset="3125">
+          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Games/game.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4174397" vertical-offset="1325" max-vertical-offset="2225">
+        <state vertical-scroll-proportion="-6.617647" vertical-offset="1325" max-vertical-offset="2225">
           <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Games/js/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="10725" max-vertical-offset="25600">
+          <caret line="463" column="5" selection-start-line="463" selection-start-column="5" selection-end-line="463" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Games/js/gamePageOne.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6514599" vertical-offset="5993" max-vertical-offset="9075">
+          <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
           <folding />
         </state>
       </provider>

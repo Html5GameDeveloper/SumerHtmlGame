@@ -116,8 +116,6 @@ function gamePageOne() {
 	//敌人移动定时器
 	ai=setInterval(function()
 {
-
-
 	//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
 	//球在人物左上角
 	if((enemyName.box2dBody.GetPosition().x>=ballMoveX)&&(enemyName.box2dBody.GetPosition().y>=ballMoveY)){
@@ -149,8 +147,7 @@ function gamePageOne() {
 	enY=enY+step;
 	enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX,enY));
 	}
-
-	},refresh);
+},refresh);
 
 	//-----足球-----
 
@@ -237,7 +234,8 @@ function createMouseJoint(x, y) {
 	jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
 	jointDef.bodyB = b;
 	jointDef.collideConnected = true;
-	jointDef.maxForce = 300000.0 * b.GetMass();
+    jointDef.maxForce = 300.0 * b.GetMass();
+	//jointDef.maxForce = 300000.0 * b.GetMass();
 	jointDef.target.Set(x / scale + 1.2, y / scale + 1.2);
 	mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
 	b.SetAwake(true);

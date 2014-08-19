@@ -112,9 +112,17 @@ var cxtOne;
 //var SysSecondOne;
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
-
+/*
+function test2(e){
+    if(e.keyCode == 113){
+        LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
+        LGlobal.screen(LStage.FULL_SCREEN);
+    }
+}
+*/
 //---------主函数入口---------
 function main(){
+  //  LEvent.addEventListener(LGlobal.window,LKeyboardEvent.KEY_UP,test2);
  LGlobal.webAudio = false;
 sound = new LSound();
 LGlobal.setDebug(true);
@@ -122,7 +130,7 @@ backGroundLayer=new LSprite()	;
 backGroundLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
 addChild(backGroundLayer);
 
-loadingLayer=new LoadingSample1();
+loadingLayer=new LoadingSample4();
 backGroundLayer.addChild(loadingLayer);
    
 LLoadManage.load(
@@ -140,8 +148,7 @@ function gameInit(result){
 	imglist=result;
 	backGroundLayer.removeChild(loadingLayer);
 	loadingLayer=null;
-	
-	
+
 	LGlobal.setDebug(true);	
     var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
@@ -200,7 +207,6 @@ function gameInit(result){
 function enterCode(e){
         loginIn();
 }
-
 var userNameArr=[];
 var userNameTemp=[];
 var userName;
@@ -218,7 +224,6 @@ function textInput (e) {
    //     trace(userName.toLowerCase().substring(9));
     }else{
         LGlobal.stage.addEventListener(LKeyboardEvent.KEY_DOWN,enterCode);
-
     }
 }
 
@@ -359,7 +364,6 @@ function outfocus(e){
         scoreNumberRight.color="#FFF";
         scoreNumberRight.size="18";
 
-		
 		if(tempEn==0){
 				resultBrazil.text = '阿根廷';
 		}

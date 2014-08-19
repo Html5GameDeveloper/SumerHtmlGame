@@ -8,8 +8,11 @@ margin-top:70px;
 margin-left:10%;
 
 /*margin-top:70px;*/
-
 background:#737373;
+}
+#gamePanel_canvas{
+    width:900px;
+    height:640px;
 }
 footer {
 margin-top:20px;
@@ -17,7 +20,6 @@ margin-top:20px;
 
 .row{
 	margin-top:700px;
-	
 }
 /*
 #Time{position:absolute;top:50px;left:890px;display:none;}*/

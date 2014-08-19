@@ -1,7 +1,10 @@
 ﻿var ballMoveX, ballMoveY;
 var refresh = 25;
 var ai;
+var sel;
 var step = 1 / 30;
+//鼠标位置
+var mX,mY;
 var distance_ballandplayer;
 var tag_run;
 function gamePageOne() {
@@ -86,6 +89,8 @@ function gamePageOne() {
 	createMouseJoint(selfName.x, selfName.y);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_MOVE, onMouseMove);
 
+
+ //   setInterval(onMouseMove,50);
 	//-----玩家2出现-----
 	enemyName = new LSprite();
 	enemyName.x = 500;
@@ -148,24 +153,10 @@ function gamePageOne() {
 				enY = enY + step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
 			}
-			//}
 			}
-			
-			//enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enemyMoveX,enemyMoveY));
-			//球在人物左上角
-			
-			//distance_ballandplayer = //distance(enemyName.box2dBody.GetPosition.x,enemyName.box2dBody.GetPosition.y,ballMoveX,ballMoveY);
-			
-			//while(distance_ballandplayer>=60){
-				//console.warn(distance_ballandplayer);
-				
-			
-			
-
 		}, refresh);
 		distanceCount=setInterval(function(){
 			var m;
-			
 			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
 			console.warn(m);
 			if(m>=2.0){
@@ -176,12 +167,7 @@ function gamePageOne() {
 			} 
 			
 		},refresh);
-		
-		
 
-		
-		
-		
 	//-----足球-----
 
 	ballLayer = new LSprite();
@@ -198,7 +184,6 @@ function gamePageOne() {
 		ballMoveX = ballLayer.box2dBody.GetPosition().x;
 		ballMoveY = ballLayer.box2dBody.GetPosition().y;
 
-		//console.warn(ballLayer.box2dBody.GetPosition());
 	}, 50);
 
 	//显示国旗self
@@ -267,7 +252,7 @@ function createMouseJoint(x, y) {
 	jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
 	jointDef.bodyB = b;
 	jointDef.collideConnected = true;
-    jointDef.maxForce = 300.0 * b.GetMass();
+    jointDef.maxForce = 100.0 * b.GetMass();
 	//jointDef.maxForce = 300000.0 * b.GetMass();
 	jointDef.target.Set(x / scale + 1.2, y / scale + 1.2);
 	mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
@@ -275,7 +260,7 @@ function createMouseJoint(x, y) {
 }
 
 function onMouseMove(event) {
-	var mX = event.offsetX / LGlobal.box2d.drawScale,
+	mX = event.offsetX / LGlobal.box2d.drawScale,
 	mY = event.offsetY / LGlobal.box2d.drawScale;
 	mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
 }

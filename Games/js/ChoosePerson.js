@@ -166,13 +166,11 @@ function ChoosePerson() {
 	enemyName.y = 455;
 	resultEnd.addChild(enemyName);
 
-	var vs = new LTextField();
-	vs.text = 'VS';
-	vs.color = '#fff';
-	vs.size = '48';
-	vs.x = 398;
-	vs.y = 335;
-	resultEnd.addChild(vs);
+	var bitmapVS = new LBitmap(new LBitmapData(imglist["vs"]));
+	bitmapVS.x = 380;
+	bitmapVS.y = 350;
+	resultEnd.addChild(bitmapVS);
+	
 	
 	//开始游戏按钮
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],11,5,187,60));
@@ -183,9 +181,6 @@ function ChoosePerson() {
 	buttonEnter.y = 480;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 	
-	
-	
-
 }
 //-----------------ChoosePerson End-----------------
 

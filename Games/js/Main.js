@@ -63,22 +63,14 @@ var loginInPage = new LSprite();
 	clickText.lineColor = "#57a520";
 	backGroundLayer.addChild(clickText);
 
-	var loginID = new LTextField();
-	//loginID.text = '请输入您的账号：';
-	loginID.size = 23;
-	loginID.x = 200;
-	loginID.y = 345;
-	backGroundLayer.addChild(loginID);
-	loginID.color = '#fff';
-
 	var login = new LSprite();
-	login.graphics.drawRect(0, '#fff', [0, 0, 390, 71]);
+	login.graphics.drawRect(0, '#fff', [0, 0, 195, 34]);
 	backGroundLayer.addChild(login);
 
 	theTextField = new LTextField();
 	theTextField.setType(LTextFieldType.INPUT, login);
-	theTextField.x = 246;
-	theTextField.y = 392;
+	theTextField.x = 325;
+	theTextField.y = 350;
 	theTextField.color = '#000';
 	backGroundLayer.addChild(theTextField);
 	theTextField.addEventListener(LTextEvent.TEXT_INPUT, textInput);
@@ -193,10 +185,10 @@ function loginIn() {
 }
 
 function onfocus(e) {
-	e.currentTarget.size = 25;
+	e.currentTarget.size = 15;
 }
 function outfocus(e) {
-	e.currentTarget.size = 25;
+	e.currentTarget.size = 15;
 }
 
 //---国家比分-----
@@ -225,7 +217,7 @@ function scoreText() {
 		resultArgentina.text = '德国';
 	}
 	if (temp == 3) {
-		resultArgentina.text = '荷兰';
+		resultArgentina.text = '葡萄牙';
 	}
 	resultArgentina.weight = 'bolder';
 	resultArgentina.color = '#fff';
@@ -252,7 +244,7 @@ function scoreText() {
 		resultBrazil.text = '德国';
 	}
 	if (tempEn == 3) {
-		resultBrazil.text = '荷兰';
+		resultBrazil.text = '葡萄牙';
 	}
 	resultBrazil.weight = 'bolder';
 	resultBrazil.color = '#fff';
@@ -354,7 +346,7 @@ function Billboard() {
 	var scoreChart = new LSprite();
 	scoreChart = new LBitmap(new LBitmapData(imglist["demobg"]));
 	backGroundLayer.addChild(scoreChart);
-
+/*
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [780, 5, 110, 35], false);
 	backGroundLayer.addChild(buttonNew);
@@ -371,8 +363,17 @@ function Billboard() {
 	buttonExit.lineColor = "#000";
 	buttonNew.addChild(buttonExit);
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
+	*/
+	//返回首页
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));
+	var buttonExit = new LButton(bitmapUp,bitmapOver);
+	backGroundLayer.addChild(buttonExit);
+	buttonExit.x = 690;
+	buttonExit.y = 570;
+	buttonExit.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }
 
-
+		
 

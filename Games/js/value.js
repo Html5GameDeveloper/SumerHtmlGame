@@ -1,6 +1,6 @@
 ﻿var force = 600;
 //定义初始时间
-var startTime = 30;
+var startTime = 3;
 //显示时间变量
 var t;
 var ai;
@@ -33,11 +33,17 @@ var imgData = [{
 	   name : "billBroad",
 	   path : "img/billBroad.png"
 	},{
+	  name : "vs",
+	  path : "img/vs.png"
+	},{
 	   name : "choosePlayer",
 	   path : "img/choosePlayer.png"
 	},{
 	   name : "beginGame",
 	   path : "img/beginGame.png"
+	},{
+	   name : "returnBg",
+	   path : "img/returnBg.png"
 	},{
 		name : "welcome1",
 		path : "img/welcome2.jpg"
@@ -155,7 +161,7 @@ var flagName = [{
 	}, {
 		name : "德国"
 	}, {
-		name : "荷兰"
+		name : "葡萄牙"
 	}
 ];
 

@@ -346,24 +346,7 @@ function Billboard() {
 	var scoreChart = new LSprite();
 	scoreChart = new LBitmap(new LBitmapData(imglist["demobg"]));
 	backGroundLayer.addChild(scoreChart);
-/*
-	var buttonNew = new LSprite();
-	buttonNew.graphics.drawRect(0, "#000", [780, 5, 110, 35], false);
-	backGroundLayer.addChild(buttonNew);
 
-	var buttonExit = new LTextField();
-	backGroundLayer.addChild(buttonExit);
-	buttonExit.color = "#fff";
-	buttonExit.text = "返回首页";
-	buttonExit.size = 18;
-	buttonExit.x = 780;
-	buttonExit.y = 610;
-	buttonExit.stroke = true;
-	buttonExit.lineWidth = 2;
-	buttonExit.lineColor = "#000";
-	buttonNew.addChild(buttonExit);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
-	*/
 	//返回首页
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
 	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));

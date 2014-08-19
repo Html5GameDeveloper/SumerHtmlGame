@@ -30,6 +30,15 @@ var imgData = [{
 		name : "backGround",
 		path : "img/backGround.png"
 	}, {
+	   name : "billBroad",
+	   path : "img/billBroad.png"
+	},{
+	   name : "choosePlayer",
+	   path : "img/choosePlayer.png"
+	},{
+	   name : "beginGame",
+	   path : "img/beginGame.png"
+	},{
 		name : "welcome1",
 		path : "img/welcome2.jpg"
 	}, {

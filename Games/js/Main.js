@@ -172,39 +172,23 @@ function loginIn() {
 	clickText.lineColor = "#57a520";
 	clickInto.addChild(clickText);
 
-	var buttonNew = new LSprite();
-	buttonNew.graphics.drawRect(0, "#000", [290, 495, 120, 40], false);
-	backGroundLayer.addChild(buttonNew);
-
-	var buttonEnter = new LTextField();
+	//选择人物按钮
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,5,187,60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,75,187,60));
+	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.color = "#fff";
-	buttonEnter.text = "选择人物";
-	buttonEnter.size = 20;
-	buttonEnter.x = 300;
+	buttonEnter.x = 200;
 	buttonEnter.y = 500;
-	buttonEnter.stroke = true;
-	buttonEnter.lineWidth = 2;
-	buttonEnter.lineColor = "#000";
-	buttonNew.addChild(buttonEnter);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
-
-	var gradeScore = new LSprite();
-	gradeScore.graphics.drawRect(0, "#000", [480, 495, 120, 40], false);
+    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
+	
+	//排行榜按钮
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["billBroad"],11,5,187,60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["billBroad"],11,75,187,60));
+	var gradeScore = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(gradeScore);
-
-	var grade = new LTextField();
-	backGroundLayer.addChild(grade);
-	grade.color = "#fff";
-	grade.text = "排行榜";
-	grade.size = 20;
-	grade.x = 500;
-	grade.y = 500;
-	grade.stroke = true;
-	grade.lineWidth = 2;
-	grade.lineColor = "#000";
-	gradeScore.addChild(grade);
-	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
+	gradeScore.x = 500;
+	gradeScore.y = 500;
+	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN,Billboard);	
 
 }
 

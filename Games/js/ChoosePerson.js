@@ -173,23 +173,18 @@ function ChoosePerson() {
 	vs.x = 398;
 	vs.y = 335;
 	resultEnd.addChild(vs);
-
-	var buttonNew = new LSprite();
-	buttonNew.graphics.drawRect(0, "#000", [380, 480, 120, 40], false);
-	backGroundLayer.addChild(buttonNew);
-
-	var buttonEnter = new LTextField();
+	
+	//开始游戏按钮
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],11,5,187,60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],11,75,187,60));
+	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.color = "#fff";
-	buttonEnter.text = "开始游戏";
-	buttonEnter.size = 20;
-	buttonEnter.x = 380;
+	buttonEnter.x = 330;
 	buttonEnter.y = 480;
-	buttonEnter.stroke = true;
-	buttonEnter.lineWidth = 2;
-	buttonEnter.lineColor = "#000";
-	buttonNew.addChild(buttonEnter);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageOne);
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
+	
+	
+	
 
 }
 //-----------------ChoosePerson End-----------------

@@ -4,6 +4,9 @@ var ai;
 var step = 1 / 30;
 var distance_ballandplayer;
 var tag_run;
+var tag_position;
+var enX = enemyName.box2dBody.GetPosition().x;
+var enY = enemyName.box2dBody.GetPosition().y;
 function gamePageOne() {
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
@@ -114,39 +117,46 @@ function gamePageOne() {
 	// enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
 	//enemyName.setBodyMouseJoint(true);
 	buoyancyController.AddBody(enemyName.box2dBody);
+	enemyName.addEventListener(LEvent.ENTER_FRAME,force_ball);
 
 	//敌人移动定时器
 	ai = setInterval(function () {
 	
 			if(tag_run){
+			//球在人物左上角
 				if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX - step;
 				enY = enY - step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			//球在人物右上角
 			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX + step;
 				enY = enY - step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
+			//球在人物
 			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX + step;
 				enY = enY + step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX - step;
 				enY = enY + step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			//}
 			}

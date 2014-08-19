@@ -512,6 +512,42 @@ function postSolve(contact, impulse) {
 		}
 	}
 }
+//检测球和人物的碰撞
+/*
+function postSolve(contact, impulse) {
+	var objA = contact.GetFixtureA().GetBody().GetUserData();
+	var objB = contact.GetFixtureB().GetBody().GetUserData();
+	if (objA.type == "LSprite" && objB.type == "LSprite") {
+		if ((objA == ballLayer && objB == enemyName) ||
+			(objA == enemyName && objB == ballLayer)) {
+		
+		}
+	}
+}*/
+//给球施加力
+function force_ball(){
+	if(tag_run==false){
+		if(enY<320/30){
+			var force = 500;
+			var vec = new LGlobal.box2d.b2Vec2(-force,force);
+			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+		}
+		if(enY>320/30){
+			var force = 500;
+			var vec = new LGlobal.box2d.b2Vec2(-force,-force);
+			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+		}
+		if(enY==320/30){
+			var force = 500;
+			var vec = new LGlobal.box2d.b2Vec2(-force,0);
+			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+		}
+		
+	}
+	
+}
+
+
 
 //------------选择球队页面函数-----------------
 function ChoosePerson() {

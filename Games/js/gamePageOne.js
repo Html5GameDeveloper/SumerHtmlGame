@@ -277,7 +277,7 @@ function createMouseJoint(x, y) {
 	jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
 	jointDef.bodyB = b;
 	jointDef.collideConnected = true;
-    jointDef.maxForce = 300.0 * b.GetMass();
+    jointDef.maxForce = 100.0 * b.GetMass();
 	//jointDef.maxForce = 300000.0 * b.GetMass();
 	jointDef.target.Set(x / scale + 1.2, y / scale + 1.2);
 	mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);

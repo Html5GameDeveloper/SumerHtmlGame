@@ -34,7 +34,7 @@ var imgData = [{
 		path : "img/welcome2.jpg"
 	}, {
 		name : "loginIn",
-		path : "img/loginIn.png"
+		path : "img/login3.jpg"
 	}, {
 		name : "ground2",
 		path : "img/backGround.png"

@@ -3,7 +3,7 @@ document.write('<script src="js/gamePageOne.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
-init(20, "gamePanel", 900,640, main);
+init(1000/60, "gamePanel", 900,640, main);
 //ai射门力量
 var force=600;
 
@@ -14,7 +14,7 @@ function test2(e){
     }
 }
 
-//---------主函数入口---------
+//---------游戏入口---------
 function main() {
 	LGlobal.webAudio = false;
 	sound = new LSound();
@@ -46,10 +46,32 @@ function gameInit(result) {
 	welcomePage();
 
 }
+
+var player;
+
 function welcomePage(){
-var loginInPage = new LSprite();
+	
+	
+	
+	
+
+
+	var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
 	backGroundLayer.addChild(loginInPage);
+	
+	
+	
+	var neimaerMove=new LSprite();
+	var list=LGlobal.divideCoordinate(167,83,1,4);
+	var data=new LBitmapData(imglist["neimaerMove"],0,0,42,83);
+	player=neimaerMove = new LAnimationTimeline(data,list);
+	player.speed=10;
+	neimaerMove.x=440;
+	neimaerMove.y=250;
+	//neimaerMove.addEventListener(LEvent.ENTER_FRAME,Move);
+	backGroundLayer.addChild(neimaerMove);
+	
 
 	var clickText = new LTextField();
 	backGroundLayer.addChild(clickText);
@@ -95,6 +117,11 @@ var loginInPage = new LSprite();
 	backGroundLayer.addChild(soccer);
 	soccer.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
 	
+}
+
+
+function Move(){
+	player.onframe();
 }
 
 function enterCode(e) {

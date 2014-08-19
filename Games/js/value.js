@@ -139,7 +139,10 @@ var imgData = [{
 	}, {
 		name : "demobg",
 		path : "img/demobg.png"
-	},
+	},{
+		name:"neimaerMove",
+		path:"img/neimaerMove.png"
+	}
 
 ];
 

@@ -326,17 +326,16 @@ function upLoadResult() {
 	buttonNew.graphics.drawRect(0, "#000", [380, 480, 120, 40], false);
 	backGroundLayer.addChild(buttonNew);
 
-	var buttonEnter = new LTextField();
+  //返回首页
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));
+	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.color = "#fff";
-	buttonEnter.text = "返回游戏";
-	buttonEnter.size = 20;
-	buttonEnter.x = 400;
+	buttonEnter.x = 360;
 	buttonEnter.y = 550;
-	buttonEnter.stroke = true;
-	buttonEnter.lineWidth = 2;
-	buttonEnter.lineColor = "#000";
-	buttonNew.addChild(buttonEnter);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
+	
+	
+	
 
 }

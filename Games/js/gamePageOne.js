@@ -143,7 +143,7 @@
 			}
 			}
 		}, refresh);
-		distanceCount=setInterval(function(){
+		clock_distance=setInterval(function(){
 			var m;
 			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
 			console.warn(m);

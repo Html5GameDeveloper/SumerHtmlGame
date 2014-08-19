@@ -4,7 +4,8 @@ document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
 init(20, "gamePanel", 900,640, main);
-
+//ai射门力量
+var force=600;
 
 function test2(e){
     if(e.keyCode == 113){

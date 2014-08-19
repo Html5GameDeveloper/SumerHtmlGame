@@ -54,7 +54,7 @@ var loginInPage = new LSprite();
 	var clickText = new LTextField();
 	backGroundLayer.addChild(clickText);
 	clickText.color = "#fff";
-	clickText.text = "超级足球大战";
+	//clickText.text = "超级足球大战";
 	clickText.size = 50;
 	clickText.x = 250;
 	clickText.y = 120;
@@ -64,7 +64,7 @@ var loginInPage = new LSprite();
 	backGroundLayer.addChild(clickText);
 
 	var loginID = new LTextField();
-	loginID.text = '请输入您的账号：';
+	//loginID.text = '请输入您的账号：';
 	loginID.size = 23;
 	loginID.x = 200;
 	loginID.y = 345;

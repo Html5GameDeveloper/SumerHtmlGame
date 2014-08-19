@@ -527,17 +527,17 @@ function postSolve(contact, impulse) {
 //给球施加力
 function force_ball(){
 	if(tag_run==false){
-		if(enY<320/30){
+		if(enY<287/30){
 			var force = 500;
 			var vec = new LGlobal.box2d.b2Vec2(-force,force);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
-		if(enY>320/30){
+		if(enY>392/30){
 			var force = 500;
 			var vec = new LGlobal.box2d.b2Vec2(-force,-force);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
-		if(enY==320/30){
+		else{
 			var force = 500;
 			var vec = new LGlobal.box2d.b2Vec2(-force,0);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());

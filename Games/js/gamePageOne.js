@@ -1,7 +1,7 @@
 ﻿var ballMoveX, ballMoveY;
 var refresh = 25;
 var ai;
-var step = 1 / 30;
+var step = 5/ 30;
 var distance_ballandplayer;
 var tag_run;
 var tag_position;

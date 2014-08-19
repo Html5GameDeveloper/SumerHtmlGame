@@ -1,8 +1,8 @@
-﻿document.write('<script src="js/gamePageOne.js"></script>');
-document.write('<script src="js/distance.js"></script>');
+﻿
 //document.write('<script src="js/ai.js"></script>');
 init(20, "gamePanel", 900, 640, main);
-
+//ai射门力量
+var force=600;
 //定义初始时间
 var startTime = 30;
 //显示时间变量
@@ -528,17 +528,17 @@ function postSolve(contact, impulse) {
 function force_ball(){
 	if(tag_run==false){
 		if(enY<287/30){
-			var force = 500;
+			
 			var vec = new LGlobal.box2d.b2Vec2(-force,force);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
 		if(enY>392/30){
-			var force = 500;
+			
 			var vec = new LGlobal.box2d.b2Vec2(-force,-force);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
 		else{
-			var force = 500;
+			
 			var vec = new LGlobal.box2d.b2Vec2(-force,0);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
@@ -1053,3 +1053,25 @@ function showEnemyScore() {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.write('<script src="js/gamePageOne.js"></script>');
+document.write('<script src="js/distance.js"></script>');

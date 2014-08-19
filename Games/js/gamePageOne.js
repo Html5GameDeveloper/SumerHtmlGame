@@ -1,7 +1,7 @@
 ﻿var ballMoveX, ballMoveY;
-var refresh = 25;
+var refresh = 2;
 var ai;
-var step = 5/ 30;
+var step = 1/ 30;
 var distance_ballandplayer;
 var tag_run;
 var tag_position;
@@ -173,7 +173,7 @@ function gamePageOne() {
 			
 
 		}, refresh);
-		distanceCount=setInterval(function(){
+		clock_distance=setInterval(function(){
 			var m;
 			
 			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);

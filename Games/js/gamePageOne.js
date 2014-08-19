@@ -1,31 +1,16 @@
-﻿var ballMoveX, ballMoveY;
-var refresh = 25;
-var ai;
-var sel;
-var step = 1 / 30;
-//鼠标位置
-var mX,mY;
-var distance_ballandplayer;
-var tag_run;
-function gamePageOne() {
+﻿function gamePageOne() {
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	//SysSecondOne = parseInt(20);
 	clock = 1;
 	if (clock == 1) {
 		timeOne();
-		//console.warn("clock"+clock);
 		t = setInterval(timeOne, 1000);
-		// clock = 0;
 	}
-
-	// LGlobal.box2d = new LBox2d();
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	backGroundPic = new LSprite();
 	backGroundPic = new LBitmap(new LBitmapData(imglist["backGround"]));
 	backGroundLayer.addChild(backGroundPic);
-
 	backGroundLayer.addChild(cxtOne);
 
 	//设置游戏边界函数
@@ -39,7 +24,6 @@ function gamePageOne() {
 	buoyancyController.linearDrag = 10;
 	buoyancyController.angularDrag = 6;
 	LGlobal.box2d.world.AddController(buoyancyController);
-
 	var buoyancyControllerLayer = new LSprite();
 	buoyancyControllerLayer.graphics.drawRect(0, "#ffffff", [0, 0, 900, 640], false);
 	buoyancyControllerLayer.alpha = 0.2;
@@ -89,8 +73,6 @@ function gamePageOne() {
 	createMouseJoint(selfName.x, selfName.y);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_MOVE, onMouseMove);
 
-
- //   setInterval(onMouseMove,50);
 	//-----玩家2出现-----
 	enemyName = new LSprite();
 	enemyName.x = 500;
@@ -116,42 +98,48 @@ function gamePageOne() {
 
 	enemyName.graphics.drawArc(1, "#000", [40, 40, 40, 0, 2 * Math.PI], false);
 	enemyName.addBodyCircle(40, 40, 40, 1, 3, 0.2, 0.9);
-	// enemyName.addEventListener(LEvent.ENTER_FRAME,randomMain);
-	//enemyName.setBodyMouseJoint(true);
+
 	buoyancyController.AddBody(enemyName.box2dBody);
+	enemyName.addEventListener(LEvent.ENTER_FRAME,force_ball);
 
 	//敌人移动定时器
 	ai = setInterval(function () {
 	
 			if(tag_run){
+			//球在人物左上角
 				if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX - step;
 				enY = enY - step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			//球在人物右上角
 			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX + step;
 				enY = enY - step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
+			//球在人物
 			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX + step;
 				enY = enY + step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				var enX = enemyName.box2dBody.GetPosition().x;
-				var enY = enemyName.box2dBody.GetPosition().y;
+				 enX = enemyName.box2dBody.GetPosition().x;
+				 enY = enemyName.box2dBody.GetPosition().y;
 				enX = enX - step;
 				enY = enY + step;
 				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+				
 			}
 			}
 		}, refresh);
@@ -179,7 +167,6 @@ function gamePageOne() {
 	ballLayer.graphics.drawArc(1, "#000", [20, 20, 20, 0, 2 * Math.PI], false);
 	ballLayer.addBodyCircle(20, 20, 20, 1, 3, 0.1, 2.0);
 	buoyancyController.AddBody(ballLayer.box2dBody);
-	//ballLayer.setBodyMouseJoint(true);
 	setInterval(function () {
 		ballMoveX = ballLayer.box2dBody.GetPosition().x;
 		ballMoveY = ballLayer.box2dBody.GetPosition().y;
@@ -223,7 +210,6 @@ function gamePageOne() {
 	backGroundLayer.addChild(buttonNew);
 
 	var buttonExit = new LTextField();
-	// buttonEnter.graphics.drawRect(0,"#000",[200,270,500,150],false);
 	backGroundLayer.addChild(buttonExit);
 	buttonExit.color = "#fff";
 	buttonExit.text = "退出游戏";
@@ -277,7 +263,6 @@ function timeOne() {
 		cxtOne.color = '#fff';
 		cxtOne.x = 0;
 		cxtOne.y = 0;
-		//cxtOne.text = hour + ":" + minite + ":" + second + "";
 		cxtOne.text = "距离游戏结束还有：" + second + "秒";
 	}
 
@@ -321,7 +306,6 @@ function upLoadResult() {
 	var upLoadResultSelf = new LTextField();
 	var upLoadResultTitle = new LTextField();
 
-	//upLoadResultLayer.graphics.drawRect(1,"#000",[0,0,900,640],true,"#000");
 	upLoadResultTitle = new LTextField();
 	upLoadResultTitle.text = "您的最后得分为:" + selfScore;
 	upLoadResultTitle.x = 180;

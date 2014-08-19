@@ -31,7 +31,7 @@ var imgData = [{
 		path : "img/backGround.png"
 	}, {
 		name : "welcome1",
-		path : "img/welcome1.png"
+		path : "img/welcome2.jpg"
 	}, {
 		name : "loginIn",
 		path : "img/loginIn.png"
@@ -130,7 +130,7 @@ var imgData = [{
 	}, {
 		name : "demobg",
 		path : "img/demobg.png"
-	}
+	},
 
 ];
 

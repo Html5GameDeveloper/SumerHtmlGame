@@ -1,6 +1,6 @@
 ﻿var force = 600;
 //定义初始时间
-var startTime = 3;
+var startTime = 30;
 //显示时间变量
 var t;
 var ai;

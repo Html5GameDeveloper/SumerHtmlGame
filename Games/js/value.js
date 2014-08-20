@@ -39,6 +39,9 @@ var imgData = [{
 	   name : "choosePlayer",
 	   path : "img/choosePlayer.png"
 	},{
+	   name : "GO",
+	   path : "img/GO.png"
+	},{
 	   name : "beginGame",
 	   path : "img/beginGame.png"
 	},{
@@ -49,7 +52,7 @@ var imgData = [{
 		path : "img/welcome2.jpg"
 	}, {
 		name : "loginIn",
-		path : "img/login3.jpg"
+		path : "img/login3.png"
 	}, {
 		name : "ground2",
 		path : "img/backGround.png"

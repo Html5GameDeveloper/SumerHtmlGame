@@ -51,16 +51,9 @@ var player;
 
 function welcomePage(){
 	
-	
-	
-	
-
-
 	var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
 	backGroundLayer.addChild(loginInPage);
-	
-	
 	
 	var neimaerMove=new LSprite();
 	var list=LGlobal.divideCoordinate(167,83,1,4);
@@ -99,16 +92,16 @@ function welcomePage(){
 
 	theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
 	theTextField.addEventListener(LFocusEvent.FOCUS_OUT, outfocus);
-
-	var soccer = new LSprite();
-	var bitmapSoccer = new LBitmapData(imglist['soccer']);
-	soccer.graphics.beginBitmapFill(bitmapSoccer);
-	soccer.graphics.drawRect(1, '#fff', [0, 0, 71, 71], false);
-	soccer.x = 639;
-	soccer.y = 393;
-	backGroundLayer.addChild(soccer);
-	soccer.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
 	
+	//GO
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["GO"]));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["GO"]));
+	var buttonEnter = new LButton(bitmapUp,bitmapOver);
+	backGroundLayer.addChild(buttonEnter);
+	buttonEnter.x = 537;
+	buttonEnter.y = 350;
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
+
 }
 
 

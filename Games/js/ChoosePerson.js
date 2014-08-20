@@ -6,7 +6,8 @@ function ChoosePerson() {
 	backGroundLayer.removeAllChild();
 
 	var ChoosePic = new LSprite();
-	ChoosePic.graphics.drawRect(1,"#000",[0,0,900,640],true,"#fff");
+	ChoosePic=new LBitmap(new LBitmapData(imglist["ChoisePage"]));
+	//ChoosePic.graphics.drawRect(1,"#000",[0,0,900,640],true,"#fff");
 	//ChoosePic = new LBitmap(new LBitmapData(imglist["welcome1"]));
 	backGroundLayer.addChild(ChoosePic);
 
@@ -21,7 +22,7 @@ function ChoosePerson() {
 */
    
     var ChooseFrag = new LSprite();
-   ChooseFrag = new LBitmap(new LBitmapData(imglist["chooseTeam"]));
+  // ChooseFrag = new LBitmap(new LBitmapData(imglist["chooseTeam"]));
    ChooseFrag.x = 30;
    ChooseFrag.y = 50;
    backGroundLayer.addChild(ChooseFrag);

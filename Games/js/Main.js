@@ -56,14 +56,20 @@ function welcomePage(){
 	backGroundLayer.addChild(loginInPage);
 	
 	var neimaerMove=new LSprite();
-	var list=LGlobal.divideCoordinate(167,83,1,4);
+	var list=LGlobal.divideCoordinate(167,332,4,4);
+
 	
+	
+	var playerRandom = Math.floor(Math.random()*4);
 	var data=new LBitmapData(imglist["neimaerMove"],0,0,42,83);
 	player=neimaerMove = new LAnimationTimeline(data,list);
-	player.speed=10;
+	player.setAction(playerRandom);
+	player.speed=5;
 	neimaerMove.x=440;
 	neimaerMove.y=250;
 	backGroundLayer.addChild(neimaerMove);
+
+	
 
 
 	var clickText = new LTextField();

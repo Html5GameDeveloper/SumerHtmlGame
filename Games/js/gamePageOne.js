@@ -204,7 +204,6 @@
 	Bound();
 	//退出游戏
 
-
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [780, 5, 110, 35], false);
 	backGroundLayer.addChild(buttonNew);
@@ -334,8 +333,5 @@ function upLoadResult() {
 	buttonEnter.x = 360;
 	buttonEnter.y = 550;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
-	
-	
-	
 
 }

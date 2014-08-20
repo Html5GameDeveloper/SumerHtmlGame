@@ -151,6 +151,9 @@ var imgData = [{
 	},{
 		name:"neimaerMove",
 		path:"img/neimaerMove.png"
+	},{
+	   name : "chooseTeam",
+	   path : "img/chooseTeam.png"
 	}
 
 ];
@@ -207,7 +210,7 @@ cxtOne = new LTextField();
 var ballMoveX, ballMoveY;
 var refresh = 5;
 var ai;
-var step = 1/ 30;
+var step = 1/30;
 //鼠标位置
 var mX,mY;
 var distance_ballandplayer;

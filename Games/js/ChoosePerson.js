@@ -6,10 +6,11 @@ function ChoosePerson() {
 	backGroundLayer.removeAllChild();
 
 	var ChoosePic = new LSprite();
-	ChoosePic = new LBitmap(new LBitmapData(imglist["welcome1"]));
+	ChoosePic.graphics.drawRect(1,"#000",[0,0,900,640],true,"#fff");
+	//ChoosePic = new LBitmap(new LBitmapData(imglist["welcome1"]));
 	backGroundLayer.addChild(ChoosePic);
 
-	var ChooseFrag = new LTextField();
+	/*var ChooseFrag = new LTextField();
 	ChooseFrag.text = '请选择你喜欢的球队:';
 	ChooseFrag.stroke = '#000';
 	ChooseFrag.color = '#fff';
@@ -17,6 +18,15 @@ function ChoosePerson() {
 	ChooseFrag.x = 30;
 	ChooseFrag.y = 50;
 	backGroundLayer.addChild(ChooseFrag);
+*/
+   
+    var ChooseFrag = new LSprite();
+   ChooseFrag = new LBitmap(new LBitmapData(imglist["chooseTeam"]));
+   ChooseFrag.x = 30;
+   ChooseFrag.y = 50;
+   backGroundLayer.addChild(ChooseFrag);
+
+
 
 	showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
 	showList.push(new LBitmapData(imglist["BrazilFrag"]));

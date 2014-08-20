@@ -48,28 +48,27 @@ function gameInit(result) {
 }
 
 var player;
-
+    
 function welcomePage(){
-	
+
 	var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
 	backGroundLayer.addChild(loginInPage);
 	
 	var neimaerMove=new LSprite();
 	var list=LGlobal.divideCoordinate(167,83,1,4);
+	
 	var data=new LBitmapData(imglist["neimaerMove"],0,0,42,83);
 	player=neimaerMove = new LAnimationTimeline(data,list);
 	player.speed=10;
 	neimaerMove.x=440;
 	neimaerMove.y=250;
-	//neimaerMove.addEventListener(LEvent.ENTER_FRAME,Move);
 	backGroundLayer.addChild(neimaerMove);
-	
+
 
 	var clickText = new LTextField();
 	backGroundLayer.addChild(clickText);
 	clickText.color = "#fff";
-	//clickText.text = "超级足球大战";
 	clickText.size = 50;
 	clickText.x = 250;
 	clickText.y = 120;
@@ -93,6 +92,8 @@ function welcomePage(){
 	theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
 	theTextField.addEventListener(LFocusEvent.FOCUS_OUT, outfocus);
 	
+	
+	
 	//GO
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["GO"]));
 	var bitmapOver = new LBitmap(new LBitmapData(imglist["GO"]));
@@ -114,14 +115,7 @@ function enterCode(e) {
 }
 
 function textInput(e) {
-    	/*var oInput = $("#gamePanel_InputTextBox");
-		oInput.blur(function(){
-		   if(this.value.length < 6){
-		     alert('用户名不得小于6位');
-			 welcomePage();
-		   }
-		   return false;
-		});*/
+    
 	if (e.keyCode != 13) {
 		for (var i = 0; i < 1; i++) {
 			userNameArr[i] = e.keyCode;
@@ -137,8 +131,7 @@ function textInput(e) {
 }
 
 //-----欢迎页面结束-----
-//欢迎进入游戏世界效果调用
-function windComplete(event) {}
+
 //登录界面
 function loginIn() {
 
@@ -154,36 +147,7 @@ function loginIn() {
 	welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
 	backGroundLayer.addChild(welcomePage);
 
-	var title = new LTextField();
-
-	title.x = 170;
-	title.y = 100;
-	backGroundLayer.addChild(title);
-	title.stroke = true;
-	title.lineWidth = 5;
-	title.lineColor = "#0c8904";
-	title.size = 55;
-	title.color = "white";
-	title.text = "欢迎进入游戏世界";
-	title.speed = 2;
-	title.addEventListener(LTextEvent.WIND_COMPLETE, windComplete);
-	title.wind();
-
-	backGroundLayer.graphics.drawRect(1, "#fff", [200, 270, 500, 150]);
-	var clickText = new LTextField();
-	var clickInto = new LSprite();
-	clickInto.graphics.drawRect(1, "#fff", [200, 270, 500, 150], false);
-	backGroundLayer.addChild(clickInto);
-	clickText.color = "#fff";
-	clickText.text = "超级足球大战";
-	clickText.size = 45;
-	clickText.x = 270;
-	clickText.y = 315;
-	clickText.stroke = true;
-	clickText.lineWidth = 2;
-	clickText.lineColor = "#57a520";
-	clickInto.addChild(clickText);
-
+	
 	//选择人物按钮
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,5,187,60));
 	var bitmapOver = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,75,187,60));

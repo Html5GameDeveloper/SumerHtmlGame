@@ -143,15 +143,17 @@
 			}
 			}
 		}, refresh);
+		
+		
 		clock_distance=setInterval(function(){
 			var m;
 			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
-			console.warn(m);
+			//console.warn(m);
 			if(m>=2.0){
-				tag_run=true;
+				tag_run=true;//true代表两个物体未发生碰撞
 				
 			}else{
-			tag_run=false
+				tag_run=false
 			} 
 			
 		},refresh);
@@ -167,7 +169,8 @@
 	ballLayer.graphics.drawArc(1, "#000", [20, 20, 20, 0, 2 * Math.PI], false);
 	ballLayer.addBodyCircle(20, 20, 20, 1, 3, 0.1, 2.0);
 	buoyancyController.AddBody(ballLayer.box2dBody);
-	setInterval(function () {
+	//获取足球实时坐标
+	getsecond=setInterval(function () {
 		ballMoveX = ballLayer.box2dBody.GetPosition().x;
 		ballMoveY = ballLayer.box2dBody.GetPosition().y;
 
@@ -267,71 +270,16 @@ function timeOne() {
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
 		window.clearInterval(cxtOne.timer);
+		window.clearInterval(getsecond);
+		window.clearInterval(clock_distance);
+		window.clearInterval(ai);
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
+		
 
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
 }
 
-function gamePageOver() {
-	window.clearInterval(ai);
-	backGroundLayer.die();
-	backGroundLayer.removeAllChild();
-
-	var gameOverLayer = new LSprite();
-	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
-	backGroundLayer.addChild(gameOverLayer);
-
-	var gameOverText = new LTextField();
-	gameOverText.text = "GAME OVER";
-	gameOverText.x = 300;
-	gameOverText.y = 300;
-	gameOverText.size = 40;
-	gameOverText.color = "#fff";
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
-	backGroundLayer.addChild(gameOverText);
-}
-
-//欢迎进入游戏世界效果调用
-function windComplete(event) {}
-
-function upLoadResult() {
-
-	var upLoadResultLayer = new LSprite();
-	upLoadResultLayer = new LBitmap(new LBitmapData(imglist["getScore"]));
-	var upLoadResultSelf = new LTextField();
-	var upLoadResultTitle = new LTextField();
-
-	upLoadResultTitle = new LTextField();
-	upLoadResultTitle.text = "您的最后得分为:" + selfScore;
-	upLoadResultTitle.x = 180;
-	upLoadResultTitle.y = 200;
-	upLoadResultTitle.size = 45;
-	upLoadResultTitle.color = "#FFF";
-	upLoadResultTitle.stroke = true;
-	upLoadResultTitle.lineWidth = 5;
-	upLoadResultTitle.lineColor = "#0c8904";
-	upLoadResultTitle.speed = 2;
-	upLoadResultTitle.addEventListener(LTextEvent.WIND_COMPLETE, windComplete);
-	upLoadResultTitle.wind();
-
-	backGroundLayer.addChild(upLoadResultLayer);
-	backGroundLayer.addChild(upLoadResultTitle);
-
-	var buttonNew = new LSprite();
-	buttonNew.graphics.drawRect(0, "#000", [380, 480, 120, 40], false);
-	backGroundLayer.addChild(buttonNew);
-
-  //返回首页
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));
-	var buttonEnter = new LButton(bitmapUp,bitmapOver);
-	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.x = 360;
-	buttonEnter.y = 550;
-	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
-
-}

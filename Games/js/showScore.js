@@ -1,7 +1,7 @@
 ﻿
 //---------------------显示得分函数(self)------------------
 function showSelfScore() {
-
+	window.clearInterval(getsecond);
 	window.clearInterval(ai);
 	backGroundLayer.removeChild(ballLayer);
 	var resultChart = new LSprite();

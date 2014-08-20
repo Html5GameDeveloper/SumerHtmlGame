@@ -3,15 +3,16 @@ document.write('<script src="js/gamePageOne.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
-init(1000/60, "gamePanel", 900,640, main);
+document.write('<script src="js/gameOverPage.js"></script>');
+init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量
-var force=600;
+var force = 600;
 
-function test2(e){
-    if(e.keyCode == 113){
-        LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
-        LGlobal.screen(LStage.FULL_SCREEN);
-    }
+function test2(e) {
+	if (e.keyCode == 113) {
+		LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
+		LGlobal.screen(LStage.FULL_SCREEN);
+	}
 }
 
 //---------游戏入口---------
@@ -48,29 +49,24 @@ function gameInit(result) {
 }
 
 var player;
-    
-function welcomePage(){
+
+function welcomePage() {
 
 	var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
 	backGroundLayer.addChild(loginInPage);
-	
-	var neimaerMove=new LSprite();
-	var list=LGlobal.divideCoordinate(167,332,4,4);
 
-	
-	
-	var playerRandom = Math.floor(Math.random()*4);
-	var data=new LBitmapData(imglist["neimaerMove"],0,0,42,83);
-	player=neimaerMove = new LAnimationTimeline(data,list);
+	var neimaerMove = new LSprite();
+	var list = LGlobal.divideCoordinate(167, 332, 4, 4);
+
+	var playerRandom = Math.floor(Math.random() * 4);
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player = neimaerMove = new LAnimationTimeline(data, list);
 	player.setAction(playerRandom);
-	player.speed=5;
-	neimaerMove.x=440;
-	neimaerMove.y=250;
+	player.speed = 5;
+	neimaerMove.x = 440;
+	neimaerMove.y = 250;
 	backGroundLayer.addChild(neimaerMove);
-
-	
-
 
 	var clickText = new LTextField();
 	backGroundLayer.addChild(clickText);
@@ -97,22 +93,19 @@ function welcomePage(){
 
 	theTextField.addEventListener(LFocusEvent.FOCUS_IN, onfocus);
 	theTextField.addEventListener(LFocusEvent.FOCUS_OUT, outfocus);
-	
-	
-	
+
 	//GO
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["GO"]));
 	var bitmapOver = new LBitmap(new LBitmapData(imglist["GO"]));
-	var buttonEnter = new LButton(bitmapUp,bitmapOver);
+	var buttonEnter = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
 	buttonEnter.x = 537;
 	buttonEnter.y = 350;
-	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
 
 }
 
-
-function Move(){
+function Move() {
 	player.onframe();
 }
 
@@ -121,7 +114,7 @@ function enterCode(e) {
 }
 
 function textInput(e) {
-    
+
 	if (e.keyCode != 13) {
 		for (var i = 0; i < 1; i++) {
 			userNameArr[i] = e.keyCode;
@@ -153,24 +146,23 @@ function loginIn() {
 	welcomePage = new LBitmap(new LBitmapData(imglist["welcome1"]));
 	backGroundLayer.addChild(welcomePage);
 
-	
 	//选择人物按钮
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["choosePlayer"],11,75,187,60));
-	var buttonEnter = new LButton(bitmapUp,bitmapOver);
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["choosePlayer"], 11, 5, 187, 60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["choosePlayer"], 11, 75, 187, 60));
+	var buttonEnter = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
 	buttonEnter.x = 200;
 	buttonEnter.y = 500;
-    buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
-	
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
+
 	//排行榜按钮
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["billBroad"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["billBroad"],11,75,187,60));
-	var gradeScore = new LButton(bitmapUp,bitmapOver);
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["billBroad"], 11, 5, 187, 60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["billBroad"], 11, 75, 187, 60));
+	var gradeScore = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(gradeScore);
 	gradeScore.x = 500;
 	gradeScore.y = 500;
-	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN,Billboard);	
+	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
 
 }
 
@@ -292,7 +284,7 @@ function postSolve(contact, impulse) {
 			selfScore += 1;
 			scoreNumberLeft.text = selfScore;
 			scoreNumberRight.text = enemyScore;
-
+			window.clearInterval(getsecond);
 			showSelfScore();
 		}
 	}
@@ -304,29 +296,27 @@ function postSolve(contact, impulse) {
 			scoreNumberRight.text = enemyScore;
 			scoreNumberLeft.text = selfScore;
 			showEnemyScore();
-
+			window.clearInterval(getsecond);
 		}
 	}
 }
 
 //给球施加力
-function force_ball(){
-	if(tag_run==false){
-		if(enY<287/30){
-			var vec = new LGlobal.box2d.b2Vec2(-force,force);
+function force_ball() {
+	if (tag_run == false) {
+		if (enY < 287 / 30) {
+			var vec = new LGlobal.box2d.b2Vec2(-force, force);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
-		if(enY>392/30){
-			var vec = new LGlobal.box2d.b2Vec2(-force,-force);
+		if (enY > 392 / 30) {
+			var vec = new LGlobal.box2d.b2Vec2(-force, -force);
+			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+		} else {
+			var vec = new LGlobal.box2d.b2Vec2(-force, 0);
 			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
 		}
-		else{
-			var vec = new LGlobal.box2d.b2Vec2(-force,0);
-			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
-		}	
-	}	
+	}
 }
-
 
 //-----------------------排行榜界面开始--------------------
 function Billboard() {
@@ -338,15 +328,12 @@ function Billboard() {
 	backGroundLayer.addChild(scoreChart);
 
 	//返回首页
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));
-	var buttonExit = new LButton(bitmapUp,bitmapOver);
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"], 11, 5, 187, 60));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"], 11, 75, 187, 60));
+	var buttonExit = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonExit);
 	buttonExit.x = 690;
 	buttonExit.y = 570;
-	buttonExit.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
+	buttonExit.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
 
 }
-
-		
-

@@ -1,6 +1,7 @@
 ﻿ function gamePageOver() {
+	clock_distance_iswork=false;
 	window.clearInterval(getsecond);
-	window.clearInterval(clock_distance);
+	//window.clearInterval(clock_distance);
 	window.clearInterval(ai);
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
@@ -8,15 +9,18 @@
 	var gameOverLayer = new LSprite();
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);
-
+	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
+/*
 	var gameOverText = new LTextField();
 	gameOverText.text = "GAME OVER";
 	gameOverText.x = 300;
 	gameOverText.y = 300;
 	gameOverText.size = 40;
 	gameOverText.color = "#fff";
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
+	
+	
 	backGroundLayer.addChild(gameOverText);
+	*/
 }
 
 //欢迎进入游戏世界效果调用
@@ -43,20 +47,7 @@ function upLoadResult() {
 	last_score.size=45;
 	
 	
-/*
-	upLoadResultTitle = new LTextField();
-	upLoadResultTitle.text =  selfScore;
-	upLoadResultTitle.x = 180;
-	upLoadResultTitle.y = 200;
-	upLoadResultTitle.size = 45;
-	upLoadResultTitle.color = "#000";
-	upLoadResultTitle.stroke = true;
-	upLoadResultTitle.lineWidth = 5;
-	upLoadResultTitle.lineColor = "#0c8904";
-	upLoadResultTitle.speed = 2;
-	upLoadResultTitle.addEventListener(LTextEvent.WIND_COMPLETE, windComplete);
-	upLoadResultTitle.wind();
-*/
+
 	backGroundLayer.addChild(upLoadResultLayer);
 	backGroundLayer.addChild(yourScoreText);
 	backGroundLayer.addChild(last_score);

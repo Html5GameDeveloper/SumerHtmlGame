@@ -6,16 +6,13 @@ function ChoosePerson() {
 	backGroundLayer.removeAllChild();
 
 	var ChoosePic = new LSprite();
-	ChoosePic=new LBitmap(new LBitmapData(imglist["ChoisePage"]));
+	ChoosePic = new LBitmap(new LBitmapData(imglist["ChoisePage"]));
 	backGroundLayer.addChild(ChoosePic);
 
-   
-    var ChooseFrag = new LSprite();
-   ChooseFrag.x = 30;
-   ChooseFrag.y = 50;
-   backGroundLayer.addChild(ChooseFrag);
-
-
+	var ChooseFrag = new LSprite();
+	ChooseFrag.x = 30;
+	ChooseFrag.y = 50;
+	backGroundLayer.addChild(ChooseFrag);
 
 	showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
 	showList.push(new LBitmapData(imglist["BrazilFrag"]));
@@ -137,14 +134,13 @@ function ChoosePerson() {
 	//selfName.y = 455;
 	selfName.y = 520;
 	resultEnd.addChild(selfName);
-	
 
-        var cLayer = new LSprite();
-        cLayer.x = 630;
-        cLayer.y = 900;
-        backGroundLayer.addChild(cLayer);
-        cLayer.addBodyPolygon(450,630,0,3,0.1,1.01);
-	
+	var cLayer = new LSprite();
+	cLayer.x = 630;
+	cLayer.y = 900;
+	backGroundLayer.addChild(cLayer);
+	cLayer.addBodyPolygon(450, 630, 0, 3, 0.1, 1.01);
+
 	var football = new LSprite();
 	football.x = 400;
 	football.y = 400;
@@ -154,26 +150,25 @@ function ChoosePerson() {
 	football.graphics.drawArc(1, "#000", [20, 20, 20, 0, 2 * Math.PI], false);
 	football.addBodyCircle(20, 20, 20, 1, 3, 0.1, 1.0);
 
-	
 	//您的选择
 	var selfField = new LSprite();
-   selfField = new LBitmap(new LBitmapData(imglist["yourChoose"]));
-   selfField.x = 50;
-  // selfField.y = 355;
-   selfField.y = 405;
-   backGroundLayer.addChild(selfField);
-   
-   //电脑选择
-   var enemyField = new LSprite();
-   enemyField = new LBitmap(new LBitmapData(imglist["computerChoose"]));
-   enemyField.x = 660;
-   enemyField.y = 405;
-   backGroundLayer.addChild(enemyField);
-		
+	selfField = new LBitmap(new LBitmapData(imglist["yourChoose"]));
+	selfField.x = 50;
+	// selfField.y = 355;
+	selfField.y = 405;
+	backGroundLayer.addChild(selfField);
+
+	//电脑选择
+	var enemyField = new LSprite();
+	enemyField = new LBitmap(new LBitmapData(imglist["computerChoose"]));
+	enemyField.x = 660;
+	enemyField.y = 405;
+	backGroundLayer.addChild(enemyField);
+
 	//--------------显示国旗(enemy)-------------
 	enemyBitmap = new LBitmap(showList[1]);
 	enemyBitmap.x = 518;
-//	enemyBitmap.y = 325;
+	//	enemyBitmap.y = 325;
 	enemyBitmap.y = 375;
 	resultEnd.addChild(enemyBitmap);
 
@@ -187,19 +182,17 @@ function ChoosePerson() {
 	bitmapVS.x = 380;
 	bitmapVS.y = 400;
 	resultEnd.addChild(bitmapVS);
-	
-	
+
 	//开始游戏按钮
-var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],0,0,124,41));
-var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],0,48,124,41));
-	var buttonEnter = new LButton(bitmapUp,bitmapOver);
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"], 0, 0, 124, 41));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"], 0, 48, 124, 41));
+	var buttonEnter = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
 	//buttonEnter.x = 330;
 	buttonEnter.x = 690;
 	buttonEnter.y = 560;
-	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
-	//buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageTwo);
-	
+	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageOne);
+
 }
 
 //-----------------ChoosePerson End-----------------

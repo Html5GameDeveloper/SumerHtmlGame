@@ -9,6 +9,7 @@
 	var gameOverLayer = new LSprite();
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);
+	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
 /*
 	var gameOverText = new LTextField();
 	gameOverText.text = "GAME OVER";
@@ -16,7 +17,7 @@
 	gameOverText.y = 300;
 	gameOverText.size = 40;
 	gameOverText.color = "#fff";
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
+	
 	
 	backGroundLayer.addChild(gameOverText);
 	*/

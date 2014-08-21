@@ -227,3 +227,4 @@ var tag_run;
 var tag_position;
 var enX = enemyName.box2dBody.GetPosition().x;
 var enY = enemyName.box2dBody.GetPosition().y;
+var footballMoveX,footballMoveY;

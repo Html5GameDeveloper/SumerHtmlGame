@@ -137,7 +137,24 @@ function ChoosePerson() {
 	//selfName.y = 455;
 	selfName.y = 520;
 	resultEnd.addChild(selfName);
+	
 
+        var cLayer = new LSprite();
+        cLayer.x = 630;
+        cLayer.y = 900;
+        backGroundLayer.addChild(cLayer);
+        cLayer.addBodyPolygon(450,630,0,3,0.1,1.01);
+	
+	var football = new LSprite();
+	football.x = 400;
+	football.y = 400;
+	backGroundLayer.addChild(football);
+	var bitmap = new LBitmapData(imglist["football"]);
+	football.graphics.beginBitmapFill(bitmap);
+	football.graphics.drawArc(1, "#000", [20, 20, 20, 0, 2 * Math.PI], false);
+	football.addBodyCircle(20, 20, 20, 1, 3, 0.1, 1.0);
+
+	
 	//您的选择
 	var selfField = new LSprite();
    selfField = new LBitmap(new LBitmapData(imglist["yourChoose"]));
@@ -152,9 +169,7 @@ function ChoosePerson() {
    enemyField.x = 660;
    enemyField.y = 405;
    backGroundLayer.addChild(enemyField);
-	
-	
-
+		
 	//--------------显示国旗(enemy)-------------
 	enemyBitmap = new LBitmap(showList[1]);
 	enemyBitmap.x = 518;
@@ -175,8 +190,6 @@ function ChoosePerson() {
 	
 	
 	//开始游戏按钮
-//	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],11,5,187,60));
-//	var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],11,75,187,60));
 var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],0,0,124,41));
 var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],0,48,124,41));
 	var buttonEnter = new LButton(bitmapUp,bitmapOver);
@@ -187,6 +200,7 @@ var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],0,48,124,41));
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 	
 }
+
 //-----------------ChoosePerson End-----------------
 
 //-------------初始化球队按钮--------------------

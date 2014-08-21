@@ -1,6 +1,6 @@
 ﻿var force = 600;
 //定义初始时间
-var startTime = 20;
+var startTime = 4;
 //显示时间变量
 var t;
 var ai;
@@ -30,24 +30,24 @@ var imgData = [{
 		name : "backGround",
 		path : "img/backGround.png"
 	}, {
-	   name : "billBroad",
-	   path : "img/billBroad.png"
-	},{
-	  name : "vs",
-	  path : "img/vs.png"
-	},{
-	   name : "choosePlayer",
-	   path : "img/choosePlayer.png"
-	},{
-	   name : "GO",
-	   path : "img/GO.png"
-	},{
-	   name : "beginGame",
-	   path : "img/beginGame.png"
-	},{
-	   name : "returnBg",
-	   path : "img/returnBg.png"
-	},{
+		name : "billBroad",
+		path : "img/billBroad.png"
+	}, {
+		name : "vs",
+		path : "img/vs.png"
+	}, {
+		name : "choosePlayer",
+		path : "img/choosePlayer.png"
+	}, {
+		name : "GO",
+		path : "img/GO.png"
+	}, {
+		name : "beginGame",
+		path : "img/beginGame.png"
+	}, {
+		name : "returnBg",
+		path : "img/returnBg.png"
+	}, {
 		name : "welcome1",
 		path : "img/welcome2.jpg"
 	}, {
@@ -92,8 +92,7 @@ var imgData = [{
 	}, {
 		name : "fanpeixi",
 		path : "img/helanSport.png"
-	},
-	{
+	}, {
 		name : "enemyLoseMeixi",
 		path : "img/enemyLoseMeixi.png"
 	}, {
@@ -117,8 +116,7 @@ var imgData = [{
 	}, {
 		name : "enemyWinRues",
 		path : "img/enemyWinRues.png"
-	},
-	{
+	}, {
 		name : "selfLoseMeixi",
 		path : "img/selfLoseMeixi.png"
 	}, {
@@ -148,27 +146,27 @@ var imgData = [{
 	}, {
 		name : "demobg",
 		path : "img/demobg.png"
-	},{
-		name:"neimaerMove",
-		path:"img/neimaerMove.png"
-	},{
-	   name : "chooseTeam",
-	   path : "img/chooseTeam.png"
-	},{
-		name:"ChoisePage",
-		path:"img/choisePageBackGround.jpg"
-	},{
-		name:"yourScoreText",
-		path:"img/yourScore.png"
-	},{
-		name:"yourScorePage",
-		path:"img/yourScorePage.png"
-	},{
-	   name : "yourChoose",
-	   path : "img/yourChoose.png"
-	},{
-	  name : "computerChoose",
-	  path : "img/computerChoose.png"
+	}, {
+		name : "neimaerMove",
+		path : "img/neimaerMove.png"
+	}, {
+		name : "chooseTeam",
+		path : "img/chooseTeam.png"
+	}, {
+		name : "ChoisePage",
+		path : "img/choisePageBackGround.jpg"
+	}, {
+		name : "yourScoreText",
+		path : "img/yourScore.png"
+	}, {
+		name : "yourScorePage",
+		path : "img/yourScorePage.png"
+	}, {
+		name : "yourChoose",
+		path : "img/yourChoose.png"
+	}, {
+		name : "computerChoose",
+		path : "img/computerChoose.png"
 	}
 
 ];
@@ -217,20 +215,18 @@ var login;
 
 //时间
 var cxtOne;
-
 var SysSecondOne = parseInt(startTime);
 cxtOne = new LTextField();
-
 
 var ballMoveX, ballMoveY;
 var refresh = 5;
 var ai;
-var step = 1/30;
+var step = 1 / 30;
 //鼠标位置
-var mX,mY;
+var mX, mY;
 var distance_ballandplayer;
 var tag_run;
 var tag_position;
 var enX = enemyName.box2dBody.GetPosition().x;
 var enY = enemyName.box2dBody.GetPosition().y;
-var footballMoveX,footballMoveY;
+var footballMoveX, footballMoveY;

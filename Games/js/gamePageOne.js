@@ -1,4 +1,7 @@
-﻿function gamePageOne() {
+﻿var clock_distance_iswork;//是否获取两点之间的距离
+
+function gamePageOne() {
+	clock_distance_iswork=true
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	clock = 1;
@@ -146,8 +149,11 @@
 		
 		
 		clock_distance=setInterval(function(){
-			var m;
-			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
+			if(clock_distance_iswork==true){
+				var m;
+				m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
+			}
+			
 			//console.warn(m);
 			if(m>=2.0){
 				tag_run=true;//true代表两个物体未发生碰撞
@@ -267,16 +273,20 @@ function timeOne() {
 		cxtOne.y = 0;
 		cxtOne.text = "距离游戏结束还有：" + second + "秒";
 	}
-
-	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		window.clearInterval(cxtOne.timer);
+	if (SysSecondOne ==0.5){
 		window.clearInterval(getsecond);
 		window.clearInterval(clock_distance);
 		window.clearInterval(ai);
+	}
+	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
+		window.clearInterval(cxtOne.timer);
+		
+		
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
+		//console.warn("123")
 		
 
 		//这里可以添加倒计时时间为0后需要执行的事件

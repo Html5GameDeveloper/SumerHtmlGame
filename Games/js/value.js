@@ -163,6 +163,12 @@ var imgData = [{
 	},{
 		name:"yourScorePage",
 		path:"img/yourScorePage.png"
+	},{
+	   name : "yourChoose",
+	   path : "img/yourChoose.png"
+	},{
+	  name : "computerChoose",
+	  path : "img/computerChoose.png"
 	}
 
 ];
@@ -227,3 +233,4 @@ var tag_run;
 var tag_position;
 var enX = enemyName.box2dBody.GetPosition().x;
 var enY = enemyName.box2dBody.GetPosition().y;
+var footballMoveX,footballMoveY;

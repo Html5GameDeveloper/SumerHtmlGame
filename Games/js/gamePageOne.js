@@ -16,6 +16,10 @@
 	//设置游戏边界函数
 	Bound();
 	onup();
+	
+	
+	
+	
 
 	//浮力效果初始化
 	buoyancyController = new LGlobal.box2d.b2BuoyancyController();
@@ -222,7 +226,7 @@
 	buttonExit.lineWidth = 2;
 	buttonExit.lineColor = "#57a520";
 	buttonNew.addChild(buttonExit);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, Exit);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
 }
 
 function Exit() {

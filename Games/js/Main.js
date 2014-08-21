@@ -1,6 +1,6 @@
 ﻿document.write('<script src="js/value.js"></script>');
 document.write('<script src="js/gamePageOne.js"></script>');
-//document.write('<script src="js/gamePageTwo.js"></script>');
+document.write('<script src="js/nextPage.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');

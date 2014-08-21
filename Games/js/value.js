@@ -169,6 +169,9 @@ var imgData = [{
 	},{
 	  name : "computerChoose",
 	  path : "img/computerChoose.png"
+	},{
+	  name : "loginMan",
+	  path : "img/loginMan.png"
 	}
 
 ];

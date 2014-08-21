@@ -66,12 +66,12 @@ function upLoadResult() {
 	backGroundLayer.addChild(buttonNew);
 
   //返回首页
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],11,75,187,60));
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["returnBg"],0,0,124,41));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["returnBg"],0,47,124,41));
 	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.x = 360;
-	buttonEnter.y = 350;
+	buttonEnter.x = 750;
+	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }

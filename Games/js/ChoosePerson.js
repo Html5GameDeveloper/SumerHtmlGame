@@ -198,6 +198,7 @@ var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],0,48,124,41));
 	buttonEnter.x = 690;
 	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
+	//buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageTwo);
 	
 }
 

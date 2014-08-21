@@ -1,5 +1,6 @@
 ﻿document.write('<script src="js/value.js"></script>');
 document.write('<script src="js/gamePageOne.js"></script>');
+//document.write('<script src="js/gamePageTwo.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
@@ -270,8 +271,8 @@ function Bound() {
 	//-----------设置球门-------------
 	ballDoor = new LSprite();
 	backGroundLayer.addChild(ballDoor);
-	ballDoor.graphics.drawRect(0, '#f00', [808, 250, 35, 105], false);
-	ballDoor.graphics.drawRect(0, '#f00', [67, 248, 35, 105], false);
+	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 105], true,"#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true,"#f47969");
 }
 
 //-----侦听两个物体的碰撞------

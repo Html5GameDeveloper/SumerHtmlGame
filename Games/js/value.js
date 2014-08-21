@@ -1,6 +1,6 @@
 ﻿var force = 600;
 //定义初始时间
-var startTime = 30;
+var startTime = 20;
 //显示时间变量
 var t;
 var ai;
@@ -157,6 +157,12 @@ var imgData = [{
 	},{
 		name:"ChoisePage",
 		path:"img/choisePageBackGround.jpg"
+	},{
+		name:"yourScoreText",
+		path:"img/yourScore.png"
+	},{
+		name:"yourScorePage",
+		path:"img/yourScorePage.png"
 	}
 
 ];

@@ -28,25 +28,38 @@ function upLoadResult() {
 	window.clearInterval(ai);
 
 	var upLoadResultLayer = new LSprite();
-	upLoadResultLayer = new LBitmap(new LBitmapData(imglist["getScore"]));
-	var upLoadResultSelf = new LTextField();
-	var upLoadResultTitle = new LTextField();
-
+	upLoadResultLayer = new LBitmap(new LBitmapData(imglist["yourScorePage"]));
+	
+	
+	var yourScoreText = new LSprite();
+	yourScoreText = new LBitmap(new LBitmapData(imglist["yourScoreText"]));
+	yourScoreText.x=100;
+	yourScoreText.y=200;
+	
+	var last_score=new LTextField();
+	last_score.text=(selfScore-enemyScore)*1000;
+	last_score.x=470;
+	last_score.y=188;
+	last_score.size=45;
+	
+	
+/*
 	upLoadResultTitle = new LTextField();
-	upLoadResultTitle.text = "您的最后得分为:" + selfScore;
+	upLoadResultTitle.text =  selfScore;
 	upLoadResultTitle.x = 180;
 	upLoadResultTitle.y = 200;
 	upLoadResultTitle.size = 45;
-	upLoadResultTitle.color = "#FFF";
+	upLoadResultTitle.color = "#000";
 	upLoadResultTitle.stroke = true;
 	upLoadResultTitle.lineWidth = 5;
 	upLoadResultTitle.lineColor = "#0c8904";
 	upLoadResultTitle.speed = 2;
 	upLoadResultTitle.addEventListener(LTextEvent.WIND_COMPLETE, windComplete);
 	upLoadResultTitle.wind();
-
+*/
 	backGroundLayer.addChild(upLoadResultLayer);
-	backGroundLayer.addChild(upLoadResultTitle);
+	backGroundLayer.addChild(yourScoreText);
+	backGroundLayer.addChild(last_score);
 
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [380, 480, 120, 40], false);
@@ -58,7 +71,7 @@ function upLoadResult() {
 	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
 	buttonEnter.x = 360;
-	buttonEnter.y = 550;
+	buttonEnter.y = 350;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }

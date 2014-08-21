@@ -7,22 +7,10 @@ function ChoosePerson() {
 
 	var ChoosePic = new LSprite();
 	ChoosePic=new LBitmap(new LBitmapData(imglist["ChoisePage"]));
-	//ChoosePic.graphics.drawRect(1,"#000",[0,0,900,640],true,"#fff");
-	//ChoosePic = new LBitmap(new LBitmapData(imglist["welcome1"]));
 	backGroundLayer.addChild(ChoosePic);
 
-	/*var ChooseFrag = new LTextField();
-	ChooseFrag.text = '请选择你喜欢的球队:';
-	ChooseFrag.stroke = '#000';
-	ChooseFrag.color = '#fff';
-	ChooseFrag.size = '28';
-	ChooseFrag.x = 30;
-	ChooseFrag.y = 50;
-	backGroundLayer.addChild(ChooseFrag);
-*/
    
     var ChooseFrag = new LSprite();
-  // ChooseFrag = new LBitmap(new LBitmapData(imglist["chooseTeam"]));
    ChooseFrag.x = 30;
    ChooseFrag.y = 50;
    backGroundLayer.addChild(ChooseFrag);
@@ -63,15 +51,16 @@ function ChoosePerson() {
 	//----------显示国旗Argentina---------------
 	var ArgentinaFrag = getButton('ArgentinaFrag');
 	ArgentinaFrag.x = 110;
-	ArgentinaFrag.y = 110;
+	ArgentinaFrag.y = 130;
 	frag1.addChild(ArgentinaFrag);
 
 	var Argentina = new LTextField();
 	Argentina.text = flagName[0].name;
-	Argentina.color = '#fff';
+	Argentina.color = '#000';
 	Argentina.size = '18';
 	Argentina.x = 135;
-	Argentina.y = 215;
+	//Argentina.y = 215;
+	Argentina.y = 235;
 	frag1.addChild(Argentina);
 	ArgentinaFrag.addEventListener(LMouseEvent.MOUSE_UP, onclick);
 
@@ -81,15 +70,16 @@ function ChoosePerson() {
 	//--------------显示国旗Brazil---------------
 	var BrazilFrag = getButton('BrazilFrag');
 	BrazilFrag.x = 288;
-	BrazilFrag.y = 110;
+	//BrazilFrag.y = 110;
+	BrazilFrag.y = 130;
 	frag2.addChild(BrazilFrag);
 
 	var Brazil = new LTextField();
 	Brazil.text = flagName[1].name;
-	Brazil.color = '#fff';
+	Brazil.color = '#000';
 	Brazil.size = '18';
 	Brazil.x = 325;
-	Brazil.y = 215;
+	Brazil.y = 235;
 	frag2.addChild(Brazil);
 	BrazilFrag.addEventListener(LMouseEvent.MOUSE_UP, onclick);
 
@@ -100,15 +90,15 @@ function ChoosePerson() {
 	//-------------显示国旗Gramany--------------
 	var GramanyFrag = getButton('GramanyFrag');
 	GramanyFrag.x = 466;
-	GramanyFrag.y = 110;
+	GramanyFrag.y = 130;
 	frag3.addChild(GramanyFrag);
 
 	var Gramany = new LTextField();
 	Gramany.text = flagName[2].name;
-	Gramany.color = '#fff';
+	Gramany.color = '#000';
 	Gramany.size = '18';
 	Gramany.x = 500;
-	Gramany.y = 215;
+	Gramany.y = 235;
 	frag3.addChild(Gramany);
 	GramanyFrag.addEventListener(LMouseEvent.MOUSE_UP, onclick);
 
@@ -119,15 +109,15 @@ function ChoosePerson() {
 	//-------------显示国旗Helan----------------
 	var HelanFrag = getButton('HelanFrag');
 	HelanFrag.x = 644;
-	HelanFrag.y = 110;
+	HelanFrag.y = 130;
 	frag4.addChild(HelanFrag);
 
 	var Helan = new LTextField();
 	Helan.text = flagName[3].name;
-	Helan.color = '#fff';
+	Helan.color = '#000';
 	Helan.size = '18';
 	Helan.x = 680;
-	Helan.y = 215;
+	Helan.y = 235;
 	frag4.addChild(Helan);
 	HelanFrag.addEventListener(LMouseEvent.MOUSE_UP, onclick);
 
@@ -139,57 +129,61 @@ function ChoosePerson() {
 	//-----------显示国旗(self)---------------
 	selfBitmap = new LBitmap(showList[0]);
 	selfBitmap.x = 230;
-	selfBitmap.y = 325;
+	selfBitmap.y = 375;
 	resultEnd.addChild(selfBitmap);
 	//-------------显示运动员----------------
 	selfName = new LBitmap(showSport[0]);
 	selfName.x = 240;
-	selfName.y = 455;
+	//selfName.y = 455;
+	selfName.y = 520;
 	resultEnd.addChild(selfName);
 
-	selfField = new LTextField();
-	selfField.text = '您的选择';
-	selfField.color = '#fff';
-	selfField.stroke = '#000';
-	selfField.size = '20';
-	selfField.x = 100;
-	selfField.y = 355;
-	resultEnd.addChild(selfField);
-
-	enemyField = new LTextField();
-	enemyField.text = '电脑选择';
-	enemyField.color = '#fff';
-	enemyField.stroke = '#000';
-	enemyField.size = '20';
-	enemyField.x = 670;
-	enemyField.y = 355;
-	resultEnd.addChild(enemyField);
+	//您的选择
+	var selfField = new LSprite();
+   selfField = new LBitmap(new LBitmapData(imglist["yourChoose"]));
+   selfField.x = 50;
+  // selfField.y = 355;
+   selfField.y = 405;
+   backGroundLayer.addChild(selfField);
+   
+   //电脑选择
+   var enemyField = new LSprite();
+   enemyField = new LBitmap(new LBitmapData(imglist["computerChoose"]));
+   enemyField.x = 660;
+   enemyField.y = 405;
+   backGroundLayer.addChild(enemyField);
+	
+	
 
 	//--------------显示国旗(enemy)-------------
 	enemyBitmap = new LBitmap(showList[1]);
 	enemyBitmap.x = 518;
-	enemyBitmap.y = 325;
+//	enemyBitmap.y = 325;
+	enemyBitmap.y = 375;
 	resultEnd.addChild(enemyBitmap);
 
 	//------------显示运动员-----------------
 	enemyName = new LBitmap(showSport[1]);
 	enemyName.x = 528;
-	enemyName.y = 455;
+	enemyName.y = 520;
 	resultEnd.addChild(enemyName);
 
 	var bitmapVS = new LBitmap(new LBitmapData(imglist["vs"]));
 	bitmapVS.x = 380;
-	bitmapVS.y = 350;
+	bitmapVS.y = 400;
 	resultEnd.addChild(bitmapVS);
 	
 	
 	//开始游戏按钮
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],11,5,187,60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],11,75,187,60));
+//	var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],11,5,187,60));
+//	var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],11,75,187,60));
+var bitmapUp = new LBitmap(new LBitmapData(imglist["beginGame"],0,0,124,41));
+var bitmapOver = new LBitmap(new LBitmapData(imglist["beginGame"],0,48,124,41));
 	var buttonEnter = new LButton(bitmapUp,bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.x = 330;
-	buttonEnter.y = 480;
+	//buttonEnter.x = 330;
+	buttonEnter.x = 690;
+	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,gamePageOne);
 	
 }

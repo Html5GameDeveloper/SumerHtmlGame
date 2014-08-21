@@ -157,6 +157,12 @@ var imgData = [{
 	},{
 		name:"ChoisePage",
 		path:"img/choisePageBackGround.jpg"
+	},{
+	   name : "yourChoose",
+	   path : "img/yourChoose.png"
+	},{
+	  name : "computerChoose",
+	  path : "img/computerChoose.png"
 	}
 
 ];

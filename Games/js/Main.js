@@ -138,6 +138,10 @@ function textInput(e) {
 function loginIn() {
 	$("#gamePanel_InputTextBox").css('display', 'none');
 	window.clearInterval(t);
+	window.clearInterval(ai);
+	//window.clearInterval(clock_distance);
+	//window.clearInterval(getsecond);
+	clock_distance_iswork=false;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 

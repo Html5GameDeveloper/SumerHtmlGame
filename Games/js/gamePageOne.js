@@ -1,5 +1,5 @@
 ﻿var clock_distance_iswork;//是否获取两点之间的距离
-
+//第一关游戏主界面
 function gamePageOne() {
 pageIndex = 1;
 	clock_distance_iswork=true
@@ -233,16 +233,14 @@ pageIndex = 1;
 	buttonExit.lineWidth = 2;
 	buttonExit.lineColor = "#57a520";
 	buttonNew.addChild(buttonExit);
-	//window.clearInterval(getsecond);
-//	window.clearInterval(clock_distance);
-//	window.clearInterval(ai);
-//	window.clearInterval(t);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
+
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, Exit);
 }
 
 function Exit() {
 
 	SysSecondOne = parseInt(startTime);
+	window.clearInterval(getsecond);
 	loginIn();
 	selfScore = 0;
 	enemyScore = 0;

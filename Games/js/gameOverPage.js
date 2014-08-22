@@ -10,17 +10,7 @@
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));
 	backGroundLayer.addChild(gameOverLayer);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
-/*
-	var gameOverText = new LTextField();
-	gameOverText.text = "GAME OVER";
-	gameOverText.x = 300;
-	gameOverText.y = 300;
-	gameOverText.size = 40;
-	gameOverText.color = "#fff";
-	
-	
-	backGroundLayer.addChild(gameOverText);
-	*/
+
 }
 
 //欢迎进入游戏世界效果调用
@@ -46,11 +36,28 @@ function upLoadResult() {
 	last_score.y=188;
 	last_score.size=45;
 	
+	var clickNext = new LTextField();
+	clickNext.text = "点此处进入下一关>>";
+	clickNext.x = 650;
+	clickNext.y = 520;
+	clickNext.color = "#f00";
+	clickNext.size = 20;
 	
-
+	var clickSprite = new LSprite();
+	clickSprite.graphics.drawRect(0,"#000",[650,515,250,40],false);
+	
+	
+	if(last_score.text >= 5000){
+	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
+	}else{
+	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, notEnter);
+	}
+	
 	backGroundLayer.addChild(upLoadResultLayer);
+	backGroundLayer.addChild(clickSprite);
 	backGroundLayer.addChild(yourScoreText);
 	backGroundLayer.addChild(last_score);
+	backGroundLayer.addChild(clickNext);
 
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [380, 480, 120, 40], false);
@@ -65,4 +72,8 @@ function upLoadResult() {
 	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
+}
+
+function notEnter(){
+ alert("亲，第一关需获得5000分方可进入下一关哦！");
 }

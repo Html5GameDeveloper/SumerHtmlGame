@@ -236,7 +236,7 @@ function gamePageOne() {
 //	window.clearInterval(clock_distance);
 //	window.clearInterval(ai);
 //	window.clearInterval(t);
-	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
+	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, loginIn);
 }
 
 function Exit() {

@@ -1,4 +1,5 @@
 ﻿function gamePageTwo() {
+pageIndex = 2;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	clock = 1;
@@ -104,6 +105,23 @@
 	buoyancyController.AddBody(enemyName.box2dBody);
 	enemyName.addEventListener(LEvent.ENTER_FRAME,force_ball);
 
+	//玩家2号出现
+	enemyNameTwo = new LSprite();
+	enemyNameTwo.x = 600;
+	enemyNameTwo.y = 300;
+	backGroundLayer.addChild(enemyNameTwo);
+	var bitmapNeimaer = new LBitmapData(imglist["baluo"]);
+		enemyNameTwo.graphics.beginBitmapFill(bitmapNeimaer);
+	enemyNameTwo.graphics.drawArc(1, "#000", [40, 40, 40, 0, 2 * Math.PI], false);
+	enemyNameTwo.addBodyCircle(40, 40, 40, 1, 3, 0.2, 0.9);
+	buoyancyController.AddBody(enemyNameTwo.box2dBody);
+	//球门
+	var ballDoor = new LSprite();
+	backGroundLayer.addChild(ballDoor);
+	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 155], true,"#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 155], true,"#f47969");
+	
+	
 	//敌人移动定时器
 	ai = setInterval(function () {
 	
@@ -195,14 +213,14 @@
 	RightDoor.x = 825;
 	RightDoor.y = 340;
 	backGroundLayer.addChild(RightDoor);
-	RightDoor.addBodyPolygon(35, 105, 0, 1, 3, 0, 1);
+	RightDoor.addBodyPolygon(35, 155, 0, 1, 3, 0, 1);
 
 	//-----设置左边球门-----
 	LeftDoor = new LSprite();
 	LeftDoor.x = 80;
 	LeftDoor.y = 340;
 	backGroundLayer.addChild(LeftDoor);
-	LeftDoor.addBodyPolygon(35, 105, 0, 1, 3, 0, 1);
+	LeftDoor.addBodyPolygon(35, 155, 0, 1, 3, 0, 1);
 	scoreText();
 	onup();
 	Bound();
@@ -281,6 +299,34 @@ function timeOne() {
 		gamePageOver();
 
 		//这里可以添加倒计时时间为0后需要执行的事件
+	}
+}
+
+
+//-----侦听两个物体的碰撞------
+function postSolve(contact, impulse) {
+	var objA = contact.GetFixtureA().GetBody().GetUserData();
+	var objB = contact.GetFixtureB().GetBody().GetUserData();
+	if (objA.type == "LSprite" && objB.type == "LSprite") {
+		if ((objA == ballLayer && objB == RightDoor) ||
+			(objA == RightDoor && objB == ballLayer)) {
+			selfScore += 1;
+			scoreNumberLeft.text = selfScore;
+			scoreNumberRight.text = enemyScore;
+			window.clearInterval(getsecond);
+			showSelfScore();
+		}
+	}
+
+	if (objA.type == "LSprite" && objB.type == "LSprite") {
+		if ((objA == ballLayer && objB == LeftDoor) ||
+			(objA == LeftDoor && objB == ballLayer)) {
+			enemyScore += 1;
+			scoreNumberRight.text = enemyScore;
+			scoreNumberLeft.text = selfScore;
+			showEnemyScore();
+			window.clearInterval(getsecond);
+		}
 	}
 }
 

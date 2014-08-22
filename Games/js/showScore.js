@@ -100,7 +100,12 @@ function showSelfScore() {
 		window.clearInterval(t);
 	}
 	if (SysSecondOne > 0) {
+        if(pageIndex == 1){
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOne);
+		}
+		if(pageIndex == 2){
+		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageTwo);
+		}
 	} else if (SysSecondOne == 0) {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
 	}
@@ -200,7 +205,12 @@ function showEnemyScore() {
 		window.clearInterval(t);
 	}
 	if (startTime > 0) {
+	   if(pageIndex == 1){
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOne);
+		}
+		if(pageIndex == 2){
+		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageTwo);
+		}
 	} else if (startTime == 0) {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
 	}

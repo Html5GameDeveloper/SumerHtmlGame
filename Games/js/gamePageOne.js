@@ -1,6 +1,7 @@
 ﻿var clock_distance_iswork;//是否获取两点之间的距离
 //第一关游戏主界面
 function gamePageOne() {
+pageIndex = 1;
 	clock_distance_iswork=true
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
@@ -296,6 +297,33 @@ function timeOne() {
 		
 
 		//这里可以添加倒计时时间为0后需要执行的事件
+	}
+}
+
+//-----侦听两个物体的碰撞------
+function postSolve(contact, impulse) {
+	var objA = contact.GetFixtureA().GetBody().GetUserData();
+	var objB = contact.GetFixtureB().GetBody().GetUserData();
+	if (objA.type == "LSprite" && objB.type == "LSprite") {
+		if ((objA == ballLayer && objB == RightDoor) ||
+			(objA == RightDoor && objB == ballLayer)) {
+			selfScore += 1;
+			scoreNumberLeft.text = selfScore;
+			scoreNumberRight.text = enemyScore;
+			window.clearInterval(getsecond);
+			showSelfScore();
+		}
+	}
+
+	if (objA.type == "LSprite" && objB.type == "LSprite") {
+		if ((objA == ballLayer && objB == LeftDoor) ||
+			(objA == LeftDoor && objB == ballLayer)) {
+			enemyScore += 1;
+			scoreNumberRight.text = enemyScore;
+			scoreNumberLeft.text = selfScore;
+			showEnemyScore();
+			window.clearInterval(getsecond);
+		}
 	}
 }
 

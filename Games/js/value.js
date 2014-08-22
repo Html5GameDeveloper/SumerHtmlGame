@@ -170,6 +170,9 @@ var imgData = [{
 	},{
 	  name : "loginMan",
 	  path : "img/loginMan.png"
+	},{
+	  name : "baluo",
+	  path : "img/baluo.png"
 	}
 
 ];
@@ -189,7 +192,7 @@ var flagName = [{
 		name : "葡萄牙"
 	}
 ];
-
+var pageIndex = 1;
 var showFlag = []; //游戏国旗面板
 var sound; //音乐控制
 var BoundTop; //游戏边界
@@ -202,7 +205,7 @@ var ballLayer;
 var resultScore;
 //人与电脑
 var selfBitmap, enemyBitmap;
-var selfName, enemyName;
+var selfName, enemyName, enemyNameTwo;
 
 //球门设置
 var RightDoor;

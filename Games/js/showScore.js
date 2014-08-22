@@ -3,6 +3,7 @@
 function showSelfScore() {
 	window.clearInterval(getsecond);
 	window.clearInterval(ai);
+	window.clearInterval(ai2);
 	window.clearInterval(t);
 	backGroundLayer.removeChild(ballLayer);
 	var resultChart = new LSprite();

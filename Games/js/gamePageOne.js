@@ -23,7 +23,7 @@ function gamePageOne() {
 	//设置游戏边界函数
 	Bound();
 	onup();
-
+	
 	//浮力效果初始化
 	buoyancyController = new LGlobal.box2d.b2BuoyancyController();
 	buoyancyController.offset = -1 / LGlobal.box2d.drawScale;

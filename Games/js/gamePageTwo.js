@@ -1,12 +1,12 @@
 ﻿//游戏第二关
 
 function gamePageTwo() {
-	pageIndex = 2;//游戏场景标签
+	pageIndex = 2; //游戏场景标签
 	clock_distance_iswork = true;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	SysSecondOne = parseInt(startTime);
-	clock = 1;
+	clock_distance_iswork = true
+		clock = 1;
 	if (clock == 1) {
 		timeOne();
 		t = setInterval(timeOne, 1000);
@@ -107,9 +107,9 @@ function gamePageTwo() {
 	buoyancyController.AddBody(enemyName.box2dBody);
 	enemyName.addEventListener(LEvent.ENTER_FRAME, force_ball);
 
-	//玩家2号出现
+	//敌人守门员出现
 	enemyNameTwo = new LSprite();
-	enemyNameTwo.x = 600;
+	enemyNameTwo.x = 750;
 	enemyNameTwo.y = 300;
 	backGroundLayer.addChild(enemyNameTwo);
 	var bitmapNeimaer = new LBitmapData(imglist["baluo"]);
@@ -165,18 +165,38 @@ function gamePageTwo() {
 			}
 		}, refresh);
 
+	ai2 = setInterval(function () {
+			if (enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY) {
+				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
+			}
+			if (enemyNameTwo.box2dBody.GetPosition().y < ballMoveY) {
+				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
+			}
+
+		}, refresh);
+//得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
+
 			m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+
 			//console.warn(m);
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
-
 			} else {
 				tag_run = false
 			}
 
 		}, refresh);
+	clock_distance_2 = setInterval(function () {
+			var m;
+			m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+			if (m >= 2.0) {
+				tag_run = true;
+			} else {
+				tag_run=false;
+			}
+		});
 
 	//-----足球-----
 	ballLayer = new LSprite();

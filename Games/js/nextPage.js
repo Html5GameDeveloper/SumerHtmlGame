@@ -34,21 +34,20 @@
 	next.size = 20;
 	next.color = "#945a4e";
 	next.weight = "bold";
+	next.font = "微软雅黑";
 	backGroundLayer.addChild(next);
 	next.speed = 20;
 	next.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
 	next.wind();
-	
-	
 	
 	var theTextField = new LTextField();
 	theTextField.x = 310;
 	theTextField.y = 330;
 	backGroundLayer.addChild(theTextField);
 	theTextField.text = "下一场该我上场啦！";
-	theTextField.speed = 18;
+	theTextField.speed = 15;
 	theTextField.size = 20;
-	//theTextField.style = "微软雅黑";
+	theTextField.font = "微软雅黑";
 	theTextField.weight = "bold";
 	theTextField.color = "#945a4e"
 	theTextField.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);

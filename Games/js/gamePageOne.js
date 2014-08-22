@@ -235,7 +235,7 @@ function gamePageOne() {
 	//window.clearInterval(getsecond);
 //	window.clearInterval(clock_distance);
 //	window.clearInterval(ai);
-	window.clearInterval(t);
+//	window.clearInterval(t);
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
 }
 

@@ -1,4 +1,5 @@
 ﻿function nextPage(){
+	SysSecondOne = parseInt(startTime);
 	window.clearInterval(t);
 	window.clearInterval(ai);
 	window.clearInterval(clock_distance);

@@ -2,7 +2,7 @@
 pageIndex = 2;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	SysSecondOne = parseInt(startTime);
+	clock_distance_iswork=true
 	clock = 1;
 	if (clock == 1) {
 		timeOne();

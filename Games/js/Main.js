@@ -1,9 +1,11 @@
 ﻿document.write('<script src="js/value.js"></script>');
 document.write('<script src="js/gamePageOne.js"></script>');
+document.write('<script src="js/gamePageTwo.js"></script>');
 document.write('<script src="js/nextPage.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
+//document.write('<script src="js/showScoreTwo.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
 init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量
@@ -274,7 +276,7 @@ function Bound() {
 	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 105], true,"#f47969");
 	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true,"#f47969");
 }
-
+/*
 //-----侦听两个物体的碰撞------
 function postSolve(contact, impulse) {
 	var objA = contact.GetFixtureA().GetBody().GetUserData();
@@ -301,7 +303,7 @@ function postSolve(contact, impulse) {
 		}
 	}
 }
-
+*/
 //给球施加力
 function force_ball() {
 	if (tag_run == false) {

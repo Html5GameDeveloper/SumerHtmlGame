@@ -23,6 +23,7 @@
 	neimaerMove.x = 410;
 	neimaerMove.y = 0;
 	backGroundLayer.addChild(neimaerMove);
+	neimaerMove.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageTwo);
 	
 	setInterval(function(){
 	if(neimaerMove.y <= 250){

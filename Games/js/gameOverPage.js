@@ -47,7 +47,7 @@ function upLoadResult() {
 	clickSprite.graphics.drawRect(0,"#000",[650,515,250,40],false);
 	
 	
-	if(last_score.text >= 5000){
+	if(last_score.text <= 5000){
 	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
 	}else{
 	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, notEnter);

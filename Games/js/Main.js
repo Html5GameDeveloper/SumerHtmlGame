@@ -136,7 +136,6 @@ function textInput(e) {
 
 //登录界面
 function loginIn() {
-
 	$("#gamePanel_InputTextBox").css('display', 'none');
 	window.clearInterval(t);
 	backGroundLayer.die();

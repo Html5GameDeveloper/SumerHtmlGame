@@ -241,6 +241,7 @@ pageIndex = 1;
 }
 
 function Exit() {
+
 	SysSecondOne = parseInt(startTime);
 	loginIn();
 	selfScore = 0;

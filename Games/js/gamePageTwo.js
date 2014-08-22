@@ -1,5 +1,8 @@
-﻿function gamePageTwo() {
-pageIndex = 2;
+﻿//游戏第二关
+
+function gamePageTwo() {
+	pageIndex = 2;//游戏场景标签
+	clock_distance_iswork = true;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	SysSecondOne = parseInt(startTime);
@@ -74,8 +77,6 @@ pageIndex = 2;
 
 	createMouseJoint(selfName.x, selfName.y);
 	backGroundLayer.addEventListener(LMouseEvent.MOUSE_MOVE, onMouseMove);
-	
-
 
 	//-----玩家2出现-----
 	enemyName = new LSprite();
@@ -104,7 +105,7 @@ pageIndex = 2;
 	enemyName.addBodyCircle(40, 40, 40, 1, 3, 0.2, 0.9);
 
 	buoyancyController.AddBody(enemyName.box2dBody);
-	enemyName.addEventListener(LEvent.ENTER_FRAME,force_ball);
+	enemyName.addEventListener(LEvent.ENTER_FRAME, force_ball);
 
 	//玩家2号出现
 	enemyNameTwo = new LSprite();
@@ -112,72 +113,70 @@ pageIndex = 2;
 	enemyNameTwo.y = 300;
 	backGroundLayer.addChild(enemyNameTwo);
 	var bitmapNeimaer = new LBitmapData(imglist["baluo"]);
-		enemyNameTwo.graphics.beginBitmapFill(bitmapNeimaer);
+	enemyNameTwo.graphics.beginBitmapFill(bitmapNeimaer);
 	enemyNameTwo.graphics.drawArc(1, "#000", [40, 40, 40, 0, 2 * Math.PI], false);
 	enemyNameTwo.addBodyCircle(40, 40, 40, 1, 3, 0.2, 0.9);
 	buoyancyController.AddBody(enemyNameTwo.box2dBody);
 	//球门
 	var ballDoor = new LSprite();
 	backGroundLayer.addChild(ballDoor);
-	ballDoor.graphics.drawRect(0, '#f47969', [808, 260, 35, 155], true,"#f47969");
-	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true,"#f47969");
-	
-	
+	ballDoor.graphics.drawRect(0, '#f47969', [808, 260, 35, 155], true, "#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true, "#f47969");
+
 	//敌人移动定时器
 	ai = setInterval(function () {
-	
-			if(tag_run){
-			//球在人物左上角
+
+			if (tag_run) {
+				//球在人物左上角
 				if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				 enX = enemyName.box2dBody.GetPosition().x;
-				 enY = enemyName.box2dBody.GetPosition().y;
-				enX = enX - step;
-				enY = enY - step;
-				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
-				
-			}
-			//球在人物右上角
-			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
-				 enX = enemyName.box2dBody.GetPosition().x;
-				 enY = enemyName.box2dBody.GetPosition().y;
-				enX = enX + step;
-				enY = enY - step;
-				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
-				
-			}
-			//球在人物
-			if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				 enX = enemyName.box2dBody.GetPosition().x;
-				 enY = enemyName.box2dBody.GetPosition().y;
-				enX = enX + step;
-				enY = enY + step;
-				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
-				
-			}
-			if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
-				 enX = enemyName.box2dBody.GetPosition().x;
-				 enY = enemyName.box2dBody.GetPosition().y;
-				enX = enX - step;
-				enY = enY + step;
-				enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
-				
-			}
+					enX = enemyName.box2dBody.GetPosition().x;
+					enY = enemyName.box2dBody.GetPosition().y;
+					enX = enX - step;
+					enY = enY - step;
+					enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+
+				}
+				//球在人物右上角
+				if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y >= ballMoveY)) {
+					enX = enemyName.box2dBody.GetPosition().x;
+					enY = enemyName.box2dBody.GetPosition().y;
+					enX = enX + step;
+					enY = enY - step;
+					enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+
+				}
+				//球在人物
+				if ((enemyName.box2dBody.GetPosition().x < ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
+					enX = enemyName.box2dBody.GetPosition().x;
+					enY = enemyName.box2dBody.GetPosition().y;
+					enX = enX + step;
+					enY = enY + step;
+					enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+
+				}
+				if ((enemyName.box2dBody.GetPosition().x >= ballMoveX) && (enemyName.box2dBody.GetPosition().y < ballMoveY)) {
+					enX = enemyName.box2dBody.GetPosition().x;
+					enY = enemyName.box2dBody.GetPosition().y;
+					enX = enX - step;
+					enY = enY + step;
+					enemyName.box2dBody.SetPosition(new LGlobal.box2d.b2Vec2(enX, enY));
+
+				}
 			}
 		}, refresh);
-		
-		
-		clock_distance=setInterval(function(){
+
+	clock_distance = setInterval(function () {
 			var m;
-			m=distance(enemyName.box2dBody.GetPosition().x,enemyName.box2dBody.GetPosition().y,ballMoveX,ballMoveY);
+			m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
 			//console.warn(m);
-			if(m>=2.0){
-				tag_run=true;//true代表两个物体未发生碰撞
-				
-			}else{
-				tag_run=false
-			} 
-			
-		},refresh);
+			if (m >= 2.0) {
+				tag_run = true; //true代表两个物体未发生碰撞
+
+			} else {
+				tag_run = false
+			}
+
+		}, refresh);
 
 	//-----足球-----
 	ballLayer = new LSprite();
@@ -190,11 +189,11 @@ pageIndex = 2;
 	ballLayer.addBodyCircle(20, 20, 20, 1, 3, 0.1, 2.0);
 	buoyancyController.AddBody(ballLayer.box2dBody);
 	//获取足球实时坐标
-	getsecond=setInterval(function () {
-		ballMoveX = ballLayer.box2dBody.GetPosition().x;
-		ballMoveY = ballLayer.box2dBody.GetPosition().y;
+	getsecond = setInterval(function () {
+			ballMoveX = ballLayer.box2dBody.GetPosition().x;
+			ballMoveY = ballLayer.box2dBody.GetPosition().y;
 
-	}, 50);
+		}, 50);
 
 	//显示国旗self
 	selfBitmap.x = 65;
@@ -225,7 +224,7 @@ pageIndex = 2;
 	scoreText();
 	onup();
 	Bound();
-	
+
 	//退出游戏
 
 	var buttonNew = new LSprite();
@@ -261,7 +260,7 @@ function createMouseJoint(x, y) {
 	jointDef.bodyA = LGlobal.box2d.world.GetGroundBody();
 	jointDef.bodyB = b;
 	jointDef.collideConnected = true;
-    jointDef.maxForce = 100.0 * b.GetMass();
+	jointDef.maxForce = 100.0 * b.GetMass();
 	//jointDef.maxForce = 300000.0 * b.GetMass();
 	jointDef.target.Set(x / scale + 1.2, y / scale + 1.2);
 	mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
@@ -290,10 +289,10 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		window.clearInterval(cxtOne.timer);
-		window.clearInterval(getsecond);
-		window.clearInterval(clock_distance);
-		window.clearInterval(ai);
+		//window.clearInterval(cxtOne.timer);
+		//window.clearInterval(getsecond);
+		//window.clearInterval(clock_distance);
+		//window.clearInterval(ai);
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
@@ -302,7 +301,6 @@ function timeOne() {
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
 }
-
 
 //-----侦听两个物体的碰撞------
 function postSolve(contact, impulse) {
@@ -330,4 +328,3 @@ function postSolve(contact, impulse) {
 		}
 	}
 }
-

@@ -14,7 +14,7 @@ function showSelfScore() {
 	showList.push(new LBitmapData(imglist["GramanyFrag"]));
 	showList.push(new LBitmapData(imglist["HelanFrag"]));
 
-	//------------------self得分----------------------
+	//------------------self进球----------------------
 	var selfWin = new LSprite();
 	selfWin.x = 30;
 	selfWin.y = 200;
@@ -122,7 +122,7 @@ function showEnemyScore() {
 	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#000');
 	backGroundLayer.addChild(resultChart);
 
-	//self失败
+	//enemy进球 
 	var selfLose = new LSprite();
 	selfLose.x = 30;
 	selfLose.y = 200;

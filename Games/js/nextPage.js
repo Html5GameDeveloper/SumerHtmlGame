@@ -1,6 +1,7 @@
 ﻿function nextPage(){
+	SysSecondOne = parseInt(startTime);
 	window.clearInterval(t);
-	window.clearInterval(ai);
+	//window.clearInterval(ai);
 	window.clearInterval(clock_distance);
 	window.clearInterval(getsecond);
 	clock_distance_iswork=false;
@@ -32,7 +33,7 @@
 		 window.clearInterval();
 		}
 	},50);
-	
+	//文字
 	var next = new LTextField();
 	next.text = "恭喜你闯过第一关！";
 	next.x = 320;

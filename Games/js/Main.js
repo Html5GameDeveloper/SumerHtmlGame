@@ -10,7 +10,7 @@ document.write('<script src="js/gameOverPage.js"></script>');
 init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量
 var force = 600;
-
+//按f2全屏测试
 function test2(e) {
 	if (e.keyCode == 113) {
 		LGlobal.stageScale = LStageScaleMode.SHOW_ALL;
@@ -108,9 +108,7 @@ function welcomePage() {
 
 }
 
-function Move() {
-	player.onframe();
-}
+
 
 function enterCode(e) {
 	loginIn();
@@ -171,7 +169,7 @@ function loginIn() {
 	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
 
 }
-
+//输入框
 function onfocus(e) {
 	e.currentTarget.size = 15;
 }

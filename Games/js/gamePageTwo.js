@@ -2,6 +2,7 @@
 pageIndex = 2;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
+	SysSecondOne = parseInt(startTime);
 	clock = 1;
 	if (clock == 1) {
 		timeOne();
@@ -118,8 +119,8 @@ pageIndex = 2;
 	//球门
 	var ballDoor = new LSprite();
 	backGroundLayer.addChild(ballDoor);
-	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 155], true,"#f47969");
-	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 155], true,"#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [808, 260, 35, 155], true,"#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true,"#f47969");
 	
 	
 	//敌人移动定时器
@@ -211,7 +212,7 @@ pageIndex = 2;
 	//----------设置右边球门------------
 	RightDoor = new LSprite();
 	RightDoor.x = 825;
-	RightDoor.y = 340;
+	RightDoor.y = 320;
 	backGroundLayer.addChild(RightDoor);
 	RightDoor.addBodyPolygon(35, 155, 0, 1, 3, 0, 1);
 
@@ -220,7 +221,7 @@ pageIndex = 2;
 	LeftDoor.x = 80;
 	LeftDoor.y = 340;
 	backGroundLayer.addChild(LeftDoor);
-	LeftDoor.addBodyPolygon(35, 155, 0, 1, 3, 0, 1);
+	LeftDoor.addBodyPolygon(35, 105, 0, 1, 3, 0, 1);
 	scoreText();
 	onup();
 	Bound();

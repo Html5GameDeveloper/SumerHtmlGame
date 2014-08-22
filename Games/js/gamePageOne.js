@@ -289,7 +289,6 @@ function timeOne() {
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
 		window.clearInterval(cxtOne.timer);
 		
-		
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();

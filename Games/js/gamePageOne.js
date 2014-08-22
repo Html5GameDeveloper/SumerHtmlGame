@@ -232,6 +232,10 @@ function gamePageOne() {
 	buttonExit.lineWidth = 2;
 	buttonExit.lineColor = "#57a520";
 	buttonNew.addChild(buttonExit);
+	//window.clearInterval(getsecond);
+//	window.clearInterval(clock_distance);
+//	window.clearInterval(ai);
+	window.clearInterval(t);
 	buttonNew.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
 }
 

@@ -1,5 +1,7 @@
 ﻿function nextPage(){
 	SysSecondOne = parseInt(startTime);
+	selfScore = 0;
+	enemyScore = 0;
 	window.clearInterval(t);
 	//window.clearInterval(ai);
 	window.clearInterval(clock_distance);

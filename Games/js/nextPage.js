@@ -1,4 +1,7 @@
-﻿function nextPage(){
+﻿//游戏第一关跳第二关中间过渡场景
+
+function nextPage(){
+	selfScore = 0;enemyScore = 0;
 	SysSecondOne = parseInt(startTime);
 	window.clearInterval(t);
 	//window.clearInterval(ai);

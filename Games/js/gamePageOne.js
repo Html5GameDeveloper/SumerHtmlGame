@@ -1,4 +1,6 @@
-﻿var clock_distance_iswork; //是否获取两点之间的距离
+﻿//游戏第一关
+
+var clock_distance_iswork; //是否获取两点之间的距离
 
 
 

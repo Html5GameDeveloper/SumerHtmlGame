@@ -1,4 +1,6 @@
-﻿
+﻿//得分特效，进球效果
+
+
 //---------------------显示得分函数(self)------------------
 function showSelfScore() {
 	window.clearInterval(getsecond);

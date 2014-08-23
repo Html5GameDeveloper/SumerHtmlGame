@@ -1,4 +1,5 @@
 ﻿//游戏第二关
+var ai2;
 
 function gamePageTwo() {
 	pageIndex = 2; //游戏场景标签
@@ -164,16 +165,28 @@ function gamePageTwo() {
 				}
 			}
 		}, refresh);
-
+//敌人守门员移动定时器
 	ai2 = setInterval(function () {
-			if (enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY) {
+		
+			if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
 			}
-			if (enemyNameTwo.box2dBody.GetPosition().y < ballMoveY) {
+			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
 			}
+		
+		
+
 
 		}, refresh);
+		/*
+		isAi2Inbox=false;
+		isAi2Inbox=setInterval(function(){
+			if(enemyNameTwo.box2dBody.GetPosition().y<=475&&enemyName.box2dBody.GetPosition().y>=165){
+				return ture;
+			}else return false;
+		},refresh);*/
+		
 //得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
@@ -309,10 +322,6 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		//window.clearInterval(cxtOne.timer);
-		//window.clearInterval(getsecond);
-		//window.clearInterval(clock_distance);
-		//window.clearInterval(ai);
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();

@@ -1,9 +1,10 @@
 ﻿//游戏第三关
 var ai2;
-
+var isballLive;
 function gamePageThree() {
+	isballLive=true;//定义足球存在，可以获取其位置
 	pageIndex = 3; //游戏场景标签
-	//clock_distance_iswork = true;
+	
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	clock_distance_iswork = true
@@ -183,7 +184,7 @@ function gamePageThree() {
 //得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
-             if (clock_distance_iswork == true){
+             if ((clock_distance_iswork == true)&&(isballLive==true)){
 
                  m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
              }
@@ -199,7 +200,7 @@ function gamePageThree() {
 		}, refresh);
 	clock_distance_2 = setInterval(function () {
 			var m;
-        if (clock_distance_iswork == true){
+        if (clock_distance_iswork == true&&isballLive==true){
             m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
         }
 
@@ -326,11 +327,15 @@ function timeOne() {
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
-		if (pageIndex==5){
-				window.clearInterval(clock_distance_2);
+	
+				
 				window.clearInterval(clock_distance);
 				window.clearInterval(getsecond);
-		}
+				if(pageIndex==2||pageIndex==3){
+				window.clearInterval(ai2);
+				}
+				
+	
 		
 		//window.
 		//这里可以添加倒计时时间为0后需要执行的事件

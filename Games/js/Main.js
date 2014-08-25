@@ -12,7 +12,7 @@ document.write('<script src="js/nextPage2.js"></script>');
 init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量
 var force = 600;
-var isballLive=true;
+//var isballLive=true;
 //按f2全屏测试
 function test2(e) {
 	if (e.keyCode == 113) {
@@ -281,8 +281,8 @@ function Bound() {
 
 //给球施加力
 function force_ball() {
-	if (tag_run == false) {
-		
+	if (tag_run == false&&isballLive==true) {
+	
 			if (enY < 287 / 30) {
 				var vec = new LGlobal.box2d.b2Vec2(-force, force);
 				ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());

@@ -1,12 +1,14 @@
 ﻿//游戏第二关
 var ai2;
-
+var isballLive
 function gamePageTwo() {
+	isballLive=true;//定义足球存在，可以获取其位置
 	pageIndex = 2; //游戏场景标签
+	clock_distance_iswork = true
 	//clock_distance_iswork = true;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	clock_distance_iswork = true
+	
 		clock = 1;
 	if (clock == 1) {
 		timeOne();
@@ -167,13 +169,16 @@ function gamePageTwo() {
 		}, refresh);
 //敌人守门员移动定时器
 	ai2 = setInterval(function () {
-		
-			if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
+		if(isballLive==true){
+		if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
 			}
 			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
-			}
+		}
+		}
+			
+			
 		
 		
 
@@ -183,7 +188,7 @@ function gamePageTwo() {
 //得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
-             if (clock_distance_iswork == true){
+            if ((clock_distance_iswork == true)&&(isballLive==true)){
 
                  m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
              }
@@ -199,7 +204,7 @@ function gamePageTwo() {
 		}, refresh);
 	clock_distance_2 = setInterval(function () {
 			var m;
-        if (clock_distance_iswork == true){
+        if (clock_distance_iswork == true&&isballLive){
             m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
         }
 
@@ -326,11 +331,13 @@ function timeOne() {
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
-		if (pageIndex==5){
+		
 				window.clearInterval(clock_distance_2);
 				window.clearInterval(clock_distance);
 				window.clearInterval(getsecond);
-		}
+				window.clearInterval(ai2);
+				isballLive=false;
+
 		
 		//window.
 		//这里可以添加倒计时时间为0后需要执行的事件

@@ -1,16 +1,16 @@
 ﻿ function gamePageOver() {
 	clock_distance_iswork=false;//是否实时获取球与人之间的距离
-
+	
 	window.clearInterval(getsecond);
      //清除敌人移动定时器
 	window.clearInterval(ai);
     //清楚敌人门将移动定时器
     window.clearInterval(ai2);
-	//window.clearInterval(clock_distance);
+	window.clearInterval(clock_distance);
+	//window.clearInterval(ai3);
 
-    if(pageIndex==2){
+    if(pageIndex==2||pageIndex==3){
         window.clearInterval(clock_distance_2);
-
     }
 
 	

@@ -7,6 +7,7 @@ function showSelfScore() {
 	window.clearInterval(ai);
 	window.clearInterval(ai2);
 	window.clearInterval(t);
+	isballLive=false;
 	backGroundLayer.removeChild(ballLayer);
 	var resultChart = new LSprite();
 	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#000');
@@ -110,7 +111,10 @@ function showSelfScore() {
 		if(pageIndex == 2){
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageTwo);
 		}
-	} else if (SysSecondOne == 0) {
+		if(pageIndex == 3){
+		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageThree);
+		}
+	}  if (SysSecondOne == 0) {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
 	}
 
@@ -215,7 +219,10 @@ function showEnemyScore() {
 		if(pageIndex == 2){
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageTwo);
 		}
-	} else if (startTime == 0) {
+		if(pageIndex ==3){
+		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageThree);
+		}
+	}  if (startTime == 0) {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
 	}
 }

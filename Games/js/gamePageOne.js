@@ -1,11 +1,12 @@
 ﻿//游戏第一关
 
 var clock_distance_iswork; //是否获取两点之间的距离
-
+var isballLive;
 
 
 //第一关游戏主界面
 function gamePageOne() {
+	isballLive=true;//定义足球存在，可以获取其位置
 	pageIndex = 1;//游戏场景标签
 	clock_distance_iswork = true;
 	backGroundLayer.die();
@@ -154,7 +155,7 @@ function gamePageOne() {
 		}, refresh);
 //检测足球与敌人之间的距离
 	clock_distance = setInterval(function () {
-			if ((clock_distance_iswork == true)/*&&(isballLive==true)*/) {
+			if ((clock_distance_iswork == true)&&(isballLive==true)) {
 				var m;
 				m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
 			}
@@ -266,7 +267,7 @@ function onMouseMove(event) {
 	mY = event.offsetY / LGlobal.box2d.drawScale;
 	mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
 }
-
+//倒计时函数
 function timeOne() {
 	if (SysSecondOne > 0) {
 		SysSecondOne = SysSecondOne - 1;
@@ -281,12 +282,7 @@ function timeOne() {
 		cxtOne.y = 0;
 		cxtOne.text = "距离游戏结束还有：" + second + "秒";
 	}
-	/*
-	if (SysSecondOne == 0.5) {
-		window.clearInterval(getsecond);
-		window.clearInterval(clock_distance);
-		window.clearInterval(ai);
-	}*/
+
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
 		window.clearInterval(cxtOne.timer);
 
@@ -301,7 +297,7 @@ function timeOne() {
 	}
 }
 
-//-----侦听两个物体的碰撞------
+//-----侦听球和球门的碰撞------
 function postSolve(contact, impulse) {
 	var objA = contact.GetFixtureA().GetBody().GetUserData();
 	var objB = contact.GetFixtureB().GetBody().GetUserData();

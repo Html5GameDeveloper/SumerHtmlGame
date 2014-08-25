@@ -101,9 +101,10 @@ function showSelfScore1() {
 	}
 	if (SysSecondOne > 0) {
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageTwo);
-	} else if (SysSecondOne == 0) {
+	} /*else if (SysSecondOne == 0) {
+	
 		resultChart.addEventListener(LMouseEvent.MOUSE_UP, gamePageOver);
-	}
+	}*/
 
 }
 

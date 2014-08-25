@@ -2,14 +2,14 @@
 var ai2;
 var isballLive
 function gamePageTwo() {
-	isballLive=true;//定义足球存在，可以获取其位置
+	isballLive = true; //定义足球存在，可以获取其位置
 	pageIndex = 2; //游戏场景标签
 	clock_distance_iswork = true
-	//clock_distance_iswork = true;
-	backGroundLayer.die();
+		//clock_distance_iswork = true;
+		backGroundLayer.die();
 	backGroundLayer.removeAllChild();
-	
-		clock = 1;
+
+	clock = 1;
 	if (clock == 1) {
 		timeOne();
 		t = setInterval(timeOne, 1000);
@@ -167,34 +167,29 @@ function gamePageTwo() {
 				}
 			}
 		}, refresh);
-//敌人守门员移动定时器
+	//敌人守门员移动定时器
 	ai2 = setInterval(function () {
-		if(isballLive==true){
-		if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
-				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
+			if (isballLive == true) {
+				
+				if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY) && (enemyNameTwo.box2dBody.GetPosition().y > 165 / 30)) {
+					enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
+				}
+				if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY) && (enemyNameTwo.box2dBody.GetPosition().y <= 475 / 30)) {
+					enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
+				}
 			}
-			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {
-				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
-		}
-		}
-			
-			
-		
-		
-
 
 		}, refresh);
-		
-//得到敌人与球的距离
+
+	//得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
-            if ((clock_distance_iswork == true)&&(isballLive==true)){
+			if ((clock_distance_iswork == true) && (isballLive == true)) {
 
-                 m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
-             }
+				m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+			}
 
-
-			//console.warn(m);
+			
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
 			} else {
@@ -204,14 +199,14 @@ function gamePageTwo() {
 		}, refresh);
 	clock_distance_2 = setInterval(function () {
 			var m;
-        if (clock_distance_iswork == true&&isballLive){
-            m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
-        }
+			if (clock_distance_iswork == true && isballLive) {
+				m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+			}
 
 			if (m >= 2.0) {
 				tag_run = true;
 			} else {
-				tag_run=false;
+				tag_run = false;
 			}
 		});
 
@@ -326,19 +321,19 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		window.clearInterval(cxtOne.timer);
+
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
-		
-				window.clearInterval(clock_distance_2);
-				window.clearInterval(clock_distance);
-				window.clearInterval(getsecond);
-				window.clearInterval(ai2);
-				isballLive=false;
 
-		
+		window.clearInterval(clock_distance_2);
+		window.clearInterval(clock_distance);
+		window.clearInterval(getsecond); //足球的实时坐标
+
+		isballLive = false;
+		window.clearInterval(cxtOne.timer);
+
 		//window.
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
@@ -355,8 +350,10 @@ function postSolve(contact, impulse) {
 			scoreNumberLeft.text = selfScore;
 			scoreNumberRight.text = enemyScore;
 			window.clearInterval(getsecond);
+			window.clearInterval(ai);
+			window.clearInterval(ai2);
 			showSelfScore();
-			isballLive=false;//检测足球是否存在
+			isballLive = false; //检测足球是否存在
 		}
 	}
 
@@ -367,8 +364,10 @@ function postSolve(contact, impulse) {
 			scoreNumberRight.text = enemyScore;
 			scoreNumberLeft.text = selfScore;
 			showEnemyScore();
+			window.clearInterval(ai);
+			window.clearInterval(ai2);
 			window.clearInterval(getsecond);
-			isballLive=false;
+			isballLive = false;
 		}
 	}
 }

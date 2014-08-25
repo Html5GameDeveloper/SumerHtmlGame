@@ -190,7 +190,7 @@ function gamePageThree() {
              }
 
 
-			//console.warn(m);
+			
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
 			} else {
@@ -322,7 +322,7 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		window.clearInterval(cxtOne.timer);
+		
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
@@ -331,8 +331,10 @@ function timeOne() {
 				
 				window.clearInterval(clock_distance);
 				window.clearInterval(getsecond);
+				window.clearInterval(ai);
 				if(pageIndex==2||pageIndex==3){
 				window.clearInterval(ai2);
+				window.clearInterval(cxtOne.timer);
 				}
 				
 	

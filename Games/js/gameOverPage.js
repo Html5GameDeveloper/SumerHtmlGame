@@ -1,6 +1,8 @@
 ﻿ function gamePageOver() {
+ 
 	clock_distance_iswork=false;//是否实时获取球与人之间的距离
-	
+	backGroundLayer.die();
+	backGroundLayer.removeAllChild();
 	window.clearInterval(getsecond);
      //清除敌人移动定时器
 	window.clearInterval(ai);
@@ -8,14 +10,14 @@
     window.clearInterval(ai2);
 	window.clearInterval(clock_distance);
 	//window.clearInterval(ai3);
+	isballLive=false;
 
     if(pageIndex==2||pageIndex==3){
         window.clearInterval(clock_distance_2);
     }
 
 	
-	backGroundLayer.die();
-	backGroundLayer.removeAllChild();
+	
 
 	var gameOverLayer = new LSprite();
 	gameOverLayer = new LBitmap(new LBitmapData(imglist["backGround2"]));

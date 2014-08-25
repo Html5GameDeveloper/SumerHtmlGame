@@ -124,7 +124,7 @@ function textInput(e) {
 		for (j = 0; j < userNameArr.length; j++) {
 			userNameTemp[j] = String.fromCharCode(userNameArr[j]);
 			userName += userNameTemp[j];
-			console.warn(userName.toLowerCase().substring(9));
+			//console.warn(userName.toLowerCase().substring(9));
 		}
 	} else {
 		LGlobal.stage.addEventListener(LKeyboardEvent.KEY_DOWN, enterCode);

@@ -160,7 +160,7 @@ function gamePageOne() {
 				m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
 			}
 
-			//console.warn(m);
+			
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
 
@@ -256,7 +256,6 @@ function createMouseJoint(x, y) {
 	jointDef.bodyB = b;
 	jointDef.collideConnected = true;
 	jointDef.maxForce = 100.0 * b.GetMass();
-	//jointDef.maxForce = 300000.0 * b.GetMass();
 	jointDef.target.Set(x / scale + 1.2, y / scale + 1.2);
 	mouseJoint = LGlobal.box2d.world.CreateJoint(jointDef);
 	b.SetAwake(true);
@@ -284,13 +283,13 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		window.clearInterval(cxtOne.timer);
-
+		
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
-		//console.warn("123")
+		
+		window.clearInterval(cxtOne.timer);
 
 
 		//这里可以添加倒计时时间为0后需要执行的事件

@@ -1,6 +1,6 @@
-﻿//游戏第一关跳第二关中间过渡场景
+﻿//游戏第二关跳第三关中间过渡场景
 
-function nextPage(){
+function nextPage2(){
 	selfScore = 0;enemyScore = 0;
 	SysSecondOne = parseInt(startTime);
 	selfScore = 0;
@@ -40,7 +40,7 @@ function nextPage(){
 	},50);
 	//文字
 	var next = new LTextField();
-	next.text = "恭喜你闯过第一关！";
+	next.text = "恭喜你闯过第二关！";
 	next.x = 320;
 	next.y = 140;
 	next.size = 20;
@@ -56,7 +56,7 @@ function nextPage(){
 	theTextField.x = 310;
 	theTextField.y = 330;
 	backGroundLayer.addChild(theTextField);
-	theTextField.text = "下一场该我上场啦！";
+	theTextField.text = "下一场该我们将会更加厉害哦！";
 	theTextField.speed = 15;
 	theTextField.size = 20;
 	theTextField.font = "微软雅黑";

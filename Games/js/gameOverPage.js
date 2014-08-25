@@ -57,9 +57,16 @@ function upLoadResult() {
 	var clickSprite = new LSprite();
 	clickSprite.graphics.drawRect(0,"#000",[650,515,250,40],false);
 	
-	
+	//过关条件判定
 	if(last_score.text <= 5000){
-	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, nextPage);
+        if(pageIndex==2){
+            clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage2);
+        }
+        if(pageIndex==1){
+
+            clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage);
+        }
+
 	}else{
 	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, notEnter);
 	}
@@ -84,7 +91,7 @@ function upLoadResult() {
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
 }
-
+//分数不够过关时的提示
 function notEnter(){
  alert("亲，第一关需获得5000分方可进入下一关哦！");
 }

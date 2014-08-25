@@ -5,8 +5,9 @@ document.write('<script src="js/nextPage.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
-//document.write('<script src="js/showScoreTwo.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
+document.write('<script src="js/gamePageThree.js"></script>');
+document.write('<script src="js/nextPage2.js"></script>');
 
 init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量

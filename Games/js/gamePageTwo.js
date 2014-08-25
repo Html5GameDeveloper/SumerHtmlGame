@@ -183,8 +183,11 @@ function gamePageTwo() {
 //得到敌人与球的距离
 	clock_distance = setInterval(function () {
 			var m;
+             if (clock_distance_iswork == true){
 
-			m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+                 m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+             }
+
 
 			//console.warn(m);
 			if (m >= 2.0) {
@@ -196,7 +199,10 @@ function gamePageTwo() {
 		}, refresh);
 	clock_distance_2 = setInterval(function () {
 			var m;
-			m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+        if (clock_distance_iswork == true){
+            m = distance(enemyNameTwo.box2dBody.GetPosition().x, enemyNameTwo.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
+        }
+
 			if (m >= 2.0) {
 				tag_run = true;
 			} else {
@@ -320,6 +326,12 @@ function timeOne() {
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
+		if (pageIndex==5){
+				window.clearInterval(clock_distance_2);
+				window.clearInterval(clock_distance);
+				window.clearInterval(getsecond);
+		}
+		
 		//window.
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}

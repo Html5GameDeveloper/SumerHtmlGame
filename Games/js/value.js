@@ -1,15 +1,13 @@
-﻿var force = 600;
+﻿//敌人力量大小 初始化
+var force = 600;
 //定义初始时间
-var startTime = 30;
+var startTime = 9;
 //显示时间变量
 var t;
 var ai;
 //self
 var temp = 0;
 var clock = 0;
-//var Xposition;
-//var Yposition;
-
 var userNameArr = [];
 var userNameTemp = [];
 var userName;

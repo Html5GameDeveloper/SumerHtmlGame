@@ -7,9 +7,11 @@ document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
 //document.write('<script src="js/showScoreTwo.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
+
 init(1000 / 60, "gamePanel", 900, 640, main);
 //ai射门力量
 var force = 600;
+var isballLive=true;
 //按f2全屏测试
 function test2(e) {
 	if (e.keyCode == 113) {
@@ -108,8 +110,6 @@ function welcomePage() {
 
 }
 
-
-
 function enterCode(e) {
 	loginIn();
 }
@@ -139,7 +139,7 @@ function loginIn() {
 	window.clearInterval(ai);
 	//window.clearInterval(clock_distance);
 	//window.clearInterval(getsecond);
-	clock_distance_iswork=false;
+	clock_distance_iswork = false;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 
@@ -274,51 +274,27 @@ function Bound() {
 	//-----------设置球门-------------
 	ballDoor = new LSprite();
 	backGroundLayer.addChild(ballDoor);
-	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 105], true,"#f47969");
-	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true,"#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [808, 290, 35, 105], true, "#f47969");
+	ballDoor.graphics.drawRect(0, '#f47969', [67, 288, 35, 105], true, "#f47969");
 }
-/*
-//-----侦听两个物体的碰撞------
-function postSolve(contact, impulse) {
-	var objA = contact.GetFixtureA().GetBody().GetUserData();
-	var objB = contact.GetFixtureB().GetBody().GetUserData();
-	if (objA.type == "LSprite" && objB.type == "LSprite") {
-		if ((objA == ballLayer && objB == RightDoor) ||
-			(objA == RightDoor && objB == ballLayer)) {
-			selfScore += 1;
-			scoreNumberLeft.text = selfScore;
-			scoreNumberRight.text = enemyScore;
-			window.clearInterval(getsecond);
-			showSelfScore();
-		}
-	}
 
-	if (objA.type == "LSprite" && objB.type == "LSprite") {
-		if ((objA == ballLayer && objB == LeftDoor) ||
-			(objA == LeftDoor && objB == ballLayer)) {
-			enemyScore += 1;
-			scoreNumberRight.text = enemyScore;
-			scoreNumberLeft.text = selfScore;
-			showEnemyScore();
-			window.clearInterval(getsecond);
-		}
-	}
-}
-*/
 //给球施加力
 function force_ball() {
 	if (tag_run == false) {
-		if (enY < 287 / 30) {
-			var vec = new LGlobal.box2d.b2Vec2(-force, force);
-			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
-		}
-		if (enY > 392 / 30) {
-			var vec = new LGlobal.box2d.b2Vec2(-force, -force);
-			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
-		} else {
-			var vec = new LGlobal.box2d.b2Vec2(-force, 0);
-			ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
-		}
+		
+			if (enY < 287 / 30) {
+				var vec = new LGlobal.box2d.b2Vec2(-force, force);
+				ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+			}
+			if (enY > 392 / 30) {
+				var vec = new LGlobal.box2d.b2Vec2(-force, -force);
+				ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+			} else {
+				var vec = new LGlobal.box2d.b2Vec2(-force, 0);
+				ballLayer.box2dBody.ApplyForce(vec, ballLayer.box2dBody.GetWorldCenter());
+			}
+		
+
 	}
 }
 

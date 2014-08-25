@@ -3,7 +3,7 @@ var ai2;
 
 function gamePageTwo() {
 	pageIndex = 2; //游戏场景标签
-	clock_distance_iswork = true;
+	//clock_distance_iswork = true;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 	clock_distance_iswork = true
@@ -179,13 +179,6 @@ function gamePageTwo() {
 
 
 		}, refresh);
-		/*
-		isAi2Inbox=false;
-		isAi2Inbox=setInterval(function(){
-			if(enemyNameTwo.box2dBody.GetPosition().y<=475&&enemyName.box2dBody.GetPosition().y>=165){
-				return ture;
-			}else return false;
-		},refresh);*/
 		
 //得到敌人与球的距离
 	clock_distance = setInterval(function () {
@@ -322,11 +315,12 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
+		window.clearInterval(cxtOne.timer);
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
 		gamePageOver();
-
+		//window.
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
 }
@@ -343,6 +337,7 @@ function postSolve(contact, impulse) {
 			scoreNumberRight.text = enemyScore;
 			window.clearInterval(getsecond);
 			showSelfScore();
+			isballLive=false;//检测足球是否存在
 		}
 	}
 
@@ -354,6 +349,7 @@ function postSolve(contact, impulse) {
 			scoreNumberLeft.text = selfScore;
 			showEnemyScore();
 			window.clearInterval(getsecond);
+			isballLive=false;
 		}
 	}
 }

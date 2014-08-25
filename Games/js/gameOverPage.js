@@ -1,8 +1,9 @@
 ﻿ function gamePageOver() {
 	clock_distance_iswork=false;
 	window.clearInterval(getsecond);
-	//window.clearInterval(clock_distance);
 	window.clearInterval(ai);
+	//window.clearInterval(clock_distance);
+	
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 

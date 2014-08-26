@@ -66,7 +66,7 @@ function nextPage(){
 	theTextField.wind();
 }
 function windComplete(e){
-   trace("windComplete","e.currentTarget = " + e.currentTarget);
+   //trace("windComplete","e.currentTarget = " + e.currentTarget);
 }
 
 

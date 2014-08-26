@@ -149,7 +149,6 @@ function ChoosePerson() {
 	football.graphics.beginBitmapFill(bitmap);
 	football.graphics.drawArc(1, "#000", [20, 20, 20, 0, 2 * Math.PI], false);
 	football.addBodyCircle(20, 20, 20, 1, 3, 0.1, 1.0);
-	//football.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageOne);
 
 	//您的选择
 	var selfField = new LSprite();
@@ -190,8 +189,8 @@ function ChoosePerson() {
 	var buttonEnter = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
 	//buttonEnter.x = 330;
-	buttonEnter.x = 380;
-	buttonEnter.y = 330;
+	buttonEnter.x = 690;
+	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageOne);
 
 }

@@ -1,4 +1,4 @@
-﻿function gameOver(){
+﻿function gameClear(){
 
 clock_distance_iswork=false;//是否实时获取球与人之间的距离
 	backGroundLayer.die();
@@ -17,10 +17,10 @@ clock_distance_iswork=false;//是否实时获取球与人之间的距离
     }
 
 
-    var gameOver = new LSprite();
-	gameOver = new LBitmap(new LBitmapData(imglist["gameClear"]));
-	backGroundLayer.addChild(gameOver);
-	backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
+    var gameClear = new LSprite();
+	gameClear = new LBitmap(new LBitmapData(imglist["gameClear"]));
+	backGroundLayer.addChild(gameClear);
+	//backGroundLayer.addEventListener(LMouseEvent.MOUSE_DOWN, upLoadResult);
 	
 	 var neimaerMove = new LSprite();
 	var list = LGlobal.divideCoordinate(167, 498, 6, 4);
@@ -33,5 +33,4 @@ clock_distance_iswork=false;//是否实时获取球与人之间的距离
 	neimaerMove.x = 550;
 	neimaerMove.y = 350;
 	backGroundLayer.addChild(neimaerMove);
-	neimaerMove.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageThree);
 }

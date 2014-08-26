@@ -168,13 +168,18 @@ function gamePageThree() {
 		}, refresh);
 //敌人守门员移动定时器
 	ai2 = setInterval(function () {
-		
+		if(isballLive==true){
 			if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
 			}
 			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
 			}
+		}
+			
+		
+		
+
 
 		}, refresh);
 		
@@ -186,6 +191,8 @@ function gamePageThree() {
                  m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
              }
 
+
+			
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
 			} else {
@@ -321,18 +328,9 @@ function timeOne() {
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
-		if(pageIndex==1){
-			gamePageOver();
-		}
-		if(pageIndex==2){
-			gamePageOver()
-		}
-		if(pageIndex==3){
-				gameOver();
-		}
+		gamePageOver();
 	
-		
-		
+				
 				window.clearInterval(clock_distance);
 				window.clearInterval(getsecond);
 				window.clearInterval(ai);

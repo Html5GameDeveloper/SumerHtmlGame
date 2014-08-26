@@ -325,16 +325,7 @@ function timeOne() {
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
-		if(pageIndex==1){
-			gamePageOver();
-		}
-		if(pageIndex==2){
-			gamePageOver()
-		}
-		if(pageIndex==3){
-				gameOver();
-		}
-		
+		gamePageOver();
 
 		window.clearInterval(clock_distance_2);
 		window.clearInterval(clock_distance);

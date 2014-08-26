@@ -61,19 +61,23 @@ function upLoadResult() {
 	
 	//过关条件判定
 	if(last_score.text <= 5000){
-	if(pageIndex==3){
-            clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,gameOver);
-        }
+	
         if(pageIndex==2){
             clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage2);
+			console.warn("nextpage2")
         }
         if(pageIndex==1){
 
             clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage);
+			console.warn("nextpage");
         }
-
+		if(pageIndex==3){
+            clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage3);
+			console.warn("nextpage3")
+        }
 	}else{
 	clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN, notEnter);
+	console.warn("noEnter");
 	}
 	
 	backGroundLayer.addChild(upLoadResultLayer);

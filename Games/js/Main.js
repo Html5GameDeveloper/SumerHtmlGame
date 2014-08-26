@@ -1,13 +1,15 @@
 ﻿document.write('<script src="js/value.js"></script>');
 document.write('<script src="js/gamePageOne.js"></script>');
 document.write('<script src="js/gamePageTwo.js"></script>');
+document.write('<script src="js/gameClear.js"></script>');
 document.write('<script src="js/nextPage.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
+
+document.write('<script src="js/nextPage3.js"></script>');
 document.write('<script src="js/gamePageThree.js"></script>');
-document.write('<script src="js/gameOver.js"></script>');
 document.write('<script src="js/nextPage2.js"></script>');
 
 init(1000 / 60, "gamePanel", 900, 640, main);
@@ -55,7 +57,7 @@ function gameInit(result) {
 
 }
 
-var player;
+var player,player2;
 
 function welcomePage() {
 
@@ -136,11 +138,7 @@ function textInput(e) {
 
 //登录界面
 function loginIn() {
-	
 	$("#gamePanel_InputTextBox").css('display', 'none');
-	
-	
-	
 	window.clearInterval(t);
 	window.clearInterval(ai);
 	//window.clearInterval(clock_distance);
@@ -173,7 +171,6 @@ function loginIn() {
 	gradeScore.x = 500;
 	gradeScore.y = 500;
 	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
-	
 	
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [450, 110, 130, 50],false);

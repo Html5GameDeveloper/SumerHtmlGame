@@ -61,6 +61,9 @@ function upLoadResult() {
 	
 	//过关条件判定
 	if(last_score.text <= 5000){
+	if(pageIndex==3){
+            clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,gameOver);
+        }
         if(pageIndex==2){
             clickSprite.addEventListener(LMouseEvent.MOUSE_DOWN,nextPage2);
         }

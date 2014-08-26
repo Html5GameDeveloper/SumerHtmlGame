@@ -175,9 +175,6 @@ function gamePageThree() {
 			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y + step;
 			}
-		
-		
-
 
 		}, refresh);
 		
@@ -189,8 +186,6 @@ function gamePageThree() {
                  m = distance(enemyName.box2dBody.GetPosition().x, enemyName.box2dBody.GetPosition().y, ballMoveX, ballMoveY);
              }
 
-
-			
 			if (m >= 2.0) {
 				tag_run = true; //true代表两个物体未发生碰撞
 			} else {
@@ -326,9 +321,18 @@ function timeOne() {
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
-		gamePageOver();
+		if(pageIndex==1){
+			gamePageOver();
+		}
+		if(pageIndex==2){
+			gamePageOver()
+		}
+		if(pageIndex==3){
+				gameOver();
+		}
 	
-				
+		
+		
 				window.clearInterval(clock_distance);
 				window.clearInterval(getsecond);
 				window.clearInterval(ai);

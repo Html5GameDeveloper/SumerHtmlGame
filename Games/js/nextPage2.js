@@ -17,8 +17,9 @@ function nextPage2(){
 	//backLayer.graphics.drawRect(1, "#000", [0, 0, 900, 640], true, "#000");
 	backGroundLayer.addChild(backLayer1);
 		
-	
+
     var neimaerMove = new LSprite();
+	var neimaerMove2 = new LSprite();
 	var list = LGlobal.divideCoordinate(167, 415, 5, 4);
 
 	//var playerRandom = Math.floor(Math.random() * 4);
@@ -26,14 +27,27 @@ function nextPage2(){
 	player = neimaerMove = new LAnimationTimeline(data, list);
 	player.setAction(4);
 	player.speed = 5;
-	neimaerMove.x = 410;
+	neimaerMove.x = 400;
 	neimaerMove.y = 0;
 	backGroundLayer.addChild(neimaerMove);
 	neimaerMove.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageThree);
 	
+	
+//	var playerRandom = Math.floor(Math.random() * 4);
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player2 = neimaerMove2 = new LAnimationTimeline(data, list);
+	player2.setAction(tempEn);
+	player2.speed = 5;
+	neimaerMove2.x = 430;
+	neimaerMove2.y = 0;
+	backGroundLayer.addChild(neimaerMove2);
+	neimaerMove2.addEventListener(LMouseEvent.MOUSE_DOWN, gamePageThree);
+	
+	
 	setInterval(function(){
 	if(neimaerMove.y <= 250){
 	    neimaerMove.y += 5;
+		   neimaerMove2.y += 5;
 		}else{
 		 window.clearInterval();
 		}

@@ -57,7 +57,7 @@ function gameInit(result) {
 
 }
 
-var player;
+var player,player2;
 
 function welcomePage() {
 
@@ -171,6 +171,21 @@ function loginIn() {
 	gradeScore.x = 500;
 	gradeScore.y = 500;
 	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
+	
+	var buttonNew = new LSprite();
+	buttonNew.graphics.drawRect(0, "#000", [450, 110, 130, 50],false);
+	backGroundLayer.addChild(buttonNew);
+	console.warn("123");
+	var playerName = new LTextField();
+	backGroundLayer.addChild(playerName);
+	playerName.text = document.getElementById("gamePanel_InputTextBox").value;
+	playerName.x = 450;
+	playerName.y = 110;
+    playerName.size = 30;
+	playerName.color = "#92563c";
+	playerName.font = "Arial";
+	playerName.weight = "bold";
+	buttonNew.addChild(playerName);
 
 }
 //输入框

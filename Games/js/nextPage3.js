@@ -19,6 +19,10 @@ function nextPage3(){
 		
 	
     var neimaerMove = new LSprite();
+	var neimaerMove1 = new LSprite();
+	var neimaerMove2 = new LSprite();
+	var neimaerMove3 = new LSprite();
+	var neimaerMove4 = new LSprite();
 	var list = LGlobal.divideCoordinate(167, 415, 5, 4);
 
 	//var playerRandom = Math.floor(Math.random() * 4);
@@ -26,14 +30,54 @@ function nextPage3(){
 	player = neimaerMove = new LAnimationTimeline(data, list);
 	player.setAction(4);
 	player.speed = 5;
-	neimaerMove.x = 410;
+	neimaerMove.x = 420;
 	neimaerMove.y = 0;
 	backGroundLayer.addChild(neimaerMove);
 	neimaerMove.addEventListener(LMouseEvent.MOUSE_UP, gameClear);
 	
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player2 = neimaerMove1 = new LAnimationTimeline(data, list);
+	player2.setAction(0);
+	player2.speed = 5;
+	neimaerMove1.x = 370;
+	neimaerMove1.y = 0;
+	backGroundLayer.addChild(neimaerMove1);
+	neimaerMove1.addEventListener(LMouseEvent.MOUSE_UP, gameClear);
+	
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player2 = neimaerMove2 = new LAnimationTimeline(data, list);
+	player2.setAction(1);
+	player2.speed = 5;
+	neimaerMove2.x = 470;
+	neimaerMove2.y = 0;
+	backGroundLayer.addChild(neimaerMove2);
+	neimaerMove2.addEventListener(LMouseEvent.MOUSE_UP, gameClear);
+	
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player2 = neimaerMove3 = new LAnimationTimeline(data, list);
+	player2.setAction(2);
+	player2.speed = 5;
+	neimaerMove3.x = 320;
+	neimaerMove3.y = 0;
+	backGroundLayer.addChild(neimaerMove3);
+	neimaerMove3.addEventListener(LMouseEvent.MOUSE_UP, gameClear);
+	
+	var data = new LBitmapData(imglist["neimaerMove"], 0, 0, 42, 83);
+	player2 = neimaerMove4 = new LAnimationTimeline(data, list);
+	player2.setAction(3);
+	player2.speed = 5;
+	neimaerMove4.x = 520;
+	neimaerMove4.y = 0;
+	backGroundLayer.addChild(neimaerMove4);
+	neimaerMove4.addEventListener(LMouseEvent.MOUSE_UP, gameClear);
+	
 	setInterval(function(){
 	if(neimaerMove.y <= 250){
 	    neimaerMove.y += 5;
+		neimaerMove1.y += 5;
+		neimaerMove2.y += 5;
+		neimaerMove3.y += 5;
+		neimaerMove4.y += 5;
 		}else{
 		 window.clearInterval();
 		}

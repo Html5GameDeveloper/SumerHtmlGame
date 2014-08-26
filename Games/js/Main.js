@@ -1,11 +1,14 @@
 ﻿document.write('<script src="js/value.js"></script>');
 document.write('<script src="js/gamePageOne.js"></script>');
 document.write('<script src="js/gamePageTwo.js"></script>');
+document.write('<script src="js/gameClear.js"></script>');
 document.write('<script src="js/nextPage.js"></script>');
 document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
+
+document.write('<script src="js/nextPage3.js"></script>');
 document.write('<script src="js/gamePageThree.js"></script>');
 document.write('<script src="js/nextPage2.js"></script>');
 

@@ -171,6 +171,9 @@ var imgData = [{
 	},{
 	  name : "baluo",
 	  path : "img/baluo.png"
+	},{
+	  name : "gameClear",
+	  path : "img/gameClear.jpg"
 	}
 
 ];

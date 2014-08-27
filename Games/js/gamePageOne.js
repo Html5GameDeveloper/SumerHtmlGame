@@ -183,9 +183,10 @@ function gamePageOne() {
 	buoyancyController.AddBody(ballLayer.box2dBody);
 	//获取足球实时坐标
 	getsecond = setInterval(function () {
+	if(isballLive==true){
 			ballMoveX = ballLayer.box2dBody.GetPosition().x;
 			ballMoveY = ballLayer.box2dBody.GetPosition().y;
-
+	}
 		}, 50);
 
 	//显示国旗self
@@ -239,9 +240,13 @@ function gamePageOne() {
 }
 
 function Exit() {
-
-	SysSecondOne = parseInt(startTime);
+	isballLive=false;
 	window.clearInterval(getsecond);
+	window.clearInterval(ai);
+	window.clearInterval(clock_distance);
+	SysSecondOne = parseInt(startTime);
+	
+	
 	loginIn();
 	selfScore = 0;
 	enemyScore = 0;

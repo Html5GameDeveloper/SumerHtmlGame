@@ -10,7 +10,7 @@ function showSelfScore() {
 	isballLive=false;
 	backGroundLayer.removeChild(ballLayer);
 	var resultChart = new LSprite();
-	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#000');
+	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#fff');
 	backGroundLayer.addChild(resultChart);
 
 	showList.push(new LBitmapData(imglist["ArgentinaFrag"]));
@@ -70,7 +70,7 @@ function showSelfScore() {
 
 	var showResult = new LTextField();
 	showResult.text = 'Congratulations!';
-	showResult.color = '#fff';
+	showResult.color = '#000';
 	showResult.weight = 'bold';
 	showResult.size = '50';
 	showResult.x = 180;
@@ -79,7 +79,7 @@ function showSelfScore() {
 
 	scoreNumberLeft = new LTextField();
 	scoreNumberLeft.text = selfScore;
-	scoreNumberLeft.color = "#FFF";
+	scoreNumberLeft.color = "#000";
 	scoreNumberLeft.size = "40";
 	scoreNumberLeft.x = 300;
 	scoreNumberLeft.y = 350;
@@ -87,7 +87,7 @@ function showSelfScore() {
 
 	scoreNumberMiddle = new LTextField();
 	scoreNumberMiddle.text = ':';
-	scoreNumberMiddle.color = "#FFF";
+	scoreNumberMiddle.color = "#000";
 	scoreNumberMiddle.size = "40";
 	scoreNumberMiddle.x = 420;
 	scoreNumberMiddle.y = 350;
@@ -97,7 +97,7 @@ function showSelfScore() {
 	scoreNumberRight.text = enemyScore;
 	scoreNumberRight.x = 520;
 	scoreNumberRight.y = 350;
-	scoreNumberRight.color = "#FFF";
+	scoreNumberRight.color = "#000";
 	scoreNumberRight.size = "40";
 	resultChart.addChild(scoreNumberRight);
 	clock = 0;
@@ -126,7 +126,7 @@ function showEnemyScore() {
 
 	backGroundLayer.removeChild(ballLayer);
 	var resultChart = new LSprite();
-	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#000');
+	resultChart.graphics.drawRect(1, '#000', [0, 0, 900, 640], true, '#fff');
 	backGroundLayer.addChild(resultChart);
 
 	//enemy进球 
@@ -178,7 +178,7 @@ function showEnemyScore() {
 
 	var showResult = new LTextField();
 	showResult.text = 'Cheer Up!';
-	showResult.color = '#fff';
+	showResult.color = '#000';
 	showResult.weight = 'bold';
 	showResult.size = '50';
 	showResult.x = 180;
@@ -187,7 +187,7 @@ function showEnemyScore() {
 
 	scoreNumberLeft = new LTextField();
 	scoreNumberLeft.text = selfScore;
-	scoreNumberLeft.color = "#FFF";
+	scoreNumberLeft.color = "#000";
 	scoreNumberLeft.size = "40";
 	scoreNumberLeft.x = 300;
 	scoreNumberLeft.y = 350;
@@ -195,7 +195,7 @@ function showEnemyScore() {
 
 	scoreNumberMiddle = new LTextField();
 	scoreNumberMiddle.text = ':';
-	scoreNumberMiddle.color = "#FFF";
+	scoreNumberMiddle.color = "#000";
 	scoreNumberMiddle.size = "40";
 	scoreNumberMiddle.x = 450;
 	scoreNumberMiddle.y = 350;
@@ -205,7 +205,7 @@ function showEnemyScore() {
 	scoreNumberRight.text = enemyScore;
 	scoreNumberRight.x = 600;
 	scoreNumberRight.y = 350;
-	scoreNumberRight.color = "#FFF";
+	scoreNumberRight.color = "#000";
 	scoreNumberRight.size = "40";
 	resultChart.addChild(scoreNumberRight);
 	clock = 0;

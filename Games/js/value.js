@@ -1,7 +1,7 @@
 ﻿//敌人力量大小 初始化
 var force = 600;
 //定义初始时间
-var startTime = 9;
+var startTime = 60;
 //显示时间变量
 var t;
 var ai;

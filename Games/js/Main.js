@@ -60,7 +60,7 @@ function gameInit(result) {
 var player,player2;
 
 function welcomePage() {
-
+	
 	var loginInPage = new LSprite();
 	loginInPage = new LBitmap(new LBitmapData(imglist["loginIn"]));
 	backGroundLayer.addChild(loginInPage);
@@ -144,6 +144,7 @@ function loginIn() {
 	//window.clearInterval(clock_distance);
 	//window.clearInterval(getsecond);
 	clock_distance_iswork = false;
+	isballLive=false;
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();
 
@@ -175,7 +176,6 @@ function loginIn() {
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [450, 110, 130, 50],false);
 	backGroundLayer.addChild(buttonNew);
-	console.warn("123");
 	var playerName = new LTextField();
 	backGroundLayer.addChild(playerName);
 	playerName.text = document.getElementById("gamePanel_InputTextBox").value;

@@ -67,12 +67,12 @@ function nextPage2(){
 	next.wind();
 	
 	var theTextField = new LTextField();
-	theTextField.x = 300;
+	theTextField.x = 290;
 	theTextField.y = 330;
 	backGroundLayer.addChild(theTextField);
 	theTextField.text = "下一场该我们将会更加厉害哦！";
 	theTextField.speed = 15;
-	theTextField.size = 18;
+	theTextField.size = 16;
 	theTextField.font = "微软雅黑";
 	theTextField.weight = "bold";
 	theTextField.color = "#945a4e";

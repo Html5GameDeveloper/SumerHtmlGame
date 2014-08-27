@@ -155,21 +155,21 @@ function loginIn() {
 	backGroundLayer.addChild(welcomePage);
 
 	//选择人物按钮
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["choosePlayer"], 11, 5, 187, 60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["choosePlayer"], 11, 75, 187, 60));
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["buttons"], 0, 0, 156, 26));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["buttons"], 156, 0, 156, 26));
 	var buttonEnter = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(buttonEnter);
-	buttonEnter.x = 200;
-	buttonEnter.y = 500;
+	buttonEnter.x = 390;
+	buttonEnter.y = 280;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
 
 	//排行榜按钮
-	var bitmapUp = new LBitmap(new LBitmapData(imglist["billBroad"], 11, 5, 187, 60));
-	var bitmapOver = new LBitmap(new LBitmapData(imglist["billBroad"], 11, 75, 187, 60));
+	var bitmapUp = new LBitmap(new LBitmapData(imglist["buttons"], 0, 26, 156, 26));
+	var bitmapOver = new LBitmap(new LBitmapData(imglist["buttons"], 156, 26, 156, 26));
 	var gradeScore = new LButton(bitmapUp, bitmapOver);
 	backGroundLayer.addChild(gradeScore);
-	gradeScore.x = 500;
-	gradeScore.y = 500;
+	gradeScore.x = 390;
+	gradeScore.y = 320;
 	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
 	
 	var buttonNew = new LSprite();

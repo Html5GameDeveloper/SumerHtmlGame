@@ -174,6 +174,9 @@ var imgData = [{
 	},{
 	  name : "gameClear",
 	  path : "img/gameClear.jpg"
+	},{
+	  name : "buttons",
+	  path : "img/buttons.png"
 	}
 
 ];

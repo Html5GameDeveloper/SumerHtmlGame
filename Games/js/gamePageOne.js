@@ -292,15 +292,27 @@ function timeOne() {
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
-		gamePageOver();
-		
+        gamePageOver();
+
 		window.clearInterval(cxtOne.timer);
 
 
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
 }
+/*
+var isGameOver=true;
+timeOver=setInterval(function(){
+    if(isGameOver==true){
+        if(SysSecondOne<=0){
+            console.warn(isGameOver);
+            gamePageOver();
+   }
 
+
+    }
+
+},refresh);*/
 //-----侦听球和球门的碰撞------
 function postSolve(contact, impulse) {
 	var objA = contact.GetFixtureA().GetBody().GetUserData();

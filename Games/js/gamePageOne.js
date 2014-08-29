@@ -1,7 +1,7 @@
 ﻿//游戏第一关
 
 var clock_distance_iswork; //是否获取两点之间的距离
-var isballLive;
+var isballLive;//足球是否存在
 
 
 //第一关游戏主界面
@@ -272,6 +272,9 @@ function onMouseMove(event) {
 	mouseJoint.SetTarget(new LGlobal.box2d.b2Vec2(mX, mY));
 }
 //倒计时函数
+
+
+
 function timeOne() {
 	if (SysSecondOne > 0) {
 		SysSecondOne = SysSecondOne - 1;
@@ -288,31 +291,22 @@ function timeOne() {
 	}
 
 	if (SysSecondOne == 0) { //剩余时间小于或等于0的时候，就停止间隔函数
-		
+		//isTimeOver=false;
 		SysSecondOne = -1;
 		backGroundLayer.die();
 		backGroundLayer.removeAllChild();
-        gamePageOver();
-
-		window.clearInterval(cxtOne.timer);
+        
+		//if(isTimeOver=true){
+		gamePageOver();
+			//window.clearInterval(cxtOne.timer);
+		//}
+		
 
 
 		//这里可以添加倒计时时间为0后需要执行的事件
 	}
 }
-/*
-var isGameOver=true;
-timeOver=setInterval(function(){
-    if(isGameOver==true){
-        if(SysSecondOne<=0){
-            console.warn(isGameOver);
-            gamePageOver();
-   }
 
-
-    }
-
-},refresh);*/
 //-----侦听球和球门的碰撞------
 function postSolve(contact, impulse) {
 	var objA = contact.GetFixtureA().GetBody().GetUserData();

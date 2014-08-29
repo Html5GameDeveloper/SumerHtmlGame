@@ -84,8 +84,8 @@ function nextPage3(){
 	},50);
 	//文字
 	var next = new LTextField();
-	next.text = "恭喜您通过了第三关";
-	next.x = 320;
+	next.text = "恭喜您通过了所以关卡";
+	next.x = 300;
 	next.y = 140;
 	next.size = 20;
 	next.color = "#945a4e";
@@ -97,12 +97,25 @@ function nextPage3(){
 	next.wind();
 	
 	var theTextField = new LTextField();
-	theTextField.x = 300;
-	theTextField.y = 330;
+	theTextField.x = 370;
+	theTextField.y = 340;
 	backGroundLayer.addChild(theTextField);
-	theTextField.text = "你击败了我们";
+	theTextField.text = "我们认输了";
 	theTextField.speed = 15;
 	theTextField.size = 18;
+	theTextField.font = "微软雅黑";
+	theTextField.weight = "bold";
+	theTextField.color = "#945a4e";
+	theTextField.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
+	theTextField.wind();
+	
+	var theTextField = new LTextField();
+	theTextField.x = 355;
+	theTextField.y = 380;
+	backGroundLayer.addChild(theTextField);
+	theTextField.text = "（点击人物继续）";
+	theTextField.speed = 15;
+	theTextField.size = 14;
 	theTextField.font = "微软雅黑";
 	theTextField.weight = "bold";
 	theTextField.color = "#945a4e";

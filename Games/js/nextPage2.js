@@ -78,6 +78,19 @@ function nextPage2(){
 	theTextField.color = "#945a4e";
 	theTextField.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
 	theTextField.wind();
+	
+	var theTextField = new LTextField();
+	theTextField.x = 350;
+	theTextField.y = 380;
+	backGroundLayer.addChild(theTextField);
+	theTextField.text = "（点击人物继续）";
+	theTextField.speed = 15;
+	theTextField.size = 14;
+	theTextField.font = "微软雅黑";
+	theTextField.weight = "bold";
+	theTextField.color = "#945a4e";
+	theTextField.addEventListener(LTextEvent.WIND_COMPLETE,windComplete);
+	theTextField.wind();
 }
 function windComplete(e){
   // trace("windComplete","e.currentTarget = " + e.currentTarget);

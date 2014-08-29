@@ -1,6 +1,6 @@
 ﻿ function gamePageOver() {
     isGameOver=false;
-
+	//isTimeOver=true;
 	clock_distance_iswork=false;//是否实时获取球与人之间的距离
 	backGroundLayer.die();
 	backGroundLayer.removeAllChild();

@@ -33,4 +33,26 @@ clock_distance_iswork=false;//是否实时获取球与人之间的距离
 	neimaerMove.x = 550;
 	neimaerMove.y = 350;
 	backGroundLayer.addChild(neimaerMove);
+
+    var playerName = new LTextField();
+    backGroundLayer.addChild(playerName);
+    playerName.text = document.getElementById("gamePanel_InputTextBox").value;
+    playerName.x = 420;
+    playerName.y = 450;
+    playerName.size = 30;
+    playerName.color = "#92563c";
+    playerName.font = "Arial";
+    playerName.weight = "bold";
+    backGroundLayer.addChild(playerName);
+
+    var playerName = new LTextField();
+    backGroundLayer.addChild(playerName);
+    playerName.text = sumScore+"分";
+    playerName.x = 550;
+    playerName.y = 450;
+    playerName.size = 30;
+    playerName.color = "#92563c";
+    playerName.font = "Arial";
+    playerName.weight = "bold";
+    backGroundLayer.addChild(playerName);
 }

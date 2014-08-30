@@ -84,7 +84,7 @@ function nextPage3(){
 	},50);
 	//文字
 	var next = new LTextField();
-	next.text = "恭喜您通过了所以关卡";
+	next.text = "恭喜您通过了所有关卡";
 	next.x = 300;
 	next.y = 140;
 	next.size = 20;

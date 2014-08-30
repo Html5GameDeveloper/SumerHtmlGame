@@ -100,8 +100,11 @@ function upLoadResult() {
 	buttonEnter.y = 560;
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN,loginIn);
 
+
+    sumScore+=(selfScore-enemyScore)*1000;
+
 }
 //分数不够过关时的提示
 function notEnter(){
- alert("亲，第一关需获得2000分方可进入下一关哦！");
+ alert("亲，需获得2000分方可进入下一关哦！");
 }

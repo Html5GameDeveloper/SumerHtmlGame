@@ -171,7 +171,7 @@ function gamePageTwo() {
 	ai2 = setInterval(function () {
 			if (isballLive == true) {
 				
-				if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY) && (enemyNameTwo.box2dBody.GetPosition().y > 165 / 30)) {
+				if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY) && (enemyNameTwo.box2dBody.GetPosition().y > 220 / 30)) {
 					enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
 				}
 				if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY) && (enemyNameTwo.box2dBody.GetPosition().y <= 475 / 30)) {

@@ -2,6 +2,8 @@
 var ai2;
 var isballLive;
 function gamePageThree() {
+	step=2/30;
+	force=700;
 	isballLive=true;//定义足球存在，可以获取其位置
 	pageIndex = 3; //游戏场景标签
 	
@@ -169,7 +171,7 @@ function gamePageThree() {
 //敌人守门员移动定时器
 	ai2 = setInterval(function () {
 		if(isballLive==true){
-			if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>165/30)) {
+			if ((enemyNameTwo.box2dBody.GetPosition().y >= ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y>220/30)) {
 				enemyNameTwo.box2dBody.GetPosition().y = enemyNameTwo.box2dBody.GetPosition().y - step;
 			}
 			if ((enemyNameTwo.box2dBody.GetPosition().y < ballMoveY)&&(enemyNameTwo.box2dBody.GetPosition().y<=475/30)) {

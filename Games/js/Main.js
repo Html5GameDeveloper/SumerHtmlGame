@@ -7,7 +7,6 @@ document.write('<script src="js/distance.js"></script>');
 document.write('<script src="js/ChoosePerson.js"></script>');
 document.write('<script src="js/showScore.js"></script>');
 document.write('<script src="js/gameOverPage.js"></script>');
-
 document.write('<script src="js/nextPage3.js"></script>');
 document.write('<script src="js/gamePageThree.js"></script>');
 document.write('<script src="js/nextPage2.js"></script>');
@@ -165,6 +164,7 @@ function loginIn() {
 	buttonEnter.addEventListener(LMouseEvent.MOUSE_DOWN, ChoosePerson);
 
 	//排行榜按钮
+    /*
 	var bitmapUp = new LBitmap(new LBitmapData(imglist["buttons"], 0, 26, 156, 26));
 	var bitmapOver = new LBitmap(new LBitmapData(imglist["buttons"], 156, 26, 156, 26));
 	var gradeScore = new LButton(bitmapUp, bitmapOver);
@@ -172,7 +172,7 @@ function loginIn() {
 	gradeScore.x = 390;
 	gradeScore.y = 320;
 	gradeScore.addEventListener(LMouseEvent.MOUSE_DOWN, Billboard);
-	
+	*/
 	var buttonNew = new LSprite();
 	buttonNew.graphics.drawRect(0, "#000", [450, 110, 130, 50],false);
 	backGroundLayer.addChild(buttonNew);
